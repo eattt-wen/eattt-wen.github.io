@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>鑂文 &mdash; 个人主页</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--b0:#f0f7ff;--b1:#dbeeff;--b2:#b8dcff;--b3:#7cbfff;--b4:#4aa3f5;--b5:#2484d8;--b6:#1a6ab8;--p1:#fce8f3;--p2:#f5b8dc;--p3:#e87bbf;--m1:#e4f8f2;--m2:#a8e8d4;--m3:#4ec9a8;--y1:#fff8e1;--y2:#ffe082;--tx:#2d4a6a;--tm:#6b8faa;--tl:#9ab8cc}body{font-family:'Nunito','Noto Sans SC',sans-serif;background:var(--b0);color:var(--tx);min-height:100vh;font-size:17px}.wrap{max-width:1080px;margin:0 auto;padding-bottom:72px}nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:white;border-bottom:2px solid var(--b1);position:sticky;top:0;z-index:99}.logo{font-size:21px;font-weight:900;color:var(--b5);display:flex;align-items:center;gap:8px}.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--p3);display:inline-block}.nav-links{display:flex;gap:4px;list-style:none;align-items:center}.nav-links a{font-size:15px;font-weight:700;color:var(--tm);text-decoration:none;padding:6px 16px;border-radius:20px;transition:.18s}.nav-links a:hover{background:var(--b1);color:var(--b5)}.nav-gh{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:700;color:var(--tm);text-decoration:none;padding:6px 16px;border-radius:20px;transition:.18s;border:1.5px solid var(--b2)}.nav-gh:hover{background:var(--b1);color:var(--b5);border-color:var(--b3)}.nav-gh svg{flex-shrink:0}.hero{background:white;padding:64px 72px 56px;text-align:center;position:relative;overflow:hidden;border-bottom:2px solid var(--b1);border-radius:0 0 40px 40px}.deco{position:absolute;border-radius:50%;opacity:.14;pointer-events:none}.deco.a{width:260px;height:260px;background:var(--b3);top:-80px;left:-80px}.deco.b{width:180px;height:180px;background:var(--p2);top:-30px;right:-50px}.deco.c{width:140px;height:140px;background:var(--m2);bottom:-30px;right:80px}.deco.d{width:90px;height:90px;background:var(--y2);bottom:10px;left:50px}.avatar{width:130px;height:130px;border-radius:50%;margin:0 auto 24px;padding:3px;background:linear-gradient(135deg,var(--b3),var(--p2),var(--m2));position:relative;z-index:1}.avatar-in{width:100%;height:100%;border-radius:50%;background:var(--b1);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:52px}.avatar-in img{width:100%;height:100%;object-fit:cover;border-radius:50%}.hero h1{font-size:42px;font-weight:900;color:var(--tx);position:relative;z-index:1;line-height:1.2}.hero h1 em{font-style:normal;background:linear-gradient(110deg,var(--b5),var(--p3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-sub{font-size:17px;color:var(--tm);margin-top:14px;line-height:1.8;position:relative;z-index:1}.tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px;position:relative;z-index:1}.tag{font-size:13px;font-weight:700;padding:6px 16px;border-radius:20px}.tag.b{background:var(--b1);color:var(--b6)}.tag.p{background:var(--p1);color:#a03070}.tag.m{background:var(--m1);color:#1a7a5a}.sec{margin:40px 32px 0}.sec-title{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:900;color:var(--tx);margin-bottom:20px}.sec-pill{background:var(--b2);border-radius:12px;padding:4px 12px;font-size:19px;line-height:1}.about-grid{display:grid;grid-template-columns:1fr 170px;gap:18px}.about-card{background:white;border-radius:20px;padding:32px 36px;border:2px solid var(--b1)}.about-text{font-size:16px;color:var(--tx);line-height:2.0}.about-text strong{color:var(--b5)}.food-card{background:white;border-radius:20px;padding:24px 16px;border:2px solid var(--p2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}.food-emoji{font-size:42px}.food-label{font-size:12px;font-weight:800;color:var(--p3);letter-spacing:.06em}.food-items{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}.food-tag{font-size:12px;font-weight:700;background:var(--p1);color:#a03070;padding:4px 10px;border-radius:12px}.current-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cur-card{background:white;border-radius:20px;padding:24px 20px;border:2px solid var(--b1);display:flex;align-items:flex-start;gap:14px}.cur-icon{font-size:28px;flex-shrink:0;margin-top:2px}.cur-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tl);margin-bottom:5px}.cur-text{font-size:15px;font-weight:700;color:var(--tx);line-height:1.5}.cur-sub{font-size:13px;color:var(--tm);margin-top:4px;line-height:1.5}.contrib-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);position:relative;overflow:hidden}.contrib-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;position:relative;z-index:1}.contrib-count{font-size:15px;font-weight:700;color:var(--tm)}.contrib-count strong{color:var(--b5);font-size:18px}.contrib-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.wave-toggle{font-size:12px;font-weight:800;color:var(--b5);background:var(--b1);border:1.5px solid var(--b2);padding:5px 14px;border-radius:20px;cursor:pointer;transition:.18s;user-select:none}.wave-toggle:hover{background:var(--b2)}.wave-toggle.on{background:var(--b4);color:white;border-color:var(--b4)}.contrib-legend{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--tl);font-weight:600}.legend-cell{width:12px;height:12px;border-radius:3px;flex-shrink:0}.heatmap-scroll{overflow-x:auto;padding-bottom:4px;position:relative;z-index:1}.month-labels{display:flex;margin-bottom:6px}.month-lbl{font-size:11px;font-weight:700;color:var(--tl);text-align:left;flex-shrink:0}.heatmap{display:flex;gap:3px}.heatmap-col{display:flex;flex-direction:column;gap:3px}.cell{width:12px;height:12px;border-radius:3px;flex-shrink:0;transition:background-color .3s,box-shadow .3s,transform .12s}.cell:hover{transform:scale(1.5);z-index:5;position:relative}.lv0{background:#dbeeff}.lv1{background:#b8e0c8}.lv2{background:#72c794}.lv3{background:#3aaa68}.lv4{background:#196e40}.wave-front{background:#2484d8 !important;box-shadow:0 0 6px 2px rgba(36,132,216,.65)}.wave-mid{background:#4aa3f5 !important;box-shadow:0 0 4px 1px rgba(74,163,245,.45)}.wave-back{background:#7cbfff !important;box-shadow:0 0 2px 1px rgba(124,191,255,.3)}.wave-wash{background:#b8dcff !important;box-shadow:none}.snake-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);margin-top:18px}.snake-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}.snake-score-wrap{display:flex;align-items:center;gap:20px}.snake-stat{text-align:center}.snake-stat-num{font-size:22px;font-weight:900;color:var(--b5);line-height:1}.snake-stat-lbl{font-size:11px;font-weight:800;color:var(--tl);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}.snake-btns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.snake-btn{font-size:13px;font-weight:800;padding:7px 18px;border-radius:20px;cursor:pointer;border:1.5px solid;transition:.15s;font-family:inherit}.snake-btn-start{background:var(--m3);color:white;border-color:var(--m3)}.snake-btn-start:hover{background:#3ab898;border-color:#3ab898}.snake-btn-pause{background:var(--b1);color:var(--b5);border-color:var(--b2)}.snake-btn-pause:hover{background:var(--b2)}.snake-hint{font-size:13px;color:var(--tl);font-weight:700}.game-area{max-width:560px;margin:0 auto}.snake-canvas-wrap{position:relative;border-radius:14px;overflow:hidden;border:2px solid var(--b1);background:var(--b0);width:100%}#snakeCanvas{display:block;width:100%;height:auto;border-radius:12px}.snake-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(240,247,255,.9);border-radius:12px}.snake-overlay.hidden{display:none}.overlay-emoji{font-size:44px}.overlay-title{font-size:20px;font-weight:900;color:var(--tx)}.overlay-sub{font-size:14px;color:var(--tm);font-weight:600;text-align:center;line-height:1.6}.overlay-btn{font-size:14px;font-weight:800;padding:10px 28px;border-radius:20px;cursor:pointer;border:none;background:var(--b5);color:white;font-family:inherit;transition:.15s;margin-top:4px}.overlay-btn:hover{background:var(--b6)}.dpad{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:18px}.dpad-row{display:flex;gap:6px}.dpad-btn{width:52px;height:52px;border-radius:14px;background:white;border:2px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:background .12s,transform .1s;color:var(--b5);font-weight:900;touch-action:manipulation}.dpad-btn:active,.dpad-btn.pressed{background:var(--b2);transform:scale(.9)}.proj-grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:540px}.proj-card{background:white;border-radius:20px;padding:24px 28px;border:2px solid var(--b1);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}.proj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--b4),var(--m3));border-radius:4px 0 0 4px}.proj-card:hover{border-color:var(--b3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(74,163,245,.1)}.proj-name{font-size:17px;font-weight:900;color:var(--b5)}.proj-desc{font-size:14px;color:var(--tm);line-height:1.7;flex:1}.proj-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.proj-lang{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--tm)}.lang-dot{width:11px;height:11px;border-radius:50%}.lang-js{background:#f7df1e}.proj-star{font-size:13px;font-weight:700;color:#a06800;background:var(--y1);padding:3px 10px;border-radius:10px}.contact-row{display:flex;gap:14px;flex-wrap:wrap}.contact-card{background:white;border-radius:20px;padding:24px 30px;border:2px solid var(--b1);display:flex;align-items:center;gap:18px;text-decoration:none;transition:border-color .2s,transform .2s,background .2s;flex:1;min-width:240px;max-width:420px}.contact-card:hover{border-color:var(--b3);background:var(--b0);transform:translateY(-2px)}.contact-card.gh:hover{border-color:var(--tm)}.c-icon{width:48px;height:48px;border-radius:14px;background:var(--b1);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}.c-icon.gh-icon{background:#f0f0f0}.c-name{font-size:16px;font-weight:800;color:var(--tx)}.c-sub{font-size:14px;color:var(--tm);margin-top:2px}.stars{text-align:center;margin:44px 0 0;font-size:20px;letter-spacing:12px;color:var(--b3);opacity:.6}footer{text-align:center;margin-top:20px;font-size:14px;color:var(--tl);font-weight:700}footer a{color:var(--b5);text-decoration:none;font-weight:800}footer a:hover{text-decoration:underline}footer span{color:var(--p3)}@media(max-width:900px){.current-grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.hero{padding:44px 24px 40px}.hero h1{font-size:30px}.about-grid,.current-grid{grid-template-columns:1fr}nav{padding:14px 20px}.sec{margin:28px 16px 0}.snake-card{padding:18px 16px}.dpad-btn{width:58px;height:58px;font-size:22px}.contact-row{flex-direction:column}}</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="logo"><span class="logo-dot"></span> 鑂文</div>
+    <ul class="nav-links">
+      <li><a href="#about">关于我</a></li>
+      <li><a href="#currently">最近</a></li>
+      <li><a href="#projects">项目</a></li>
+      <li><a href="#contact">联系</a></li>
+      <li><a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>eattt-wen</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="deco a"></div><div class="deco b"></div><div class="deco c"></div><div class="deco d"></div>
+    <div class="avatar"><div class="avatar-in" id="avatarIn"><img src="avatar.jpg" alt="鑂文" id="avatarImg"/></div></div>
+    <h1>大家好，我是<em>鑂文</em> &#10024;</h1>
+    <p class="hero-sub">南洋理工大学硕士在读 &middot; 医学 AI 研究者<br>专注于可解释人工智能、说显局影像分析，以及吃吃吃。</p>
+    <div class="tags">
+      <span class="tag b">医学图像</span>
+      <span class="tag p">可解释 AI</span>
+      <span class="tag m">深度学习</span>
+    </div>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="sec-title"><span class="sec-pill">&#127800;</span> 关于我</div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-text">
+          我是南洋理工大学（NTU）的<strong>硬士研究生</strong>，研究方向是医学图像分析中的可解释 AI 模型。<br><br>
+          我关心的不只是模型是否准确，更在乎它是否<strong>可以被理解</strong>——因为在医疗 AI 领域，搞清“为什么”和得出正确答案同样重要。<br><br>
+          工作之余？基本就是在吃东西。非常认真地吃。
+        </div>
+      </div>
+      <div class="food-card">
+        <div class="food-emoji">&#127836;</div>
+        <div class="food-label">用食物驱动</div>
+        <div class="food-items">
+          <span class="food-tag">&#127836; 面条</span>
+          <span class="food-tag">&#127843; 寿司</span>
+          <span class="food-tag">&#129483; 奶茶</span>
+          <span class="food-tag">&#127841; 麻署</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="currently">
+    <div class="sec-title"><span class="sec-pill">&#127744;</span> 最近在忙</div>
+    <div class="current-grid">
+      <div class="cur-card"><div class="cur-icon">&#128187;</div><div><div class="cur-label">在做</div><div class="cur-text">熊截研究生生活</div><div class="cur-sub">一个截止日期接着一个。</div></div></div>
+      <div class="cur-card"><div class="cur-icon">&#127869;</div><div><div class="cur-label">在吃</div><div class="cur-text">新加坡所有美食</div><div class="cur-sub">大牌床餐饲，永远是。</div></div></div>
+      <div class="cur-card"><div class="cur-icon">&#128214;</div><div><div class="cur-label">在看</div><div class="cur-text">就是下一本</div><div class="cur-sub">主要是论文。不幸。</div></div></div>
+      <div class="cur-card"><div class="cur-icon">&#128205;</div><div><div class="cur-label">目前在</div><div class="cur-text">新加坡</div><div class="cur-sub">NTU 校园与美食区。</div></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="github">
+    <div class="sec-title"><span class="sec-pill">&#128025;</span> GitHub 动态</div>
+    <div class="contrib-card">
+      <div class="contrib-header">
+        <div class="contrib-count">近一年共 <strong>358</strong> 次贡献</div>
+        <div class="contrib-meta">
+          <button class="wave-toggle on" id="waveBtn" onclick="toggleWave()">&#127754; 海浪</button>
+          <div class="contrib-legend">少 <div class="legend-cell lv0"></div><div class="legend-cell lv1"></div><div class="legend-cell lv2"></div><div class="legend-cell lv3"></div><div class="legend-cell lv4"></div> 多</div>
+        </div>
+      </div>
+      <div class="heatmap-scroll">
+        <div id="month-labels" class="month-labels"></div>
+        <div id="heatmap" class="heatmap"></div>
+      </div>
+    </div>
+    <div class="snake-card">
+      <div class="snake-header">
+        <div class="snake-score-wrap">
+          <div class="snake-stat"><div class="snake-stat-num" id="scoreDisplay">0</div><div class="snake-stat-lbl">得分</div></div>
+          <div class="snake-stat"><div class="snake-stat-num" id="bestDisplay">0</div><div class="snake-stat-lbl">最高分</div></div>
+        </div>
+        <div class="snake-btns">
+          <button class="snake-btn snake-btn-pause" id="pauseBtn" onclick="pauseSnake()" style="display:none">&#9208; 暂停</button>
+          <button class="snake-btn snake-btn-start" id="startBtn" onclick="startSnake()">&#9654; 开始</button>
+          <span class="snake-hint" id="snakeHint">&#8592; &#8593; &#8594; &#8595;</span>
+        </div>
+      </div>
+      <div class="game-area">
+        <div class="snake-canvas-wrap" id="canvasWrap">
+          <canvas id="snakeCanvas"></canvas>
+          <div class="snake-overlay" id="snakeOverlay">
+            <div class="overlay-emoji">&#128013;</div>
+            <div class="overlay-title">贪吃蛇</div>
+            <div class="overlay-sub">用方向键或方向盘<br>帮小蛇吃&#127836;!</div>
+            <button class="overlay-btn" onclick="startSnake()">开始玩</button>
+          </div>
+        </div>
+        <div class="dpad">
+          <div class="dpad-row"><button class="dpad-btn" id="dUp" ontouchstart="dpadPress(event,'UP')" onclick="dpadPress(null,'UP')">&#9650;</button></div>
+          <div class="dpad-row">
+            <button class="dpad-btn" id="dLeft" ontouchstart="dpadPress(event,'LEFT')" onclick="dpadPress(null,'LEFT')">&#9664;</button>
+            <button class="dpad-btn" id="dDown" ontouchstart="dpadPress(event,'DOWN')" onclick="dpadPress(null,'DOWN')">&#9660;</button>
+            <button class="dpad-btn" id="dRight" ontouchstart="dpadPress(event,'RIGHT')" onclick="dpadPress(null,'RIGHT')">&#9654;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-title"><span class="sec-pill">&#128194;</span> 项目</div>
+    <div class="proj-grid">
+      <a class="proj-card" href="https://github.com/eattt-wen/CEFM" target="_blank" rel="noopener">
+        <div class="proj-name">CEFM</div>
+        <div class="proj-desc">JavaScript 项目，欢迎到 GitHub 查看！</div>
+        <div class="proj-foot">
+          <div class="proj-lang"><div class="lang-dot lang-js"></div>JavaScript</div>
+          <div class="proj-star" id="cefm-stars">&#9733; &ndash;</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec" id="contact">
+    <div class="sec-title"><span class="sec-pill">&#128140;</span> 联系我</div>
+    <div class="contact-row">
+      <a class="contact-card" href="mailto:JUNWEN003@e.ntu.edu.sg">
+        <div class="c-icon">&#128231;</div>
+        <div><div class="c-name">邮筱</div><div class="c-sub">JUNWEN003@e.ntu.edu.sg</div></div>
+      </a>
+      <a class="contact-card gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
+        <div class="c-icon gh-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></div>
+        <div><div class="c-name">GitHub</div><div class="c-sub">@eattt-wen</div></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="stars">&#10022; &#10023; &#10022; &#10023; &#10022;</div>
+  <footer>&copy; 2026 鑂文 &middot; 用爱和<span>&#9829;</span>还有大量食物做成 &middot; <a href="https://github.com/eattt-wen" target="_blank" rel="noopener">GitHub</a></footer>
+</div>
+<script>
+/* Avatar fallback */
+(function(){
+  var img=document.getElementById('avatarImg');
+  if(!img)return;
+  img.style.display='none';
+  img.onload=function(){this.style.display='block';};
+  img.onerror=function(){document.getElementById('avatarIn').innerHTML='<span>&#128105;&#8205;&#128300;</span>';};
+  img.src='avatar.jpg';
+})();
+
+/* WAVE HEATMAP */
+(function(){
+  var s=12345;
+  function rand(){s=(s*1664525+1013904223)>>>0;return s/4294967295;}
+  var WEEKS=52,DAYS=7;
+  function weight(w){if(w<4)return .18;if(w<8)return .22;if(w<17)return .15;if(w<20)return .28;if(w<26)return .14;if(w<32)return .52;if(w<38)return .45;if(w<44)return .60;if(w<50)return .68;return .30;}
+  function lvl(r,w){var p=weight(w);if(r>1-p*.15)return 4;if(r>1-p*.35)return 3;if(r>1-p*.60)return 2;if(r>1-p)return 1;return 0;}
+  var mm=[{l:'Mar',w:0},{l:'Apr',w:4},{l:'May',w:8},{l:'Jun',w:13},{l:'Jul',w:17},{l:'Aug',w:21},{l:'Sep',w:26},{l:'Oct',w:30},{l:'Nov',w:34},{l:'Dec',w:39},{l:'Jan',w:43},{l:'Feb',w:47},{l:'Mar',w:51}];
+  var mlRow=document.getElementById('month-labels');
+  mm.forEach(function(m,i){var next=mm[i+1]?mm[i+1].w:WEEKS;var d=document.createElement('div');d.className='month-lbl';d.textContent=m.l;d.style.width=((next-m.w)*15)+'px';mlRow.appendChild(d);});
+  var hm=document.getElementById('heatmap'),cells=[],tips=['No contributions','1-3','4-6','7-9','10+'];
+  for(var w=0;w<WEEKS;w++){var col=document.createElement('div');col.className='heatmap-col';cells[w]=[];for(var d=0;d<DAYS;d++){var r=rand(),lv=lvl(r,w);var cell=document.createElement('div');cell.className='cell lv'+lv;cell.title=tips[lv];cells[w][d]=cell;col.appendChild(cell);}hm.appendChild(col);}
+  var waveOn=true,waveTimer=null,wavePos=0,WAVE_WIDTH=6,WAVE_SPEED=0.55;
+  function clr(c){c.classList.remove('wave-front','wave-mid','wave-back','wave-wash');}
+  function tickWave(){
+    wavePos+=WAVE_SPEED;
+    if(wavePos>WEEKS+WAVE_WIDTH)wavePos=-WAVE_WIDTH;
+    for(var w=0;w<WEEKS;w++){
+      var dist=wavePos-w;
+      for(var d=0;d<DAYS;d++){
+        clr(cells[w][d]);
+        var eff=dist+Math.sin(d*0.7)*1.4;
+        if(eff>0&&eff<=0.8)cells[w][d].classList.add('wave-front');
+        else if(eff>0.8&&eff<=2)cells[w][d].classList.add('wave-mid');
+        else if(eff>2&&eff<=4)cells[w][d].classList.add('wave-back');
+        else if(eff>4&&eff<=WAVE_WIDTH)cells[w][d].classList.add('wave-wash');
+      }
+    }
+  }
+  function startWave(){waveOn=true;waveTimer=setInterval(tickWave,55);}
+  function stopWave(){waveOn=false;if(waveTimer){clearInterval(waveTimer);waveTimer=null;}for(var w=0;w<WEEKS;w++)for(var d=0;d<DAYS;d++)clr(cells[w][d]);}
+  window.toggleWave=function(){
+    var btn=document.getElementById('waveBtn');
+    if(waveOn){stopWave();btn.textContent='☀️ 已暂停';btn.classList.remove('on');}
+    else{startWave();btn.textContent='🌊 海浪';btn.classList.add('on');}
+  };
+  startWave();
+  document.addEventListener('visibilitychange',function(){if(document.hidden){if(waveTimer){clearInterval(waveTimer);waveTimer=null;}}else if(waveOn){waveTimer=setInterval(tickWave,55);}});
+})();
+
+/* SNAKE */
+(function(){
+  var COLS=28,ROWS=16,CELL=18,GAP=2;
+  var LW=COLS*(CELL+GAP)-GAP,LH=ROWS*(CELL+GAP)-GAP;
+  var canvas=document.getElementById('snakeCanvas');
+  canvas.width=LW;canvas.height=LH;
+  var ctx=canvas.getContext('2d');
+  var snake,dir,nextDir,food,score,best=0,state='idle',gameTimer=null;
+  function init(){var mx=Math.floor(COLS/2),my=Math.floor(ROWS/2);snake=[{x:mx,y:my},{x:mx-1,y:my},{x:mx-2,y:my}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;placeFood();hud();}
+  function placeFood(){var occ={};snake.forEach(function(s){occ[s.x+','+s.y]=1;});var f;do{f={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)};}while(occ[f.x+','+f.y]);food=f;}
+  function px(n){return n*(CELL+GAP);}
+  function hud(){document.getElementById('scoreDisplay').textContent=score;document.getElementById('bestDisplay').textContent=best;}
+  var FOOD='🍜';
+  function draw(){
+    ctx.fillStyle='#f0f7ff';ctx.fillRect(0,0,LW,LH);
+    ctx.fillStyle='#dbeeff';
+    for(var gx=0;gx<COLS;gx++)for(var gy=0;gy<ROWS;gy++){ctx.beginPath();ctx.arc(px(gx)+CELL/2,px(gy)+CELL/2,1.5,0,Math.PI*2);ctx.fill();}
+    ctx.fillStyle='rgba(232,123,191,.35)';ctx.beginPath();ctx.arc(px(food.x)+CELL/2,px(food.y)+CELL/2,CELL*.85,0,Math.PI*2);ctx.fill();
+    ctx.font='14px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(FOOD,px(food.x)+CELL/2,px(food.y)+CELL/2+1);
+    for(var i=snake.length-1;i>=0;i--){
+      var seg=snake[i],t=i/snake.length;
+      ctx.fillStyle=i===0?'#2484d8':(t<.5?'#4aa3f5':'#7cbfff');
+      ctx.beginPath();
+      if(ctx.roundRect)ctx.roundRect(px(seg.x),px(seg.y),CELL,CELL,i===0?7:5);
+      else ctx.rect(px(seg.x),px(seg.y),CELL,CELL);
+      ctx.fill();
+      if(i===0){
+        var ex=dir.x===0?3:dir.x>0?12:3,ey=dir.y===0?3:dir.y>0?12:3;
+        var ex2=dir.x===0?CELL-5:dir.x>0?12:3,ey2=dir.y===0?CELL-5:dir.y>0?12:3;
+        ctx.fillStyle='white';
+        ctx.beginPath();ctx.arc(px(seg.x)+ex,px(seg.y)+ey,2.5,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.arc(px(seg.x)+ex2,px(seg.y)+ey2,2.5,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#1a3a5a';
+        ctx.beginPath();ctx.arc(px(seg.x)+ex+.5,px(seg.y)+ey+.5,1.2,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.arc(px(seg.x)+ex2+.5,px(seg.y)+ey2+.5,1.2,0,Math.PI*2);ctx.fill();
+      }
+    }
+  }
+  function speed(){return Math.max(90,210-score*8);}
+  function step(){dir={x:nextDir.x,y:nextDir.y};var head={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(head.x<0||head.x>=COLS||head.y<0||head.y>=ROWS){gameOver();return;}for(var i=0;i<snake.length;i++){if(snake[i].x===head.x&&snake[i].y===head.y){gameOver();return;}}snake.unshift(head);if(head.x===food.x&&head.y===food.y){score++;if(score>best)best=score;hud();placeFood();if(gameTimer){clearInterval(gameTimer);gameTimer=setInterval(step,speed());}}else snake.pop();draw();}
+  function ov(em,ti,su,bt){var o=document.getElementById('snakeOverlay');o.querySelector('.overlay-emoji').textContent=em;o.querySelector('.overlay-title').textContent=ti;o.querySelector('.overlay-sub').innerHTML=su;o.querySelector('.overlay-btn').textContent=bt;o.classList.remove('hidden');}
+  function hideOv(){document.getElementById('snakeOverlay').classList.add('hidden');}
+  function gameOver(){state='over';if(gameTimer){clearInterval(gameTimer);gameTimer=null;}document.getElementById('startBtn').textContent='▶ Restart';document.getElementById('pauseBtn').style.display='none';draw();ov('😵','游戏结束！','得分：'+score+' — 再来一次？','再来一次');}
+  window.startSnake=function(){if(gameTimer){clearInterval(gameTimer);gameTimer=null;}init();draw();hideOv();state='running';document.getElementById('startBtn').textContent='↺ Restart';document.getElementById('pauseBtn').style.display='';document.getElementById('pauseBtn').textContent='⏸ Pause';gameTimer=setInterval(step,speed());};
+  window.pauseSnake=function(){var btn=document.getElementById('pauseBtn');if(state==='running'){clearInterval(gameTimer);gameTimer=null;state='paused';btn.textContent='▶ 继续';}else if(state==='paused'){state='running';btn.textContent='⏸ 暂停';gameTimer=setInterval(step,speed());}};
+  function applyDir(d){if(state!=='running')return;var map={UP:{x:0,y:-1},DOWN:{x:0,y:1},LEFT:{x:-1,y:0},RIGHT:{x:1,y:0}};var nd=map[d];if(nd.x===-dir.x&&nd.y===-dir.y)return;nextDir=nd;}
+  window.dpadPress=function(e,d){if(e)e.preventDefault();applyDir(d);var ids={UP:'dUp',DOWN:'dDown',LEFT:'dLeft',RIGHT:'dRight'};var btn=document.getElementById(ids[d]);btn.classList.add('pressed');setTimeout(function(){btn.classList.remove('pressed');},150);};
+  var KEYS={ArrowUp:'UP',ArrowDown:'DOWN',ArrowLeft:'LEFT',ArrowRight:'RIGHT',w:'UP',s:'DOWN',a:'LEFT',d:'RIGHT'};
+  document.addEventListener('keydown',function(e){var d=KEYS[e.key];if(!d)return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.key)>=0)e.preventDefault();applyDir(d);});
+  var tx0,ty0;
+  canvas.addEventListener('touchstart',function(e){tx0=e.touches[0].clientX;ty0=e.touches[0].clientY;e.preventDefault();},{passive:false});
+  canvas.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx0,dy=e.changedTouches[0].clientY-ty0;if(Math.abs(dx)<10&&Math.abs(dy)<10)return;if(Math.abs(dx)>Math.abs(dy))applyDir(dx>0?'RIGHT':'LEFT');else applyDir(dy>0?'DOWN':'UP');},{passive:false});
+  if('ontouchstart' in window){document.getElementById('snakeHint').textContent='滑动或使用方向盘';}
+  init();draw();
+  ov('🐍','贪吃蛇','用方向键或方向盘<br>帮小蛇吃🍜!','开始玩');
+})();
+
+fetch('https://api.github.com/repos/eattt-wen/CEFM')
+  .then(function(r){return r.json();})
+  .then(function(d){var el=document.getElementById('cefm-stars');if(el&&typeof d.stargazers_count==='number')el.textContent='★ '+d.stargazers_count;})
+  .catch(function(){var el=document.getElementById('cefm-stars');if(el)el.textContent='★ 5';});
+</script>
+</body>
+</html>
