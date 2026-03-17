@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>吃吃大王 — 个人主页</title>
+  <title>钧文 — 个人主页</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet"/>
   <style>
@@ -97,16 +97,27 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .dpad-row{display:flex;gap:6px}
 .dpad-btn{width:52px;height:52px;border-radius:14px;background:white;border:2px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:background .12s,transform .1s;color:var(--b5);font-weight:900;touch-action:manipulation}
 .dpad-btn:active,.dpad-btn.pressed{background:var(--b2);transform:scale(.9)}
-.proj-grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:540px}
-.proj-card{background:white;border-radius:20px;padding:24px 28px;border:2px solid var(--b1);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}
-.proj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--b4),var(--m3));border-radius:4px 0 0 4px}
-.proj-card:hover{border-color:var(--b3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(74,163,245,.1)}
-.proj-name{font-size:17px;font-weight:900;color:var(--b5)}
-.proj-desc{font-size:14px;color:var(--tm);line-height:1.7;flex:1}
-.proj-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.proj-lang{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--tm)}
-.lang-dot{width:11px;height:11px;border-radius:50%}.lang-js{background:#f7df1e}
-.proj-star{font-size:13px;font-weight:700;color:#a06800;background:var(--y1);padding:3px 10px;border-radius:10px}
+.paper-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;max-width:760px}
+.paper-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(to bottom,var(--b4),var(--p3));border-radius:5px 0 0 5px}
+.paper-venue{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--b6);background:var(--b1);padding:4px 12px;border-radius:12px;letter-spacing:.03em}
+.paper-title{font-size:18px;font-weight:900;color:var(--tx);line-height:1.45}
+.paper-authors{font-size:13px;color:var(--tm);line-height:1.7}
+.paper-authors strong{color:var(--b5);font-weight:800}
+.paper-abstract{font-size:14px;color:var(--tm);line-height:1.8;border-left:3px solid var(--b2);padding-left:14px}
+.paper-stats{display:flex;gap:12px;flex-wrap:wrap}
+.stat-pill{font-size:12px;font-weight:800;padding:5px 14px;border-radius:12px}
+.stat-pill.acc{background:var(--m1);color:#1a7a5a}
+.stat-pill.auc{background:var(--b1);color:var(--b6)}
+.paper-tags{display:flex;flex-wrap:wrap;gap:7px}
+.paper-tag{font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;background:var(--p1);color:#a03070}
+.paper-tag.blue{background:var(--b1);color:var(--b6)}
+.paper-tag.mint{background:var(--m1);color:#1a7a5a}
+.paper-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.paper-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;padding:8px 18px;border-radius:20px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.paper-link:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.paper-link.primary{background:var(--b5);color:white}
+.paper-link.secondary{background:var(--b1);color:var(--b6);border:1.5px solid var(--b2)}
+.paper-link.ghost{background:var(--p1);color:#a03070;border:1.5px solid var(--p2)}
 .contact-row{display:flex;gap:14px;flex-wrap:wrap}
 .contact-card{background:white;border-radius:20px;padding:24px 30px;border:2px solid var(--b1);display:flex;align-items:center;gap:18px;text-decoration:none;transition:border-color .2s,transform .2s,background .2s;flex:1;min-width:240px;max-width:420px}
 .contact-card:hover{border-color:var(--b3);background:var(--b0);transform:translateY(-2px)}
@@ -132,7 +143,7 @@ footer span{color:var(--p3)}
     <ul class="nav-links">
       <li><a href="#about">关于我</a></li>
       <li><a href="#currently">最近</a></li>
-      <li><a href="#projects">项目</a></li>
+      <li><a href="#projects">论文</a></li>
       <li><a href="#contact">联系</a></li>
       <li><a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -264,25 +275,47 @@ footer span{color:var(--p3)}
   </section>
 
   <section class="sec" id="projects">
-    <div class="sec-title"><span class="sec-pill">🗂️</span> 项目</div>
-    <div class="proj-grid">
-      <a class="proj-card" href="https://github.com/eattt-wen/CEFM" target="_blank" rel="noopener">
-        <div class="proj-name">CEFM</div>
-        <div class="proj-desc">一个 JavaScript 项目，欢迎到 GitHub 查看！</div>
-        <div class="proj-foot">
-          <div class="proj-lang"><div class="lang-dot lang-js"></div>JavaScript</div>
-          <div class="proj-star" id="cefm-stars">★ –</div>
-        </div>
-      </a>
+    <div class="sec-title"><span class="sec-pill">📄</span> 论文</div>
+    <div class="paper-card">
+      <div>
+        <span class="paper-venue">📋 arXiv 2025 · NTU &amp; National Skin Centre</span>
+      </div>
+      <div class="paper-title">
+        Explainable Melanoma Diagnosis with Contrastive Learning and LLM-based Report Generation
+      </div>
+      <div class="paper-authors">
+        <strong>Junwen Zheng</strong>，Xinran Xu，Li Rong Wang，Chang Cai，<br>
+        Lucinda Siyun Tan，Wang Ding Yuan，Tey Hong Liang，Xiuyi Fan
+      </div>
+      <div class="paper-abstract">
+        提出 CEFM 框架，将对比学习与大语言模型结合，实现黑色素瘤的可解释诊断——通过将 ABC 临床标准嵌入视觉特征空间，并自动生成结构化临床报告，在保持高准确率的同时显著提升模型可解释性。
+      </div>
+      <div class="paper-stats">
+        <span class="stat-pill acc">✓ 准确率 92.79%</span>
+        <span class="stat-pill auc">✓ AUC 0.961</span>
+      </div>
+      <div class="paper-tags">
+        <span class="paper-tag blue">可解释 AI</span>
+        <span class="paper-tag">皮肤科 AI</span>
+        <span class="paper-tag mint">对比学习</span>
+        <span class="paper-tag blue">大语言模型</span>
+        <span class="paper-tag mint">医学图像</span>
+      </div>
+      <div class="paper-links">
+        <a class="paper-link primary" href="https://eattt-wen.github.io/CEFM/" target="_blank" rel="noopener">🌐 论文主页</a>
+        <a class="paper-link secondary" href="https://arxiv.org/abs/2512.06105" target="_blank" rel="noopener">📑 arXiv</a>
+        <a class="paper-link secondary" href="https://arxiv.org/pdf/2512.06105" target="_blank" rel="noopener">📄 PDF</a>
+        <a class="paper-link ghost" href="https://github.com/eattt-wen/CEFM" target="_blank" rel="noopener">💻 代码</a>
+      </div>
     </div>
   </section>
 
   <section class="sec" id="contact">
     <div class="sec-title"><span class="sec-pill">💌</span> 联系我</div>
     <div class="contact-row">
-      <a class="contact-card" href="mailto:JUNWEN003@e.ntu.edu.sg">
+      <a class="contact-card" href="/cdn-cgi/l/email-protection#d9938c978e9c97e9e9ea99bcf7b7adacf7bcbdacf7aabe">
         <div class="c-icon">📧</div>
-        <div><div class="c-name">邮箱</div><div class="c-sub">JUNWEN003@e.ntu.edu.sg</div></div>
+        <div><div class="c-name">邮箱</div><div class="c-sub"><span class="__cf_email__" data-cfemail="6f253a21382a215f5f5c2f0a41011b1a410a0b1a411c08">[email&#160;protected]</span></div></div>
       </a>
       <a class="contact-card gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
         <div class="c-icon gh-icon">
@@ -297,7 +330,7 @@ footer span{color:var(--p3)}
   <footer>© 2026 钧文 · 用 <span>♥</span> 和大量食物做成 · <a href="https://github.com/eattt-wen" target="_blank" rel="noopener">GitHub</a></footer>
 
 </div>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* Avatar fallback */
 (function(){
   var img=document.getElementById('avatarImg');
@@ -406,10 +439,6 @@ footer span{color:var(--p3)}
   ov('🐍','贪吃蛇','用方向键或下方方向盘<br>帮小蛇吃到 🍜！','开始游戏');
 })();
 
-fetch('https://api.github.com/repos/eattt-wen/CEFM')
-  .then(function(r){return r.json();})
-  .then(function(d){var el=document.getElementById('cefm-stars');if(el&&typeof d.stargazers_count==='number')el.textContent='★ '+d.stargazers_count;})
-  .catch(function(){var el=document.getElementById('cefm-stars');if(el)el.textContent='★ 5';});
 </script>
 </body>
 </html>
