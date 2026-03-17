@@ -144,22 +144,6 @@ footer span{color:var(--p3)}
 #back-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
 #back-top:hover{background:var(--b1);border-color:var(--b3)}
 
-/* ── 留言板 ── */
-.gb-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1)}
-.gb-form{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
-.gb-row{display:flex;gap:10px}
-.gb-input{font-family:'Noto Sans SC','Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--tx);background:var(--b0);border:2px solid var(--b1);border-radius:14px;padding:10px 16px;outline:none;transition:border-color .18s;flex:1}
-.gb-input:focus{border-color:var(--b3)}
-.gb-input::placeholder{color:var(--tl)}
-.gb-submit{font-family:'Noto Sans SC','Nunito',sans-serif;font-size:13px;font-weight:800;padding:10px 22px;border-radius:14px;cursor:pointer;border:none;background:var(--b5);color:white;transition:background .15s;flex-shrink:0}
-.gb-submit:hover{background:var(--b6)}
-.gb-list{display:flex;flex-direction:column;gap:10px}
-.gb-item{background:var(--b0);border-radius:14px;padding:14px 18px;border:1.5px solid var(--b1);display:flex;gap:12px;align-items:flex-start}
-.gb-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--b3),var(--p2));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:white;flex-shrink:0}
-.gb-name{font-size:13px;font-weight:900;color:var(--b5);margin-bottom:3px}
-.gb-msg{font-size:13px;color:var(--tm);line-height:1.6}
-.gb-time{font-size:11px;color:var(--tl);margin-top:4px;font-weight:600}
-.gb-empty{text-align:center;color:var(--tl);font-size:14px;font-weight:600;padding:28px 0}
 
 @media(max-width:900px){.current-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.hero{padding:44px 24px 40px}.hero h1{font-size:30px}.about-grid,.current-grid{grid-template-columns:1fr}nav{padding:14px 20px}.sec{margin:28px 16px 0}.snake-card{padding:18px 16px}.dpad-btn{width:58px;height:58px;font-size:22px}.contact-row{flex-direction:column}#back-top{bottom:20px;right:20px}}
@@ -178,7 +162,6 @@ footer span{color:var(--p3)}
       <li><a href="#currently"  data-zh="最近"    data-en="Now">最近</a></li>
       <li><a href="#projects"   data-zh="论文"    data-en="Paper">论文</a></li>
       <li><a href="#contact"    data-zh="联系"    data-en="Contact">联系</a></li>
-      <li><a href="#guestbook"  data-zh="留言"    data-en="Guestbook">留言</a></li>
       <li><a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         eattt-wen
@@ -354,26 +337,6 @@ footer span{color:var(--p3)}
     </div>
   </section>
 
-  <section class="sec" id="guestbook">
-    <div class="sec-title"><span class="sec-pill">📝</span> <span data-zh="留言板" data-en="Guestbook">留言板</span></div>
-    <div class="gb-card">
-      <div class="gb-form">
-        <div class="gb-row">
-          <input class="gb-input" id="gbName" maxlength="20"
-                 data-ph-zh="你的名字 ✨" data-ph-en="Your name ✨"
-                 placeholder="你的名字 ✨"/>
-          <button class="gb-submit" onclick="gbSubmit()">
-            <span data-zh="留下足迹 🌸" data-en="Leave a note 🌸">留下足迹 🌸</span>
-          </button>
-        </div>
-        <input class="gb-input" id="gbMsg" maxlength="100"
-               data-ph-zh="留下一句话吧～" data-ph-en="Say something nice～"
-               placeholder="留下一句话吧～"/>
-      </div>
-      <div id="gbList" class="gb-list"></div>
-    </div>
-  </section>
-
   <div class="stars">✦ ✧ ✦ ✧ ✦</div>
   <footer>© 2026 <span data-zh="钧文" data-en="Junwen">钧文</span> · <span data-zh="用 " data-en="made with ">用 </span><span>♥</span><span data-zh=" 和大量食物做成" data-en=" &amp; lots of food"> 和大量食物做成</span> · <a href="https://github.com/eattt-wen" target="_blank" rel="noopener">GitHub</a></footer>
 
@@ -525,55 +488,7 @@ applyLang(LANG);
   ov('🐍',t('贪吃蛇','Snake Game'),t('用方向键或下方方向盘<br>帮小蛇吃到 🍜！','Use arrow keys or the D-pad<br>to eat the 🍜!'),t('开始游戏','Start Playing'));
 })();
 
-/* ── 留言板 ── */
-(function(){
-  var KEY='gb_messages';
-  var DEFAULTS_ZH=[
-  ];
-  var DEFAULTS_EN=[
-    {name:'Junwen',msg:'Welcome to my little corner of the internet! 🌸',time:'2026-03-18'},
-    {name:'A friend',msg:'Love the site!! Good luck with the paper~',time:'2026-03-18'}
-  ];
-  function getMsgs(){try{var s=localStorage.getItem(KEY);return s?JSON.parse(s):null;}catch(e){return null;}}
-  function saveMsgs(m){try{localStorage.setItem(KEY,JSON.stringify(m.slice(0,20)));}catch(e){}}
-  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-  function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-  function renderList(){
-    var isEN=(localStorage.getItem('lang')||'zh')==='en';
-    var msgs=getMsgs();
-    if(!msgs||!msgs.length){msgs=isEN?DEFAULTS_EN:DEFAULTS_ZH;saveMsgs(msgs);}
-    var el=document.getElementById('gbList');
-    if(!el)return;
-    if(!msgs.length){el.innerHTML='<div class="gb-empty">'+(isEN?'No messages yet — be the first! 🌸':'还没有留言 — 来第一个吧！🌸')+'</div>';return;}
-    el.innerHTML=msgs.map(function(m){
-      var init=(m.name||'?')[0].toUpperCase();
-      return '<div class="gb-item"><div class="gb-avatar">'+init+'</div><div><div class="gb-name">'+esc(m.name)+'</div><div class="gb-msg">'+esc(m.msg)+'</div><div class="gb-time">'+m.time+'</div></div></div>';
-    }).join('');
-  }
-  window.gbSubmit=function(){
-    var isEN=(localStorage.getItem('lang')||'zh')==='en';
-    var name=document.getElementById('gbName').value.trim();
-    var msg=document.getElementById('gbMsg').value.trim();
-    if(!name||!msg){alert(isEN?'Please fill in both fields 🌸':'请填写名字和留言哦 🌸');return;}
-    var msgs=getMsgs()||[];
-    msgs.unshift({name:name,msg:msg,time:today()});
-    saveMsgs(msgs);
-    document.getElementById('gbName').value='';
-    document.getElementById('gbMsg').value='';
-    renderList();
-  };
-  var _orig=window.setLang;
-  window.setLang=function(l){
-    _orig(l);
-    var isEN=l==='en';
-    var n=document.getElementById('gbName'),m=document.getElementById('gbMsg');
-    if(n)n.placeholder=n.getAttribute('data-ph-'+(isEN?'en':'zh'));
-    if(m)m.placeholder=m.getAttribute('data-ph-'+(isEN?'en':'zh'));
-    renderList();
-  };
-  if(!getMsgs()) saveMsgs(DEFAULTS_ZH);
-  renderList();
-})();
+
 </script>
 </body>
 </html>
