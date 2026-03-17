@@ -6,25 +6,6 @@
   <title>钧文 — 个人主页</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet"/>
-  #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(to right,var(--b4),var(--p3));z-index:999;transition:width .1s linear;border-radius:0 2px 2px 0}
-  #back-top{position:fixed;bottom:32px;right:32px;width:46px;height:46px;border-radius:50%;background:white;border:2px solid var(--b2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;color:var(--b5);box-shadow:0 4px 16px rgba(74,163,245,.15);opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s,border-color .18s,background .18s;pointer-events:none;z-index:998}
-#back-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
-#back-top:hover{background:var(--b1);border-color:var(--b3)}
-.gb-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1)}
-.gb-form{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
-.gb-row{display:flex;gap:10px}
-.gb-input{font-family:'Noto Sans SC','Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--tx);background:var(--b0);border:2px solid var(--b1);border-radius:14px;padding:10px 16px;outline:none;transition:border-color .18s;flex:1}
-.gb-input:focus{border-color:var(--b3)}
-.gb-input::placeholder{color:var(--tl)}
-.gb-submit{font-family:'Noto Sans SC','Nunito',sans-serif;font-size:13px;font-weight:800;padding:10px 22px;border-radius:14px;cursor:pointer;border:none;background:var(--b5);color:white;transition:background .15s;flex-shrink:0}
-.gb-submit:hover{background:var(--b6)}
-.gb-list{display:flex;flex-direction:column;gap:10px}
-.gb-item{background:var(--b0);border-radius:14px;padding:14px 18px;border:1.5px solid var(--b1);display:flex;gap:12px;align-items:flex-start}
-.gb-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--b3),var(--p2));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:white;flex-shrink:0}
-.gb-name{font-size:13px;font-weight:900;color:var(--b5);margin-bottom:3px}
-.gb-msg{font-size:13px;color:var(--tm);line-height:1.6}
-.gb-time{font-size:11px;color:var(--tl);margin-top:4px;font-weight:600}
-.gb-empty{text-align:center;color:var(--tl);font-size:14px;font-weight:600;padding:28px 0}
   <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--b0:#f0f7ff;--b1:#dbeeff;--b2:#b8dcff;--b3:#7cbfff;--b4:#4aa3f5;--b5:#2484d8;--b6:#1a6ab8;--p1:#fce8f3;--p2:#f5b8dc;--p3:#e87bbf;--m1:#e4f8f2;--m2:#a8e8d4;--m3:#4ec9a8;--y1:#fff8e1;--y2:#ffe082;--tx:#2d4a6a;--tm:#6b8faa;--tl:#9ab8cc}
@@ -39,7 +20,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .nav-gh{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:700;color:var(--tm);text-decoration:none;padding:6px 16px;border-radius:20px;transition:.18s;border:1.5px solid var(--b2)}
 .nav-gh:hover{background:var(--b1);color:var(--b5);border-color:var(--b3)}
 .nav-gh svg{flex-shrink:0}
-/* ── Language switcher ── */
 .lang-sw{display:flex;align-items:center;background:var(--b1);border:1.5px solid var(--b2);border-radius:20px;overflow:hidden;cursor:pointer;flex-shrink:0;margin-left:4px}
 .lang-opt{font-size:13px;font-weight:800;padding:5px 13px;color:var(--tm);transition:.18s;user-select:none}
 .lang-opt.active{background:var(--b5);color:white}
@@ -155,20 +135,50 @@ footer{text-align:center;margin-top:20px;font-size:14px;color:var(--tl);font-wei
 footer a{color:var(--b5);text-decoration:none;font-weight:800}
 footer a:hover{text-decoration:underline}
 footer span{color:var(--p3)}
+
+/* ── 进度条 ── */
+#progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(to right,var(--b4),var(--p3));z-index:9999;transition:width .1s linear;border-radius:0 2px 2px 0;pointer-events:none}
+
+/* ── 回到顶部 ── */
+#back-top{position:fixed;bottom:32px;right:32px;width:46px;height:46px;border-radius:50%;background:white;border:2px solid var(--b2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--b5);box-shadow:0 4px 16px rgba(74,163,245,.18);opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s,border-color .18s,background .18s;pointer-events:none;z-index:998}
+#back-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
+#back-top:hover{background:var(--b1);border-color:var(--b3)}
+
+/* ── 留言板 ── */
+.gb-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1)}
+.gb-form{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.gb-row{display:flex;gap:10px}
+.gb-input{font-family:'Noto Sans SC','Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--tx);background:var(--b0);border:2px solid var(--b1);border-radius:14px;padding:10px 16px;outline:none;transition:border-color .18s;flex:1}
+.gb-input:focus{border-color:var(--b3)}
+.gb-input::placeholder{color:var(--tl)}
+.gb-submit{font-family:'Noto Sans SC','Nunito',sans-serif;font-size:13px;font-weight:800;padding:10px 22px;border-radius:14px;cursor:pointer;border:none;background:var(--b5);color:white;transition:background .15s;flex-shrink:0}
+.gb-submit:hover{background:var(--b6)}
+.gb-list{display:flex;flex-direction:column;gap:10px}
+.gb-item{background:var(--b0);border-radius:14px;padding:14px 18px;border:1.5px solid var(--b1);display:flex;gap:12px;align-items:flex-start}
+.gb-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--b3),var(--p2));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:white;flex-shrink:0}
+.gb-name{font-size:13px;font-weight:900;color:var(--b5);margin-bottom:3px}
+.gb-msg{font-size:13px;color:var(--tm);line-height:1.6}
+.gb-time{font-size:11px;color:var(--tl);margin-top:4px;font-weight:600}
+.gb-empty{text-align:center;color:var(--tl);font-size:14px;font-weight:600;padding:28px 0}
+
 @media(max-width:900px){.current-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.hero{padding:44px 24px 40px}.hero h1{font-size:30px}.about-grid,.current-grid{grid-template-columns:1fr}nav{padding:14px 20px}.sec{margin:28px 16px 0}.snake-card{padding:18px 16px}.dpad-btn{width:58px;height:58px;font-size:22px}.contact-row{flex-direction:column}}
+@media(max-width:600px){.hero{padding:44px 24px 40px}.hero h1{font-size:30px}.about-grid,.current-grid{grid-template-columns:1fr}nav{padding:14px 20px}.sec{margin:28px 16px 0}.snake-card{padding:18px 16px}.dpad-btn{width:58px;height:58px;font-size:22px}.contact-row{flex-direction:column}#back-top{bottom:20px;right:20px}}
   </style>
 </head>
 <body>
+
+<div id="progress-bar"></div>
+
 <div class="wrap">
 
   <nav>
     <div class="logo"><span class="logo-dot"></span> <span data-zh="钧文" data-en="Junwen">钧文</span></div>
     <ul class="nav-links">
-      <li><a href="#about"    data-zh="关于我"  data-en="About">关于我</a></li>
-      <li><a href="#currently" data-zh="最近"  data-en="Now">最近</a></li>
-      <li><a href="#projects" data-zh="论文"   data-en="Paper">论文</a></li>
-      <li><a href="#contact"  data-zh="联系"   data-en="Contact">联系</a></li> <li><a href="#guestbook" data-zh="留言" data-en="Guestbook">留言</a></li>
+      <li><a href="#about"      data-zh="关于我"  data-en="About">关于我</a></li>
+      <li><a href="#currently"  data-zh="最近"    data-en="Now">最近</a></li>
+      <li><a href="#projects"   data-zh="论文"    data-en="Paper">论文</a></li>
+      <li><a href="#contact"    data-zh="联系"    data-en="Contact">联系</a></li>
+      <li><a href="#guestbook"  data-zh="留言"    data-en="Guestbook">留言</a></li>
       <li><a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         eattt-wen
@@ -315,11 +325,11 @@ footer span{color:var(--p3)}
         <span class="stat-pill auc">✓ AUC 0.961</span>
       </div>
       <div class="paper-tags">
-        <span class="paper-tag blue" data-zh="可解释 AI"   data-en="Explainable AI">可解释 AI</span>
-        <span class="paper-tag"      data-zh="皮肤科 AI"   data-en="Dermatology AI">皮肤科 AI</span>
-        <span class="paper-tag mint" data-zh="对比学习"    data-en="Contrastive Learning">对比学习</span>
-        <span class="paper-tag blue" data-zh="大语言模型"  data-en="LLM">大语言模型</span>
-        <span class="paper-tag mint" data-zh="医学图像"    data-en="Medical Imaging">医学图像</span>
+        <span class="paper-tag blue" data-zh="可解释 AI"  data-en="Explainable AI">可解释 AI</span>
+        <span class="paper-tag"     data-zh="皮肤科 AI"  data-en="Dermatology AI">皮肤科 AI</span>
+        <span class="paper-tag mint" data-zh="对比学习"  data-en="Contrastive Learning">对比学习</span>
+        <span class="paper-tag blue" data-zh="大语言模型" data-en="LLM">大语言模型</span>
+        <span class="paper-tag mint" data-zh="医学图像"  data-en="Medical Imaging">医学图像</span>
       </div>
       <div class="paper-links">
         <a class="paper-link primary"   href="https://eattt-wen.github.io/CEFM/" target="_blank" rel="noopener">🌐 <span data-zh="论文主页" data-en="Project Page">论文主页</span></a>
@@ -345,135 +355,148 @@ footer span{color:var(--p3)}
   </section>
 
   <section class="sec" id="guestbook">
-  <div class="sec-title">
-    <span class="sec-pill">📝</span>
-    <span data-zh="留言板" data-en="Guestbook">留言板</span>
-  </div>
-  <div class="gb-card">
-    <div class="gb-form">
-      <div class="gb-row">
-        <input class="gb-input" id="gbName" maxlength="20"
-               data-ph-zh="你的名字 ✨" data-ph-en="Your name ✨"
-               placeholder="你的名字 ✨"/>
-        <button class="gb-submit" id="gbBtn" onclick="gbSubmit()">
-          <span data-zh="留下足迹 🌸" data-en="Leave a note 🌸">留下足迹 🌸</span>
-        </button>
+    <div class="sec-title"><span class="sec-pill">📝</span> <span data-zh="留言板" data-en="Guestbook">留言板</span></div>
+    <div class="gb-card">
+      <div class="gb-form">
+        <div class="gb-row">
+          <input class="gb-input" id="gbName" maxlength="20"
+                 data-ph-zh="你的名字 ✨" data-ph-en="Your name ✨"
+                 placeholder="你的名字 ✨"/>
+          <button class="gb-submit" onclick="gbSubmit()">
+            <span data-zh="留下足迹 🌸" data-en="Leave a note 🌸">留下足迹 🌸</span>
+          </button>
+        </div>
+        <input class="gb-input" id="gbMsg" maxlength="100"
+               data-ph-zh="留下一句话吧～" data-ph-en="Say something nice～"
+               placeholder="留下一句话吧～"/>
       </div>
-      <input class="gb-input" id="gbMsg" maxlength="100"
-             data-ph-zh="留下一句话吧～" data-ph-en="Say something nice～"
-             placeholder="留下一句话吧～"/>
+      <div id="gbList" class="gb-list"></div>
     </div>
-    <div id="gbList" class="gb-list"></div>
-  </div>
-</section>
-  
+  </section>
+
   <div class="stars">✦ ✧ ✦ ✧ ✦</div>
   <footer>© 2026 <span data-zh="钧文" data-en="Junwen">钧文</span> · <span data-zh="用 " data-en="made with ">用 </span><span>♥</span><span data-zh=" 和大量食物做成" data-en=" &amp; lots of food"> 和大量食物做成</span> · <a href="https://github.com/eattt-wen" target="_blank" rel="noopener">GitHub</a></footer>
 
 </div>
+
+<div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</div>
+
 <script>
-/* ── I18N ENGINE ── */
+/* ── I18N ── */
 var LANG = localStorage.getItem('lang') || 'zh';
 var MONTHS = {
   zh: ['3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','1月','2月','3月'],
   en: ['Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar']
 };
-function t(zh, en){ return LANG === 'zh' ? zh : en; }
-function applyLang(l) {
-  LANG = l;
-  localStorage.setItem('lang', l);
-  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
-  document.title = l === 'zh' ? '钧文 — 个人主页' : 'Junwen — Personal Site';
-  document.getElementById('optZH').className = 'lang-opt' + (l === 'zh' ? ' active' : '');
-  document.getElementById('optEN').className = 'lang-opt' + (l === 'en' ? ' active' : '');
-  document.querySelectorAll('[data-zh]').forEach(function(el) {
-    var val = el.getAttribute('data-' + l);
-    if (val !== null) el.innerHTML = val;
+function t(zh,en){ return LANG==='zh'?zh:en; }
+function applyLang(l){
+  LANG=l; localStorage.setItem('lang',l);
+  document.documentElement.lang=l==='zh'?'zh-CN':'en';
+  document.title=l==='zh'?'钧文 — 个人主页':'Junwen — Personal Site';
+  document.getElementById('optZH').className='lang-opt'+(l==='zh'?' active':'');
+  document.getElementById('optEN').className='lang-opt'+(l==='en'?' active':'');
+  document.querySelectorAll('[data-zh]').forEach(function(el){
+    var val=el.getAttribute('data-'+l);
+    if(val!==null) el.innerHTML=val;
   });
-  /* Month labels */
-  document.querySelectorAll('.month-lbl').forEach(function(el, i) {
-    if (MONTHS[l][i]) el.textContent = MONTHS[l][i];
+  document.querySelectorAll('.month-lbl').forEach(function(el,i){
+    if(MONTHS[l][i]) el.textContent=MONTHS[l][i];
   });
-  /* Wave button */
-  var waveOn = document.getElementById('waveBtn').classList.contains('on');
-  document.getElementById('waveBtn').innerHTML = (waveOn ? '🌊 ' : '☀️ ') + t(waveOn ? '海浪' : '已暂停', waveOn ? 'Waves' : 'Paused');
+  var waveOn=document.getElementById('waveBtn').classList.contains('on');
+  document.getElementById('waveBtn').innerHTML=(waveOn?'🌊 ':'☀️ ')+t(waveOn?'海浪':'已暂停',waveOn?'Waves':'Paused');
 }
-window.setLang = function(l) { applyLang(l); };
+window.setLang=function(l){ applyLang(l); };
 applyLang(LANG);
 
-/* ── AVATAR FALLBACK ── */
+/* ── 进度条 ── */
 (function(){
-  var img = document.getElementById('avatarImg');
-  if (!img) return;
-  img.style.display = 'none';
-  img.onload = function(){ this.style.display = 'block'; };
-  img.onerror = function(){ document.getElementById('avatarIn').innerHTML = '<span>&#128105;&#8205;&#128300;</span>'; };
-  img.src = 'avatar.jpg';
+  var bar=document.getElementById('progress-bar');
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    bar.style.width=Math.min(pct,100)+'%';
+  },{passive:true});
+})();
+
+/* ── 回到顶部 ── */
+(function(){
+  var btn=document.getElementById('back-top');
+  window.addEventListener('scroll',function(){
+    var top=document.documentElement.scrollTop||document.body.scrollTop;
+    btn.classList.toggle('show',top>320);
+  },{passive:true});
+})();
+
+/* ── AVATAR ── */
+(function(){
+  var img=document.getElementById('avatarImg');
+  if(!img)return;
+  img.style.display='none';
+  img.onload=function(){this.style.display='block';};
+  img.onerror=function(){document.getElementById('avatarIn').innerHTML='<span>&#128105;&#8205;&#128300;</span>';};
+  img.src='avatar.jpg';
 })();
 
 /* ── WAVE HEATMAP ── */
 (function(){
-  var s = 12345;
-  function rand(){ s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967295; }
-  var WEEKS = 52, DAYS = 7;
-  function weight(w){ if(w<4)return .18; if(w<8)return .22; if(w<17)return .15; if(w<20)return .28; if(w<26)return .14; if(w<32)return .52; if(w<38)return .45; if(w<44)return .60; if(w<50)return .68; return .30; }
-  function lvl(r,w){ var p=weight(w); if(r>1-p*.15)return 4; if(r>1-p*.35)return 3; if(r>1-p*.60)return 2; if(r>1-p)return 1; return 0; }
-  var mm = [{l:'3月',w:0},{l:'4月',w:4},{l:'5月',w:8},{l:'6月',w:13},{l:'7月',w:17},{l:'8月',w:21},{l:'9月',w:26},{l:'10月',w:30},{l:'11月',w:34},{l:'12月',w:39},{l:'1月',w:43},{l:'2月',w:47},{l:'3月',w:51}];
-  var mlRow = document.getElementById('month-labels');
-  mm.forEach(function(m,i){ var next=mm[i+1]?mm[i+1].w:WEEKS; var d=document.createElement('div'); d.className='month-lbl'; d.textContent=m.l; d.style.width=((next-m.w)*15)+'px'; mlRow.appendChild(d); });
-  var tips = { zh: ['无贡献','1-3次','4-6次','7-9次','10次以上'], en: ['No contributions','1-3','4-6','7-9','10+'] };
-  var hm = document.getElementById('heatmap'), cells = [];
-  for(var w=0;w<WEEKS;w++){ var col=document.createElement('div'); col.className='heatmap-col'; cells[w]=[]; for(var d=0;d<DAYS;d++){ var r=rand(),lv=lvl(r,w); var cell=document.createElement('div'); cell.className='cell lv'+lv; cell.title=tips.zh[lv]; cells[w][d]=cell; col.appendChild(cell); } hm.appendChild(col); }
-  /* update tooltips on lang change */
-  window._updateHeatmapTips = function(l){ for(var w=0;w<WEEKS;w++) for(var d=0;d<DAYS;d++){ var lv=parseInt(cells[w][d].className.match(/lv(\d)/)[1]); cells[w][d].title=tips[l][lv]; } };
-  var origApply = window.applyLang;
-  var waveOn=true, waveTimer=null, wavePos=0, WAVE_WIDTH=6, WAVE_SPEED=0.55;
-  function clr(c){ c.classList.remove('wave-front','wave-mid','wave-back','wave-wash'); }
+  var s=12345;
+  function rand(){s=(s*1664525+1013904223)>>>0;return s/4294967295;}
+  var WEEKS=52,DAYS=7;
+  function weight(w){if(w<4)return .18;if(w<8)return .22;if(w<17)return .15;if(w<20)return .28;if(w<26)return .14;if(w<32)return .52;if(w<38)return .45;if(w<44)return .60;if(w<50)return .68;return .30;}
+  function lvl(r,w){var p=weight(w);if(r>1-p*.15)return 4;if(r>1-p*.35)return 3;if(r>1-p*.60)return 2;if(r>1-p)return 1;return 0;}
+  var mm=[{l:'3月',w:0},{l:'4月',w:4},{l:'5月',w:8},{l:'6月',w:13},{l:'7月',w:17},{l:'8月',w:21},{l:'9月',w:26},{l:'10月',w:30},{l:'11月',w:34},{l:'12月',w:39},{l:'1月',w:43},{l:'2月',w:47},{l:'3月',w:51}];
+  var mlRow=document.getElementById('month-labels');
+  mm.forEach(function(m,i){var next=mm[i+1]?mm[i+1].w:WEEKS;var d=document.createElement('div');d.className='month-lbl';d.textContent=m.l;d.style.width=((next-m.w)*15)+'px';mlRow.appendChild(d);});
+  var tips={zh:['无贡献','1-3次','4-6次','7-9次','10次以上'],en:['No contributions','1-3','4-6','7-9','10+']};
+  var hm=document.getElementById('heatmap'),cells=[];
+  for(var w=0;w<WEEKS;w++){var col=document.createElement('div');col.className='heatmap-col';cells[w]=[];for(var d=0;d<DAYS;d++){var r=rand(),lv=lvl(r,w);var cell=document.createElement('div');cell.className='cell lv'+lv;cell.title=tips.zh[lv];cells[w][d]=cell;col.appendChild(cell);}hm.appendChild(col);}
+  var waveOn=true,waveTimer=null,wavePos=0,WAVE_WIDTH=6,WAVE_SPEED=0.55;
+  function clr(c){c.classList.remove('wave-front','wave-mid','wave-back','wave-wash');}
   function tickWave(){
-    wavePos += WAVE_SPEED;
-    if(wavePos > WEEKS + WAVE_WIDTH) wavePos = -WAVE_WIDTH;
-    for(var w=0;w<WEEKS;w++){ var dist=wavePos-w; for(var d=0;d<DAYS;d++){ clr(cells[w][d]); var eff=dist+Math.sin(d*0.7)*1.4; if(eff>0&&eff<=0.8)cells[w][d].classList.add('wave-front'); else if(eff>0.8&&eff<=2)cells[w][d].classList.add('wave-mid'); else if(eff>2&&eff<=4)cells[w][d].classList.add('wave-back'); else if(eff>4&&eff<=WAVE_WIDTH)cells[w][d].classList.add('wave-wash'); } }
+    wavePos+=WAVE_SPEED;
+    if(wavePos>WEEKS+WAVE_WIDTH)wavePos=-WAVE_WIDTH;
+    for(var w=0;w<WEEKS;w++){var dist=wavePos-w;for(var d=0;d<DAYS;d++){clr(cells[w][d]);var eff=dist+Math.sin(d*0.7)*1.4;if(eff>0&&eff<=0.8)cells[w][d].classList.add('wave-front');else if(eff>0.8&&eff<=2)cells[w][d].classList.add('wave-mid');else if(eff>2&&eff<=4)cells[w][d].classList.add('wave-back');else if(eff>4&&eff<=WAVE_WIDTH)cells[w][d].classList.add('wave-wash');}}
   }
-  function startWave(){ waveOn=true; waveTimer=setInterval(tickWave,55); }
-  function stopWave(){ waveOn=false; if(waveTimer){clearInterval(waveTimer);waveTimer=null;} for(var w=0;w<WEEKS;w++) for(var d=0;d<DAYS;d++) clr(cells[w][d]); }
-  window.toggleWave = function(){
-    var btn = document.getElementById('waveBtn');
-    if(waveOn){ stopWave(); btn.innerHTML='☀️ '+t('已暂停','Paused'); btn.classList.remove('on'); }
-    else { startWave(); btn.innerHTML='🌊 '+t('海浪','Waves'); btn.classList.add('on'); }
+  function startWave(){waveOn=true;waveTimer=setInterval(tickWave,55);}
+  function stopWave(){waveOn=false;if(waveTimer){clearInterval(waveTimer);waveTimer=null;}for(var w=0;w<WEEKS;w++)for(var d=0;d<DAYS;d++)clr(cells[w][d]);}
+  window.toggleWave=function(){
+    var btn=document.getElementById('waveBtn');
+    if(waveOn){stopWave();btn.innerHTML='☀️ '+t('已暂停','Paused');btn.classList.remove('on');}
+    else{startWave();btn.innerHTML='🌊 '+t('海浪','Waves');btn.classList.add('on');}
   };
   startWave();
-  document.addEventListener('visibilitychange', function(){ if(document.hidden){ if(waveTimer){clearInterval(waveTimer);waveTimer=null;} } else if(waveOn){ waveTimer=setInterval(tickWave,55); } });
+  document.addEventListener('visibilitychange',function(){if(document.hidden){if(waveTimer){clearInterval(waveTimer);waveTimer=null;}}else if(waveOn){waveTimer=setInterval(tickWave,55);}});
 })();
 
 /* ── SNAKE ── */
 (function(){
   var COLS=28,ROWS=16,CELL=18,GAP=2;
-  var LW=COLS*(CELL+GAP)-GAP, LH=ROWS*(CELL+GAP)-GAP;
+  var LW=COLS*(CELL+GAP)-GAP,LH=ROWS*(CELL+GAP)-GAP;
   var canvas=document.getElementById('snakeCanvas');
-  canvas.width=LW; canvas.height=LH;
+  canvas.width=LW;canvas.height=LH;
   var ctx=canvas.getContext('2d');
   var snake,dir,nextDir,food,score,best=0,state='idle',gameTimer=null;
-  function init(){ var mx=Math.floor(COLS/2),my=Math.floor(ROWS/2); snake=[{x:mx,y:my},{x:mx-1,y:my},{x:mx-2,y:my}]; dir={x:1,y:0}; nextDir={x:1,y:0}; score=0; placeFood(); hud(); }
-  function placeFood(){ var occ={}; snake.forEach(function(s){occ[s.x+','+s.y]=1;}); var f; do{f={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)};}while(occ[f.x+','+f.y]); food=f; }
-  function px(n){ return n*(CELL+GAP); }
-  function hud(){ document.getElementById('scoreDisplay').textContent=score; document.getElementById('bestDisplay').textContent=best; }
+  function init(){var mx=Math.floor(COLS/2),my=Math.floor(ROWS/2);snake=[{x:mx,y:my},{x:mx-1,y:my},{x:mx-2,y:my}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;placeFood();hud();}
+  function placeFood(){var occ={};snake.forEach(function(s){occ[s.x+','+s.y]=1;});var f;do{f={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)};}while(occ[f.x+','+f.y]);food=f;}
+  function px(n){return n*(CELL+GAP);}
+  function hud(){document.getElementById('scoreDisplay').textContent=score;document.getElementById('bestDisplay').textContent=best;}
   function draw(){
-    ctx.fillStyle='#f0f7ff'; ctx.fillRect(0,0,LW,LH);
+    ctx.fillStyle='#f0f7ff';ctx.fillRect(0,0,LW,LH);
     ctx.fillStyle='#dbeeff';
-    for(var gx=0;gx<COLS;gx++) for(var gy=0;gy<ROWS;gy++){ctx.beginPath();ctx.arc(px(gx)+CELL/2,px(gy)+CELL/2,1.5,0,Math.PI*2);ctx.fill();}
-    ctx.fillStyle='rgba(232,123,191,.35)'; ctx.beginPath(); ctx.arc(px(food.x)+CELL/2,px(food.y)+CELL/2,CELL*.85,0,Math.PI*2); ctx.fill();
-    ctx.font='14px serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    for(var gx=0;gx<COLS;gx++)for(var gy=0;gy<ROWS;gy++){ctx.beginPath();ctx.arc(px(gx)+CELL/2,px(gy)+CELL/2,1.5,0,Math.PI*2);ctx.fill();}
+    ctx.fillStyle='rgba(232,123,191,.35)';ctx.beginPath();ctx.arc(px(food.x)+CELL/2,px(food.y)+CELL/2,CELL*.85,0,Math.PI*2);ctx.fill();
+    ctx.font='14px serif';ctx.textAlign='center';ctx.textBaseline='middle';
     ctx.fillText('🍜',px(food.x)+CELL/2,px(food.y)+CELL/2+1);
     for(var i=snake.length-1;i>=0;i--){
       var seg=snake[i],tt=i/snake.length;
       ctx.fillStyle=i===0?'#2484d8':(tt<.5?'#4aa3f5':'#7cbfff');
       ctx.beginPath();
-      if(ctx.roundRect) ctx.roundRect(px(seg.x),px(seg.y),CELL,CELL,i===0?7:5);
+      if(ctx.roundRect)ctx.roundRect(px(seg.x),px(seg.y),CELL,CELL,i===0?7:5);
       else ctx.rect(px(seg.x),px(seg.y),CELL,CELL);
       ctx.fill();
       if(i===0){
-        var ex=dir.x===0?3:dir.x>0?12:3, ey=dir.y===0?3:dir.y>0?12:3;
-        var ex2=dir.x===0?CELL-5:dir.x>0?12:3, ey2=dir.y===0?CELL-5:dir.y>0?12:3;
+        var ex=dir.x===0?3:dir.x>0?12:3,ey=dir.y===0?3:dir.y>0?12:3;
+        var ex2=dir.x===0?CELL-5:dir.x>0?12:3,ey2=dir.y===0?CELL-5:dir.y>0?12:3;
         ctx.fillStyle='white';
         ctx.beginPath();ctx.arc(px(seg.x)+ex,px(seg.y)+ey,2.5,0,Math.PI*2);ctx.fill();
         ctx.beginPath();ctx.arc(px(seg.x)+ex2,px(seg.y)+ey2,2.5,0,Math.PI*2);ctx.fill();
@@ -483,47 +506,26 @@ applyLang(LANG);
       }
     }
   }
-  function speed(){ return Math.max(90, 210-score*8); }
-  function step(){ dir={x:nextDir.x,y:nextDir.y}; var head={x:snake[0].x+dir.x,y:snake[0].y+dir.y}; if(head.x<0||head.x>=COLS||head.y<0||head.y>=ROWS){gameOver();return;} for(var i=0;i<snake.length;i++){if(snake[i].x===head.x&&snake[i].y===head.y){gameOver();return;}} snake.unshift(head); if(head.x===food.x&&head.y===food.y){score++;if(score>best)best=score;hud();placeFood();if(gameTimer){clearInterval(gameTimer);gameTimer=setInterval(step,speed());}}else snake.pop(); draw(); }
-  function ov(em,ti,su,bt){ var o=document.getElementById('snakeOverlay'); o.querySelector('.overlay-emoji').textContent=em; o.querySelector('.overlay-title').textContent=ti; o.querySelector('.overlay-sub').innerHTML=su; o.querySelector('#overlayBtn').textContent=bt; o.classList.remove('hidden'); }
-  function hideOv(){ document.getElementById('snakeOverlay').classList.add('hidden'); }
-  function gameOver(){ state='over'; if(gameTimer){clearInterval(gameTimer);gameTimer=null;} document.getElementById('startBtn').innerHTML='▶ '+t('重来','Restart'); document.getElementById('pauseBtn').style.display='none'; draw(); ov('😵',t('游戏结束！','Game Over!'),t('得分：','Score: ')+score+t(' — 再来一次？',' — try again?'),t('再来一次','Play Again')); }
-  window.startSnake = function(){ if(gameTimer){clearInterval(gameTimer);gameTimer=null;} init(); draw(); hideOv(); state='running'; document.getElementById('startBtn').innerHTML='↺ '+t('重来','Restart'); document.getElementById('pauseBtn').style.display=''; document.getElementById('pauseBtn').innerHTML='⏸ '+t('暂停','Pause'); gameTimer=setInterval(step,speed()); };
-  window.pauseSnake = function(){ var btn=document.getElementById('pauseBtn'); if(state==='running'){clearInterval(gameTimer);gameTimer=null;state='paused';btn.innerHTML='▶ '+t('继续','Resume');} else if(state==='paused'){state='running';btn.innerHTML='⏸ '+t('暂停','Pause');gameTimer=setInterval(step,speed());} };
-  function applyDir(d){ if(state!=='running')return; var map={UP:{x:0,y:-1},DOWN:{x:0,y:1},LEFT:{x:-1,y:0},RIGHT:{x:1,y:0}}; var nd=map[d]; if(nd.x===-dir.x&&nd.y===-dir.y)return; nextDir=nd; }
-  window.dpadPress = function(e,d){ if(e)e.preventDefault(); applyDir(d); var ids={UP:'dUp',DOWN:'dDown',LEFT:'dLeft',RIGHT:'dRight'}; var btn=document.getElementById(ids[d]); btn.classList.add('pressed'); setTimeout(function(){btn.classList.remove('pressed');},150); };
+  function speed(){return Math.max(90,210-score*8);}
+  function step(){dir={x:nextDir.x,y:nextDir.y};var head={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(head.x<0||head.x>=COLS||head.y<0||head.y>=ROWS){gameOver();return;}for(var i=0;i<snake.length;i++){if(snake[i].x===head.x&&snake[i].y===head.y){gameOver();return;}}snake.unshift(head);if(head.x===food.x&&head.y===food.y){score++;if(score>best)best=score;hud();placeFood();if(gameTimer){clearInterval(gameTimer);gameTimer=setInterval(step,speed());}}else snake.pop();draw();}
+  function ov(em,ti,su,bt){var o=document.getElementById('snakeOverlay');o.querySelector('.overlay-emoji').textContent=em;o.querySelector('.overlay-title').textContent=ti;o.querySelector('.overlay-sub').innerHTML=su;o.querySelector('#overlayBtn').textContent=bt;o.classList.remove('hidden');}
+  function hideOv(){document.getElementById('snakeOverlay').classList.add('hidden');}
+  function gameOver(){state='over';if(gameTimer){clearInterval(gameTimer);gameTimer=null;}document.getElementById('startBtn').innerHTML='▶ '+t('重来','Restart');document.getElementById('pauseBtn').style.display='none';draw();ov('😵',t('游戏结束！','Game Over!'),t('得分：','Score: ')+score+t(' — 再来一次？',' — try again?'),t('再来一次','Play Again'));}
+  window.startSnake=function(){if(gameTimer){clearInterval(gameTimer);gameTimer=null;}init();draw();hideOv();state='running';document.getElementById('startBtn').innerHTML='↺ '+t('重来','Restart');document.getElementById('pauseBtn').style.display='';document.getElementById('pauseBtn').innerHTML='⏸ '+t('暂停','Pause');gameTimer=setInterval(step,speed());};
+  window.pauseSnake=function(){var btn=document.getElementById('pauseBtn');if(state==='running'){clearInterval(gameTimer);gameTimer=null;state='paused';btn.innerHTML='▶ '+t('继续','Resume');}else if(state==='paused'){state='running';btn.innerHTML='⏸ '+t('暂停','Pause');gameTimer=setInterval(step,speed());}};
+  function applyDir(d){if(state!=='running')return;var map={UP:{x:0,y:-1},DOWN:{x:0,y:1},LEFT:{x:-1,y:0},RIGHT:{x:1,y:0}};var nd=map[d];if(nd.x===-dir.x&&nd.y===-dir.y)return;nextDir=nd;}
+  window.dpadPress=function(e,d){if(e)e.preventDefault();applyDir(d);var ids={UP:'dUp',DOWN:'dDown',LEFT:'dLeft',RIGHT:'dRight'};var btn=document.getElementById(ids[d]);btn.classList.add('pressed');setTimeout(function(){btn.classList.remove('pressed');},150);};
   var KEYS={ArrowUp:'UP',ArrowDown:'DOWN',ArrowLeft:'LEFT',ArrowRight:'RIGHT',w:'UP',s:'DOWN',a:'LEFT',d:'RIGHT'};
-  document.addEventListener('keydown',function(e){ var d=KEYS[e.key]; if(!d)return; if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.key)>=0)e.preventDefault(); applyDir(d); });
+  document.addEventListener('keydown',function(e){var d=KEYS[e.key];if(!d)return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.key)>=0)e.preventDefault();applyDir(d);});
   var tx0,ty0;
   canvas.addEventListener('touchstart',function(e){tx0=e.touches[0].clientX;ty0=e.touches[0].clientY;e.preventDefault();},{passive:false});
   canvas.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx0,dy=e.changedTouches[0].clientY-ty0;if(Math.abs(dx)<10&&Math.abs(dy)<10)return;if(Math.abs(dx)>Math.abs(dy))applyDir(dx>0?'RIGHT':'LEFT');else applyDir(dy>0?'DOWN':'UP');},{passive:false});
-  if('ontouchstart' in window){ document.getElementById('snakeHint').textContent=t('滑动或使用方向盘','Swipe or use D-pad'); }
-  init(); draw();
+  if('ontouchstart' in window){document.getElementById('snakeHint').textContent=t('滑动或使用方向盘','Swipe or use D-pad');}
+  init();draw();
   ov('🐍',t('贪吃蛇','Snake Game'),t('用方向键或下方方向盘<br>帮小蛇吃到 🍜！','Use arrow keys or the D-pad<br>to eat the 🍜!'),t('开始游戏','Start Playing'));
 })();
-</script>
-  <div id="progress-bar"></div>
-<script>
-(function(){
-  var bar=document.getElementById('progress-bar');
-  window.addEventListener('scroll',function(){
-    var h=document.documentElement;
-    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
-    bar.style.width=Math.min(pct,100)+'%';
-  },{passive:true});
-})();
-</script>
-  <div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</div>
-<script>
-(function(){
-  var btn=document.getElementById('back-top');
-  window.addEventListener('scroll',function(){
-    var top=document.documentElement.scrollTop||document.body.scrollTop;
-    btn.classList.toggle('show',top>320);
-  },{passive:true});
-})();
-</script>
-  <script>
+
+/* ── 留言板 ── */
 (function(){
   var KEY='gb_messages';
   var DEFAULTS_ZH=[
@@ -534,59 +536,27 @@ applyLang(LANG);
     {name:'Junwen',msg:'Welcome to my little corner of the internet! 🌸',time:'2026-03-18'},
     {name:'A friend',msg:'Love the site!! Good luck with the paper~',time:'2026-03-18'}
   ];
-
-  function getMsgs(){
-    try{var s=localStorage.getItem(KEY);return s?JSON.parse(s):null;}catch(e){return null;}
-  }
-  function saveMsgs(msgs){
-    try{localStorage.setItem(KEY,JSON.stringify(msgs.slice(0,20)));}catch(e){}
-  }
-  function initMsgs(){
-    var m=getMsgs();
-    if(!m){saveMsgs(DEFAULTS_ZH);return DEFAULTS_ZH;}
-    return m;
-  }
-
+  function getMsgs(){try{var s=localStorage.getItem(KEY);return s?JSON.parse(s):null;}catch(e){return null;}}
+  function saveMsgs(m){try{localStorage.setItem(KEY,JSON.stringify(m.slice(0,20)));}catch(e){}}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
   function renderList(){
     var isEN=(localStorage.getItem('lang')||'zh')==='en';
     var msgs=getMsgs();
-    if(!msgs||!msgs.length){
-      msgs=isEN?DEFAULTS_EN:DEFAULTS_ZH;
-      saveMsgs(msgs);
-    }
+    if(!msgs||!msgs.length){msgs=isEN?DEFAULTS_EN:DEFAULTS_ZH;saveMsgs(msgs);}
     var el=document.getElementById('gbList');
     if(!el)return;
-    if(!msgs.length){
-      el.innerHTML='<div class="gb-empty">'+(isEN?'No messages yet — be the first! 🌸':'还没有留言 — 来第一个吧！🌸')+'</div>';
-      return;
-    }
+    if(!msgs.length){el.innerHTML='<div class="gb-empty">'+(isEN?'No messages yet — be the first! 🌸':'还没有留言 — 来第一个吧！🌸')+'</div>';return;}
     el.innerHTML=msgs.map(function(m){
-      var initial=(m.name||'?')[0].toUpperCase();
-      return '<div class="gb-item">'
-        +'<div class="gb-avatar">'+initial+'</div>'
-        +'<div><div class="gb-name">'+esc(m.name)+'</div>'
-        +'<div class="gb-msg">'+esc(m.msg)+'</div>'
-        +'<div class="gb-time">'+m.time+'</div></div></div>';
+      var init=(m.name||'?')[0].toUpperCase();
+      return '<div class="gb-item"><div class="gb-avatar">'+init+'</div><div><div class="gb-name">'+esc(m.name)+'</div><div class="gb-msg">'+esc(m.msg)+'</div><div class="gb-time">'+m.time+'</div></div></div>';
     }).join('');
   }
-
-  function esc(s){
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function today(){
-    var d=new Date();
-    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
-
   window.gbSubmit=function(){
     var isEN=(localStorage.getItem('lang')||'zh')==='en';
     var name=document.getElementById('gbName').value.trim();
     var msg=document.getElementById('gbMsg').value.trim();
-    if(!name||!msg){
-      var hint=isEN?'Please fill in both fields 🌸':'请填写名字和留言哦 🌸';
-      alert(hint);return;
-    }
+    if(!name||!msg){alert(isEN?'Please fill in both fields 🌸':'请填写名字和留言哦 🌸');return;}
     var msgs=getMsgs()||[];
     msgs.unshift({name:name,msg:msg,time:today()});
     saveMsgs(msgs);
@@ -594,20 +564,16 @@ applyLang(LANG);
     document.getElementById('gbMsg').value='';
     renderList();
   };
-
-  /* update placeholders on lang switch */
-  var _origSetLang=window.setLang;
+  var _orig=window.setLang;
   window.setLang=function(l){
-    _origSetLang(l);
+    _orig(l);
     var isEN=l==='en';
-    var n=document.getElementById('gbName');
-    var m=document.getElementById('gbMsg');
+    var n=document.getElementById('gbName'),m=document.getElementById('gbMsg');
     if(n)n.placeholder=n.getAttribute('data-ph-'+(isEN?'en':'zh'));
     if(m)m.placeholder=m.getAttribute('data-ph-'+(isEN?'en':'zh'));
     renderList();
   };
-
-  initMsgs();
+  if(!getMsgs()) saveMsgs(DEFAULTS_ZH);
   renderList();
 })();
 </script>
