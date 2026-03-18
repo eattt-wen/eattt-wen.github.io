@@ -51,12 +51,87 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .food-label{font-size:12px;font-weight:800;color:var(--p3);letter-spacing:.06em}
 .food-items{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
 .food-tag{font-size:12px;font-weight:700;background:var(--p1);color:#a03070;padding:4px 10px;border-radius:12px}
+
+/* ── 饥饿指数 ── */
+.hunger-wrap{margin-top:18px;background:white;border-radius:20px;padding:22px 28px;border:2px solid var(--y2);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.hunger-label{font-size:13px;font-weight:800;color:#b8860b;white-space:nowrap}
+.hunger-bar-bg{flex:1;height:14px;background:var(--y1);border-radius:20px;overflow:hidden;min-width:120px}
+.hunger-bar-fill{height:100%;border-radius:20px;background:linear-gradient(to right,var(--y2),#ffb300);transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.hunger-emoji{font-size:22px}
+.hunger-text{font-size:13px;font-weight:700;color:#b8860b;white-space:nowrap}
+
 .current-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .cur-card{background:white;border-radius:20px;padding:24px 20px;border:2px solid var(--b1);display:flex;align-items:flex-start;gap:14px}
 .cur-icon{font-size:28px;flex-shrink:0;margin-top:2px}
 .cur-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--tl);margin-bottom:5px}
 .cur-text{font-size:15px;font-weight:700;color:var(--tx);line-height:1.5}
 .cur-sub{font-size:13px;color:var(--tm);margin-top:4px;line-height:1.5}
+
+/* ── 转盘 ── */
+.spinner-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--p2);display:flex;flex-direction:column;align-items:center;gap:20px}
+.spinner-wrap{position:relative;width:260px;height:260px;flex-shrink:0}
+.spinner-canvas{border-radius:50%;display:block}
+.spinner-needle{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:28px solid #e87bbf;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));z-index:5}
+.spinner-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:white;border:3px solid var(--p3);z-index:6;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.spinner-result{text-align:center;min-height:56px}
+.spinner-result-food{font-size:28px;font-weight:900;color:var(--tx);line-height:1.3}
+.spinner-result-sub{font-size:14px;color:var(--tm);margin-top:4px}
+.spin-btn{font-size:15px;font-weight:800;padding:12px 36px;border-radius:24px;border:none;background:linear-gradient(135deg,var(--p3),var(--b4));color:white;cursor:pointer;transition:.15s;font-family:inherit;box-shadow:0 4px 16px rgba(232,123,191,.35)}
+.spin-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,123,191,.45)}
+.spin-btn:active{transform:scale(.96)}
+.spin-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* ── 接食物游戏 ── */
+.catch-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--m2);margin-top:18px}
+.catch-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.catch-score-wrap{display:flex;gap:20px}
+.catch-stat{text-align:center}
+.catch-stat-num{font-size:22px;font-weight:900;color:var(--m3);line-height:1}
+.catch-stat-lbl{font-size:11px;font-weight:800;color:var(--tl);letter-spacing:.05em;margin-top:2px}
+.catch-btns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.catch-btn{font-size:13px;font-weight:800;padding:7px 18px;border-radius:20px;cursor:pointer;border:1.5px solid;transition:.15s;font-family:inherit}
+.catch-btn-start{background:var(--m3);color:white;border-color:var(--m3)}.catch-btn-start:hover{background:#3ab898;border-color:#3ab898}
+.catch-btn-pause{background:var(--b1);color:var(--b5);border-color:var(--b2)}.catch-btn-pause:hover{background:var(--b2)}
+.catch-game-area{max-width:480px;margin:0 auto}
+.catch-canvas-wrap{position:relative;border-radius:14px;overflow:hidden;border:2px solid var(--m2);background:var(--m1);width:100%}
+#catchCanvas{display:block;width:100%;height:auto;border-radius:12px}
+.catch-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(228,248,242,.92);border-radius:12px}
+.catch-overlay.hidden{display:none}
+.catch-dpad{display:flex;justify-content:center;gap:16px;margin-top:14px}
+.catch-dpad-btn{width:58px;height:58px;border-radius:14px;background:white;border:2px solid var(--m2);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:background .12s,transform .1s;color:var(--m3);font-weight:900;touch-action:manipulation}
+.catch-dpad-btn:active,.catch-dpad-btn.pressed{background:var(--m2);transform:scale(.9)}
+
+/* ── 美食地图 ── */
+.map-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);overflow:hidden}
+.map-iframe-wrap{border-radius:14px;overflow:hidden;border:2px solid var(--b1);margin-top:4px}
+.map-iframe-wrap iframe{display:block;width:100%;height:380px;border:none}
+.map-spots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.map-spot{display:flex;align-items:center;gap:8px;background:var(--b0);border:1.5px solid var(--b1);border-radius:14px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--tx);cursor:pointer;transition:.18s;text-decoration:none}
+.map-spot:hover{border-color:var(--b3);background:var(--b1);color:var(--b5)}
+.map-spot-emoji{font-size:18px}
+.map-spot-info{display:flex;flex-direction:column}
+.map-spot-name{font-size:13px;font-weight:800;color:var(--tx)}
+.map-spot-desc{font-size:11px;color:var(--tm);font-weight:600;margin-top:1px}
+
+/* ── 聊天框 ── */
+.chat-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--p2)}
+.chat-messages{height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:16px;padding:4px 2px}
+.chat-messages::-webkit-scrollbar{width:4px}
+.chat-messages::-webkit-scrollbar-thumb{background:var(--p2);border-radius:4px}
+.chat-bubble{max-width:80%;padding:10px 16px;border-radius:18px;font-size:14px;line-height:1.6;font-weight:600;animation:popIn .2s ease}
+@keyframes popIn{from{opacity:0;transform:scale(.92) translateY(4px)}to{opacity:1;transform:none}}
+.chat-bubble.user{background:var(--b5);color:white;align-self:flex-end;border-bottom-right-radius:6px}
+.chat-bubble.bot{background:var(--p1);color:var(--tx);align-self:flex-start;border-bottom-left-radius:6px}
+.chat-bubble.bot .bot-name{font-size:11px;font-weight:800;color:var(--p3);margin-bottom:3px;letter-spacing:.04em}
+.chat-input-row{display:flex;gap:10px}
+.chat-input{flex:1;padding:10px 18px;border-radius:20px;border:2px solid var(--p2);font-size:14px;font-family:inherit;color:var(--tx);background:var(--p1);outline:none;transition:border-color .18s}
+.chat-input:focus{border-color:var(--p3)}
+.chat-send{padding:10px 20px;border-radius:20px;border:none;background:var(--p3);color:white;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s;flex-shrink:0}
+.chat-send:hover{background:#d4609f}
+.chat-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.chat-chip{font-size:12px;font-weight:700;padding:5px 13px;border-radius:14px;background:var(--p1);color:#a03070;border:1.5px solid var(--p2);cursor:pointer;transition:.15s;font-family:inherit}
+.chat-chip:hover{background:var(--p2)}
+
 .contrib-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);position:relative;overflow:hidden}
 .contrib-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
 .contrib-count{font-size:15px;font-weight:700;color:var(--tm)}
@@ -136,33 +211,26 @@ footer{text-align:center;margin-top:20px;font-size:14px;color:var(--tl);font-wei
 footer a{color:var(--b5);text-decoration:none;font-weight:800}
 footer a:hover{text-decoration:underline}
 footer span{color:var(--p3)}
-
-/* ── 进度条 ── */
 #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(to right,var(--b4),var(--p3));z-index:9999;transition:width .1s linear;border-radius:0 2px 2px 0;pointer-events:none}
-
-/* ── 回到顶部 ── */
 #back-top{position:fixed;bottom:32px;right:32px;width:46px;height:46px;border-radius:50%;background:white;border:2px solid var(--b2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--b5);box-shadow:0 4px 16px rgba(74,163,245,.18);opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s,border-color .18s,background .18s;pointer-events:none;z-index:998}
 #back-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
 #back-top:hover{background:var(--b1);border-color:var(--b3)}
-
-
 @media(max-width:900px){.current-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.hero{padding:44px 24px 40px}.hero h1{font-size:30px}.about-grid,.current-grid{grid-template-columns:1fr}nav{padding:14px 20px}.sec{margin:28px 16px 0}.snake-card{padding:18px 16px}.dpad-btn{width:58px;height:58px;font-size:22px}.contact-row{flex-direction:column}#back-top{bottom:20px;right:20px}}
+@media(max-width:600px){.hero{padding:44px 24px 40px}.hero h1{font-size:30px}.about-grid,.current-grid{grid-template-columns:1fr}nav{padding:14px 20px}.sec{margin:28px 16px 0}.snake-card,.catch-card{padding:18px 16px}.dpad-btn,.catch-dpad-btn{width:58px;height:58px;font-size:22px}.contact-row{flex-direction:column}#back-top{bottom:20px;right:20px}.spinner-wrap{width:210px;height:210px}}
   </style>
 </head>
 <body>
-
 <div id="progress-bar"></div>
-
 <div class="wrap">
 
   <nav>
-    <div class="logo"><span class="logo-dot"></span> <span data-zh="吃吃大王" data-en="Lina">钧文</span></div>
+    <div class="logo"><span class="logo-dot"></span> <span data-zh="吃吃大王" data-en="Junwen">吃吃大王</span></div>
     <ul class="nav-links">
-      <li><a href="#about"      data-zh="关于我"  data-en="About">关于我</a></li>
-      <li><a href="#currently"  data-zh="最近"    data-en="Now">最近</a></li>
-      <li><a href="#projects"   data-zh="论文"    data-en="Paper">论文</a></li>
-      <li><a href="#contact"    data-zh="联系"    data-en="Contact">联系</a></li>
+      <li><a href="#about"     data-zh="关于我" data-en="About">关于我</a></li>
+      <li><a href="#currently" data-zh="最近"   data-en="Now">最近</a></li>
+      <li><a href="#food"      data-zh="吃什么" data-en="Food">吃什么</a></li>
+      <li><a href="#projects"  data-zh="论文"   data-en="Paper">论文</a></li>
+      <li><a href="#contact"   data-zh="联系"   data-en="Contact">联系</a></li>
       <li><a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         eattt-wen
@@ -188,12 +256,13 @@ footer span{color:var(--p3)}
     </div>
   </section>
 
+  <!-- 关于我 -->
   <section class="sec" id="about">
     <div class="sec-title"><span class="sec-pill">🌸</span> <span data-zh="关于我" data-en="About Me">关于我</span></div>
     <div class="about-grid">
       <div class="about-card">
-        <div class="about-text" data-zh="我是<strong>南洋理工大学（NTU）的硕士研究生</strong>，研究方向是医学图像分析中的可解释 AI 模型。<br><br>我不只关心模型是否准确，更在乎它是否<strong>可以被理解</strong>——因为在医疗领域，知道为什么和得出正确答案同样重要。<br><br>科研之外，我基本在吃东西。非常认真地吃。" data-en="I'm a <strong>Master's student at NTU</strong> working in medical AI, with a focus on explainable models for medical image analysis.<br><br>I care about making AI not just accurate, but <strong>interpretable</strong> — because in medicine, understanding <em>why</em> matters as much as getting the right answer.<br><br>Outside of research, I'm mostly eating. Very seriously.">
-          我是<strong>南洋理工大学（NTU）的硕士研究生</strong>，研究方向是医学图像分析中的可解释 AI 模型。<br><br>我不只关心模型是否准确，更在乎它是否<strong>可以被理解</strong>——因为在医疗领域，知道"为什么"和得出正确答案同样重要。<br><br>科研之外，我基本在吃东西。非常认真地吃。
+        <div class="about-text" data-zh="我是<strong>南洋理工大学（NTU）的硕士研究生</strong>，研究方向是医学图像分析中的可解释 AI 模型。<br><br>我不只关心模型是否准确，更在乎它是否<strong>可以被理解</strong>——因为在医疗领域，知道&ldquo;为什么&rdquo;和得出正确答案同样重要。<br><br>科研之外，我基本在吃东西。非常认真地吃。" data-en="I'm a <strong>Master's student at NTU</strong> working in medical AI, with a focus on explainable models for medical image analysis.<br><br>I care about making AI not just accurate, but <strong>interpretable</strong> — because in medicine, understanding <em>why</em> matters as much as getting the right answer.<br><br>Outside of research, I'm mostly eating. Very seriously.">
+          我是<strong>南洋理工大学（NTU）的硕士研究生</strong>，研究方向是医学图像分析中的可解释 AI 模型。<br><br>我不只关心模型是否准确，更在乎它是否<strong>可以被理解</strong>——因为在医疗领域，知道&ldquo;为什么&rdquo;和得出正确答案同样重要。<br><br>科研之外，我基本在吃东西。非常认真地吃。
         </div>
       </div>
       <div class="food-card">
@@ -207,8 +276,16 @@ footer span{color:var(--p3)}
         </div>
       </div>
     </div>
+    <!-- 饥饿指数 -->
+    <div class="hunger-wrap" id="hungerWrap">
+      <span class="hunger-emoji">🍽️</span>
+      <span class="hunger-label" data-zh="今日饥饿指数" data-en="Today's Hunger Level">今日饥饿指数</span>
+      <div class="hunger-bar-bg"><div class="hunger-bar-fill" id="hungerFill" style="width:0%"></div></div>
+      <span class="hunger-text" id="hungerText">加载中…</span>
+    </div>
   </section>
 
+  <!-- 最近 -->
   <section class="sec" id="currently">
     <div class="sec-title"><span class="sec-pill">🌀</span> <span data-zh="最近在忙" data-en="Currently">最近在忙</span></div>
     <div class="current-grid">
@@ -235,6 +312,136 @@ footer span{color:var(--p3)}
     </div>
   </section>
 
+  <!-- 🍜 吃什么大区 -->
+  <section class="sec" id="food">
+    <div class="sec-title"><span class="sec-pill">🍜</span> <span data-zh="吃货专区" data-en="Foodie Zone">吃货专区</span></div>
+
+    <!-- 转盘 + 聊天并排 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+
+      <!-- 今天吃什么转盘 -->
+      <div class="spinner-card" id="spinnerCard">
+        <div style="text-align:center">
+          <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="今天吃什么？🎰" data-en="What to eat? 🎰">今天吃什么？🎰</div>
+          <div style="font-size:13px;color:var(--tm);margin-top:4px" data-zh="转一转，让命运决定！" data-en="Spin and let fate decide!">转一转，让命运决定！</div>
+        </div>
+        <div class="spinner-wrap">
+          <canvas class="spinner-canvas" id="spinnerCanvas" width="260" height="260"></canvas>
+          <div class="spinner-needle"></div>
+          <div class="spinner-center"></div>
+        </div>
+        <div class="spinner-result">
+          <div class="spinner-result-food" id="spinResult" data-zh="点击转盘开始！" data-en="Click Spin to start!">点击转盘开始！</div>
+          <div class="spinner-result-sub" id="spinResultSub"></div>
+        </div>
+        <button class="spin-btn" id="spinBtn" onclick="doSpin()" data-zh="🎰 开转！" data-en="🎰 Spin!">🎰 开转！</button>
+      </div>
+
+      <!-- 问问吃吃大王 -->
+      <div class="chat-card">
+        <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="🤖 问问吃吃大王" data-en="🤖 Ask the Food King">🤖 问问吃吃大王</div>
+        <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="有关吃的问题，我都懂！" data-en="Ask me anything about food!">有关吃的问题，我都懂！</div>
+        <div class="chat-chips" id="chatChips">
+          <button class="chat-chip" onclick="chipSend(this)">今天吃什么？</button>
+          <button class="chat-chip" onclick="chipSend(this)">推荐大牌档</button>
+          <button class="chat-chip" onclick="chipSend(this)">最爱的食物</button>
+          <button class="chat-chip" onclick="chipSend(this)">新加坡必吃</button>
+          <button class="chat-chip" onclick="chipSend(this)">宵夜吃什么？</button>
+          <button class="chat-chip" onclick="chipSend(this)">奶茶推荐</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-bubble bot"><div class="bot-name">吃吃大王 👑</div>你好！我是吃吃大王，新加坡美食小达人～ 有什么关于吃的问题尽管问我！🍜</div>
+        </div>
+        <div class="chat-input-row">
+          <input class="chat-input" id="chatInput" type="text" placeholder="问我任何关于吃的问题…" onkeydown="if(event.key==='Enter')sendChat()"/>
+          <button class="chat-send" onclick="sendChat()">发送</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 接食物游戏 -->
+    <div class="catch-card" style="margin-top:18px">
+      <div class="catch-header">
+        <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="🥣 接住美食！" data-en="🥣 Catch the Food!">🥣 接住美食！</div>
+        <div class="catch-score-wrap">
+          <div class="catch-stat"><div class="catch-stat-num" id="catchScore">0</div><div class="catch-stat-lbl" data-zh="得分" data-en="SCORE">得分</div></div>
+          <div class="catch-stat"><div class="catch-stat-num" id="catchBest">0</div><div class="catch-stat-lbl" data-zh="最高分" data-en="BEST">最高分</div></div>
+          <div class="catch-stat"><div class="catch-stat-num" id="catchLives">3</div><div class="catch-stat-lbl" data-zh="❤️ 生命" data-en="❤️ LIVES">❤️ 生命</div></div>
+        </div>
+        <div class="catch-btns">
+          <button class="catch-btn catch-btn-pause" id="catchPauseBtn" onclick="pauseCatch()" style="display:none">⏸ <span data-zh="暂停" data-en="Pause">暂停</span></button>
+          <button class="catch-btn catch-btn-start" id="catchStartBtn" onclick="startCatch()">▶ <span data-zh="开始" data-en="Play">开始</span></button>
+          <span style="font-size:13px;color:var(--tl);font-weight:700" id="catchHint">← →</span>
+        </div>
+      </div>
+      <div class="catch-game-area">
+        <div class="catch-canvas-wrap">
+          <canvas id="catchCanvas"></canvas>
+          <div class="catch-overlay" id="catchOverlay">
+            <div style="font-size:44px">🥣</div>
+            <div style="font-size:20px;font-weight:900;color:var(--tx)" data-zh="接住美食！" data-en="Catch the Food!">接住美食！</div>
+            <div style="font-size:14px;color:var(--tm);font-weight:600;text-align:center;line-height:1.6" data-zh="用方向键或按钮移动碗<br>接住掉落的美食 🍜🍣🧋" data-en="Use arrow keys or buttons<br>to catch falling food 🍜🍣🧋">用方向键或按钮移动碗<br>接住掉落的美食 🍜🍣🧋</div>
+            <button style="font-size:14px;font-weight:800;padding:10px 28px;border-radius:20px;cursor:pointer;border:none;background:var(--m3);color:white;font-family:inherit;transition:.15s;margin-top:4px" onclick="startCatch()" data-zh="开始游戏" data-en="Start Playing">开始游戏</button>
+          </div>
+        </div>
+        <div class="catch-dpad">
+          <button class="catch-dpad-btn" id="cLeft"  ontouchstart="catchDpad(event,'L')" onclick="catchDpad(null,'L')">◀</button>
+          <button class="catch-dpad-btn" id="cRight" ontouchstart="catchDpad(event,'R')" onclick="catchDpad(null,'R')">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 美食地图 -->
+    <div class="map-card" style="margin-top:18px">
+      <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="📍 吃吃大王的美食地图" data-en="📍 Food King's Hawker Map">📍 吃吃大王的美食地图</div>
+      <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="新加坡必打卡大牌档 🇸🇬" data-en="Must-visit hawker centres in Singapore 🇸🇬">新加坡必打卡大牌档 🇸🇬</div>
+      <div class="map-spots">
+        <a class="map-spot" href="https://maps.app.goo.gl/Laver" target="_blank" rel="noopener">
+          <span class="map-spot-emoji">🍚</span>
+          <div class="map-spot-info">
+            <span class="map-spot-name">Maxwell Food Centre</span>
+            <span class="map-spot-desc" data-zh="天天海南鸡饭必吃" data-en="Tian Tian Hainanese Chicken Rice">天天海南鸡饭必吃</span>
+          </div>
+        </a>
+        <a class="map-spot" href="https://maps.app.goo.gl/Tiong" target="_blank" rel="noopener">
+          <span class="map-spot-emoji">🍜</span>
+          <div class="map-spot-info">
+            <span class="map-spot-name">Tiong Bahru Market</span>
+            <span class="map-spot-desc" data-zh="炒粿条 + 豆花" data-en="Char Kway Teow + Tau Huay">炒粿条 + 豆花</span>
+          </div>
+        </a>
+        <a class="map-spot" href="https://maps.app.goo.gl/Chomp" target="_blank" rel="noopener">
+          <span class="map-spot-emoji">🦀</span>
+          <div class="map-spot-info">
+            <span class="map-spot-name">Chomp Chomp Food Centre</span>
+            <span class="map-spot-desc" data-zh="烧烤海鲜天堂" data-en="BBQ Seafood paradise">烧烤海鲜天堂</span>
+          </div>
+        </a>
+        <a class="map-spot" href="https://maps.app.goo.gl/OldAirport" target="_blank" rel="noopener">
+          <span class="map-spot-emoji">🍲</span>
+          <div class="map-spot-info">
+            <span class="map-spot-name">Old Airport Road Food Centre</span>
+            <span class="map-spot-desc" data-zh="laksa + 炒福建面" data-en="Laksa + Hokkien Mee">laksa + 炒福建面</span>
+          </div>
+        </a>
+        <a class="map-spot" href="https://maps.app.goo.gl/NTU" target="_blank" rel="noopener">
+          <span class="map-spot-emoji">🎓</span>
+          <div class="map-spot-info">
+            <span class="map-spot-name">NTU North Spine</span>
+            <span class="map-spot-desc" data-zh="日常吃饭圣地" data-en="Daily campus eats">日常吃饭圣地</span>
+          </div>
+        </a>
+      </div>
+      <div class="map-iframe-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m54!1m12!1m3!1d127641.9!2d103.8198!3d1.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m39!3e0!4m5!1s0x31da19a0a6f7a8c3%3A0x1c4f3b5b3d3d3d3d!2sMaxwell+Food+Centre!3m2!1d1.2804!2d103.8454!4m5!1s0x31da1a4b0b3b3b3b%3A0x2b2b2b2b2b2b2b2b!2sTiong+Bahru+Market!3m2!1d1.2863!2d103.8274!4m5!1s0x31da13b3b3b3b3b3%3A0x3c3c3c3c3c3c3c3c!2sChomp+Chomp+Food+Centre!3m2!1d1.3627!2d103.8652!4m5!1s0x31da17a7a7a7a7a7%3A0x4d4d4d4d4d4d4d4d!2sOld+Airport+Road+Food+Centre!3m2!1d1.3065!2d103.8832!4m5!1s0x31da1091e4c89b17%3A0x2d15c8d3ee8cb33a!2sNTU+North+Spine!3m2!1d1.3483!2d103.6831!5e0!3m2!1sen!2ssg!4v1700000000000"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub -->
   <section class="sec" id="github">
     <div class="sec-title"><span class="sec-pill">🐙</span> <span data-zh="GitHub 动态" data-en="GitHub Activity">GitHub 动态</span></div>
     <div class="contrib-card">
@@ -290,6 +497,7 @@ footer span{color:var(--p3)}
     </div>
   </section>
 
+  <!-- 论文 -->
   <section class="sec" id="projects">
     <div class="sec-title"><span class="sec-pill">📄</span> <span data-zh="论文" data-en="Publication">论文</span></div>
     <div class="paper-card">
@@ -324,6 +532,7 @@ footer span{color:var(--p3)}
     </div>
   </section>
 
+  <!-- 联系 -->
   <section class="sec" id="contact">
     <div class="sec-title"><span class="sec-pill">💌</span> <span data-zh="联系我" data-en="Get in Touch">联系我</span></div>
     <div class="contact-row">
@@ -335,7 +544,7 @@ footer span{color:var(--p3)}
         <div class="c-icon gh-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></div>
         <div><div class="c-name">GitHub</div><div class="c-sub">@eattt-wen</div></div>
       </a>
-      <a class="contact-card" href="https://www.xiaohongshu.com/user/profile/5e2bd8bc0000000001006dc8" target="_blank" rel="noopener" style="border-color:var(--p2)">
+      <a class="contact-card xhs" href="https://www.xiaohongshu.com/user/profile/5e2bd8bc0000000001006dc8" target="_blank" rel="noopener" style="border-color:var(--p2)">
         <div class="c-icon" style="background:var(--p1);font-size:26px">📕</div>
         <div>
           <div class="c-name" data-zh="小红书" data-en="Xiaohongshu">小红书</div>
@@ -349,7 +558,6 @@ footer span{color:var(--p3)}
   <footer>© 2026 <span data-zh="钧文" data-en="Junwen">钧文</span> · <span data-zh="用 " data-en="made with ">用 </span><span>♥</span><span data-zh=" 和大量食物做成" data-en=" &amp; lots of food"> 和大量食物做成</span> · <a href="https://github.com/eattt-wen" target="_blank" rel="noopener">GitHub</a></footer>
 
 </div>
-
 <div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</div>
 
 <script>
@@ -406,6 +614,293 @@ applyLang(LANG);
   img.onload=function(){this.style.display='block';};
   img.onerror=function(){document.getElementById('avatarIn').innerHTML='<span>&#128105;&#8205;&#128300;</span>';};
   img.src='avatar.jpg';
+})();
+
+/* ── 饥饿指数 ── */
+(function(){
+  var levels=[
+    {min:10,max:30,emoji:'😌',zh:'吃饱了，还不饿',en:'Still full from last meal'},
+    {min:35,max:55,emoji:'🤔',zh:'有点饿了…',en:'Getting a little hungry…'},
+    {min:60,max:75,emoji:'😋',zh:'好饿！想吃东西！',en:'Hungry! Need food!'},
+    {min:80,max:90,emoji:'😤',zh:'非常饿！立刻出发！',en:'Very hungry! Moving out!'},
+    {min:92,max:99,emoji:'🤤',zh:'饿到怀疑人生…',en:'Starving, questioning life…'}
+  ];
+  var pick=levels[Math.floor(Math.random()*levels.length)];
+  var val=pick.min+Math.floor(Math.random()*(pick.max-pick.min+1));
+  setTimeout(function(){
+    document.getElementById('hungerFill').style.width=val+'%';
+    document.getElementById('hungerText').textContent=pick.emoji+' '+t(pick.zh,pick.en)+' ('+val+'%)';
+  },400);
+})();
+
+/* ── 转盘 ── */
+(function(){
+  var foods=[
+    {name:'🍚 鸡饭',en:'🍚 Chicken Rice',desc:'天天海南鸡饭，人间极品'},
+    {name:'🍜 laksa',en:'🍜 Laksa',desc:'辣椰浆汤底，一口上头'},
+    {name:'🦀 辣椒螃蟹',en:'🦀 Chilli Crab',desc:'新加坡国宝，必须来一只'},
+    {name:'🍢 沙爹',en:'🍢 Satay',desc:'炭烤串串，香味飘十里'},
+    {name:'🥘 肉骨茶',en:'🥘 Bak Kut Teh',desc:'药材猪骨汤，滋补又鲜美'},
+    {name:'🍳 炒粿条',en:'🍳 Char Kway Teow',desc:'镬气十足，腊肠蚶子一起炒'},
+    {name:'🍱 福建面',en:'🍱 Hokkien Mee',desc:'虾汤底，炒得香喷喷'},
+    {name:'🧆 罗惹',en:'🧆 Rojak',desc:'新加坡水果沙拉，奇异好吃'},
+    {name:'🧋 珍珠奶茶',en:'🧋 Bubble Tea',desc:'快乐水，每天都要喝'},
+    {name:'🍡 椰浆饭',en:'🍡 Nasi Lemak',desc:'椰香米饭配参巴酱，绝了'},
+  ];
+  var colors=['#f5b8dc','#b8dcff','#a8e8d4','#ffe082','#f5c6a0','#c8b8f5','#b8f0dc','#f5b8b8','#b8e8f5','#e8f5b8'];
+  var canvas=document.getElementById('spinnerCanvas');
+  var ctx=canvas.getContext('2d');
+  var W=canvas.width,H=canvas.height,R=W/2-10,cx=W/2,cy=H/2;
+  var N=foods.length,ARC=2*Math.PI/N;
+  var angle=0,spinning=false,vel=0,targetAngle=0,rafId=null;
+
+  function drawWheel(a){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<N;i++){
+      ctx.beginPath();
+      ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,R,a+i*ARC,a+(i+1)*ARC);
+      ctx.closePath();
+      ctx.fillStyle=colors[i%colors.length];
+      ctx.fill();
+      ctx.strokeStyle='white';
+      ctx.lineWidth=2;
+      ctx.stroke();
+      ctx.save();
+      ctx.translate(cx,cy);
+      ctx.rotate(a+(i+0.5)*ARC);
+      ctx.textAlign='right';
+      ctx.fillStyle='#2d4a6a';
+      ctx.font='bold 13px "Noto Sans SC",sans-serif';
+      ctx.fillText(LANG==='zh'?foods[i].name:foods[i].en, R-12, 5);
+      ctx.restore();
+    }
+    ctx.beginPath();ctx.arc(cx,cy,14,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();
+    ctx.strokeStyle='var(--p3)';ctx.lineWidth=3;ctx.stroke();
+  }
+
+  drawWheel(angle);
+
+  window.doSpin=function(){
+    if(spinning)return;
+    spinning=true;
+    document.getElementById('spinBtn').disabled=true;
+    document.getElementById('spinResult').textContent=t('转转转…','Spinning…');
+    document.getElementById('spinResultSub').textContent='';
+    var spins=5+Math.random()*5;
+    var extra=Math.floor(Math.random()*N)*ARC;
+    targetAngle=angle+spins*2*Math.PI+extra;
+    vel=0.35;
+    if(rafId)cancelAnimationFrame(rafId);
+    function tick(){
+      var diff=targetAngle-angle;
+      if(diff<0.01){
+        angle=targetAngle%(2*Math.PI);
+        spinning=false;
+        drawWheel(angle);
+        var idx=Math.floor(N-(((angle%(2*Math.PI))/(2*Math.PI))*N))%N;
+        var food=foods[idx];
+        document.getElementById('spinResult').textContent=LANG==='zh'?food.name:food.en;
+        document.getElementById('spinResultSub').textContent=LANG==='zh'?food.desc:'';
+        document.getElementById('spinBtn').disabled=false;
+        return;
+      }
+      vel=Math.max(0.003, vel*0.985);
+      angle+=vel;
+      drawWheel(angle);
+      rafId=requestAnimationFrame(tick);
+    }
+    tick();
+  };
+})();
+
+/* ── 聊天框 ── */
+(function(){
+  var QA=[
+    {k:['今天吃什么','吃什么','不知道吃什么'],a:['今天就吃鸡饭吧！天天海南鸡饭永远不会错 🍚','去转转盘！让命运决定！🎰','laksa！辣椰浆汤底，一口上头 🍜','建议：肉骨茶配白米饭，滋补又美味 🥘']},
+    {k:['大牌档','hawker','推荐'],a:['Maxwell Food Centre 的天天鸡饭是首选！排队也值得 🍚','Old Airport Road 的 laksa 和炒福建面，强烈推荐！🍜','Chomp Chomp 晚上去烧烤海鲜，氛围超好 🦀','Tiong Bahru Market 的炒粿条，镬气十足！🍳']},
+    {k:['最爱','喜欢','爱吃'],a:['本大王最爱的永远是面条！各种面都行 🍜','鸡饭！简单却完美，是新加坡的灵魂 🍚','其实吧，只要是吃的，我都爱 😂🍜🍣🧋']},
+    {k:['必吃','新加坡','singapore'],a:['新加坡必吃清单：鸡饭、laksa、辣椒螃蟹、肉骨茶、炒粿条！一个都不能少 🇸🇬','还有！沙爹、罗惹、椰浆饭… 吃不完的 😋','别忘了甜点：豆花、Ice Kacang、榴莲！ 🍧']},
+    {k:['宵夜','晚上','midnight','late'],a:['宵夜首选：Chomp Chomp 的烧烤！边吃边聊，太爽了 🍢','或者去24小时的大牌档，来碗热腾腾的面 🍜','要不然…叫外卖？🛵 本大王不评判 😂']},
+    {k:['奶茶','boba','珍珠','bubble'],a:['奶茶是快乐源泉！本大王推荐 Tiger Sugar 的黑糖珍珠 🧋','LiHo 和 Koi 也很不错！冰冰凉凉的，幸福感满满 🧋','每天都要一杯奶茶，这不是上瘾，这是文化 😂']},
+  ];
+  var fallback=['这个问题难倒本大王了… 但不管答案是什么，先吃一顿再说！🍜','嗯…本大王觉得吃就对了！🍽️','好问题！本大王的答案是：去吃东西！🎉'];
+
+  window.sendChat=function(){
+    var input=document.getElementById('chatInput');
+    var msg=input.value.trim();
+    if(!msg)return;
+    addBubble(msg,'user');
+    input.value='';
+    setTimeout(function(){
+      var reply=getReply(msg);
+      addBubble(reply,'bot');
+    },600);
+  };
+
+  window.chipSend=function(btn){
+    var msg=btn.textContent;
+    addBubble(msg,'user');
+    setTimeout(function(){
+      var reply=getReply(msg);
+      addBubble(reply,'bot');
+    },600);
+  };
+
+  function getReply(msg){
+    var m=msg.toLowerCase();
+    for(var i=0;i<QA.length;i++){
+      for(var j=0;j<QA[i].k.length;j++){
+        if(m.indexOf(QA[i].k[j])>=0){
+          var arr=QA[i].a;
+          return arr[Math.floor(Math.random()*arr.length)];
+        }
+      }
+    }
+    return fallback[Math.floor(Math.random()*fallback.length)];
+  }
+
+  function addBubble(text,type){
+    var box=document.getElementById('chatMessages');
+    var div=document.createElement('div');
+    div.className='chat-bubble '+type;
+    if(type==='bot'){
+      div.innerHTML='<div class="bot-name">吃吃大王 👑</div>'+text;
+    } else {
+      div.textContent=text;
+    }
+    box.appendChild(div);
+    box.scrollTop=box.scrollHeight;
+  }
+})();
+
+/* ── 接食物游戏 ── */
+(function(){
+  var CW=480,CH=320,BOWL_W=70,BOWL_H=20,BOWL_SPD=7;
+  var canvas=document.getElementById('catchCanvas');
+  canvas.width=CW;canvas.height=CH;
+  var ctx=canvas.getContext('2d');
+  var bowl,items,score,best=0,lives,state='idle',gameTimer=null,frameId=null;
+  var FOODS=['🍜','🍣','🧋','🍱','🍡','🍢','🍳','🥘'];
+  var BAD=['💀','🤢'];
+  var keys={};
+
+  function init(){
+    bowl={x:CW/2-BOWL_W/2,y:CH-36,w:BOWL_W,h:BOWL_H,moving:0};
+    items=[];score=0;lives=3;
+    document.getElementById('catchScore').textContent=0;
+    document.getElementById('catchLives').textContent=3;
+    spawnTimer=0;
+  }
+
+  var spawnTimer=0;
+  function spawnItem(){
+    var bad=Math.random()<0.15;
+    items.push({
+      x:20+Math.random()*(CW-40),y:-20,
+      vy:2+Math.random()*2+score*0.04,
+      emoji:bad?BAD[Math.floor(Math.random()*BAD.length)]:FOODS[Math.floor(Math.random()*FOODS.length)],
+      bad:bad,size:24
+    });
+  }
+
+  function drawFrame(){
+    ctx.fillStyle='#e4f8f2';ctx.fillRect(0,0,CW,CH);
+    // dots
+    ctx.fillStyle='rgba(78,201,168,.15)';
+    for(var gx=0;gx<CW;gx+=28)for(var gy=0;gy<CH;gy+=28){ctx.beginPath();ctx.arc(gx,gy,2,0,Math.PI*2);ctx.fill();}
+    // items
+    ctx.font='24px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    items.forEach(function(it){ctx.fillText(it.emoji,it.x,it.y);});
+    // bowl
+    var bx=bowl.x,by=bowl.y,bw=bowl.w,bh=bowl.h;
+    ctx.fillStyle='#2484d8';
+    ctx.beginPath();if(ctx.roundRect)ctx.roundRect(bx,by,bw,bh,10);else ctx.rect(bx,by,bw,bh);ctx.fill();
+    ctx.fillStyle='#4aa3f5';
+    ctx.beginPath();if(ctx.roundRect)ctx.roundRect(bx+4,by+4,bw-8,6,6);else ctx.rect(bx+4,by+4,bw-8,6);ctx.fill();
+    ctx.font='18px serif';ctx.fillText('🥣',bx+bw/2,by+bh/2+1);
+  }
+
+  function gameLoop(){
+    if(state!=='running'){frameId=null;return;}
+    // move bowl
+    if(keys['ArrowLeft']||keys['a']||bowl.moving===-1) bowl.x=Math.max(0,bowl.x-BOWL_SPD);
+    if(keys['ArrowRight']||keys['d']||bowl.moving===1) bowl.x=Math.min(CW-bowl.w,bowl.x+BOWL_SPD);
+    // move items
+    spawnTimer++;
+    if(spawnTimer>Math.max(38,80-score*2)){spawnItem();spawnTimer=0;}
+    var survived=[];
+    items.forEach(function(it){
+      it.y+=it.vy;
+      if(it.y>bowl.y-4&&it.y<bowl.y+bowl.h+4&&it.x>bowl.x-10&&it.x<bowl.x+bowl.w+10){
+        if(it.bad){lives--;document.getElementById('catchLives').textContent=lives;if(lives<=0){gameOver();return;}}
+        else{score++;if(score>best)best=score;document.getElementById('catchScore').textContent=score;document.getElementById('catchBest').textContent=best;}
+      } else if(it.y<CH+30){
+        if(!it.bad&&it.y>CH){lives--;document.getElementById('catchLives').textContent=lives;if(lives<=0){gameOver();return;}}
+        else survived.push(it);
+      }
+    });
+    items=survived;
+    drawFrame();
+    frameId=requestAnimationFrame(gameLoop);
+  }
+
+  function gameOver(){
+    state='over';
+    if(frameId){cancelAnimationFrame(frameId);frameId=null;}
+    document.getElementById('catchStartBtn').innerHTML='↺ '+t('重来','Restart');
+    document.getElementById('catchPauseBtn').style.display='none';
+    drawFrame();
+    var o=document.getElementById('catchOverlay');
+    o.querySelector('div:nth-child(1)').textContent='😵';
+    o.querySelector('div:nth-child(2)').textContent=t('游戏结束！','Game Over!');
+    o.querySelector('div:nth-child(3)').innerHTML=t('得分：','Score: ')+score+t('<br>再来一次？','<br>Try again?');
+    o.querySelector('button').textContent=t('再来一次','Play Again');
+    o.classList.remove('hidden');
+  }
+
+  window.startCatch=function(){
+    if(frameId){cancelAnimationFrame(frameId);frameId=null;}
+    init();drawFrame();
+    document.getElementById('catchOverlay').classList.add('hidden');
+    state='running';
+    document.getElementById('catchStartBtn').innerHTML='↺ '+t('重来','Restart');
+    document.getElementById('catchPauseBtn').style.display='';
+    document.getElementById('catchPauseBtn').innerHTML='⏸ '+t('暂停','Pause');
+    frameId=requestAnimationFrame(gameLoop);
+  };
+
+  window.pauseCatch=function(){
+    var btn=document.getElementById('catchPauseBtn');
+    if(state==='running'){cancelAnimationFrame(frameId);frameId=null;state='paused';btn.innerHTML='▶ '+t('继续','Resume');}
+    else if(state==='paused'){state='running';btn.innerHTML='⏸ '+t('暂停','Pause');frameId=requestAnimationFrame(gameLoop);}
+  };
+
+  window.catchDpad=function(e,d){
+    if(e)e.preventDefault();
+    bowl.moving=(d==='L'?-1:1);
+    var id=d==='L'?'cLeft':'cRight';
+    document.getElementById(id).classList.add('pressed');
+    setTimeout(function(){
+      bowl.moving=0;
+      document.getElementById(id).classList.remove('pressed');
+    },180);
+    if(d==='L')bowl.x=Math.max(0,bowl.x-BOWL_SPD*4);
+    else bowl.x=Math.min(CW-bowl.w,bowl.x+BOWL_SPD*4);
+  };
+
+  document.addEventListener('keydown',function(e){keys[e.key]=true;if(['ArrowLeft','ArrowRight'].indexOf(e.key)>=0)e.preventDefault();});
+  document.addEventListener('keyup',function(e){keys[e.key]=false;});
+
+  var tx0c;
+  canvas.addEventListener('touchstart',function(e){tx0c=e.touches[0].clientX;e.preventDefault();},{passive:false});
+  canvas.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-tx0c;
+    if(Math.abs(dx)>20){bowl.x=Math.max(0,Math.min(CW-bowl.w,bowl.x+dx*0.5));}
+  },{passive:false});
+
+  if('ontouchstart' in window){document.getElementById('catchHint').textContent=t('左右滑动或使用按钮','Swipe or use buttons');}
+  init();drawFrame();
 })();
 
 /* ── WAVE HEATMAP ── */
@@ -487,7 +982,7 @@ applyLang(LANG);
   function applyDir(d){if(state!=='running')return;var map={UP:{x:0,y:-1},DOWN:{x:0,y:1},LEFT:{x:-1,y:0},RIGHT:{x:1,y:0}};var nd=map[d];if(nd.x===-dir.x&&nd.y===-dir.y)return;nextDir=nd;}
   window.dpadPress=function(e,d){if(e)e.preventDefault();applyDir(d);var ids={UP:'dUp',DOWN:'dDown',LEFT:'dLeft',RIGHT:'dRight'};var btn=document.getElementById(ids[d]);btn.classList.add('pressed');setTimeout(function(){btn.classList.remove('pressed');},150);};
   var KEYS={ArrowUp:'UP',ArrowDown:'DOWN',ArrowLeft:'LEFT',ArrowRight:'RIGHT',w:'UP',s:'DOWN',a:'LEFT',d:'RIGHT'};
-  document.addEventListener('keydown',function(e){var d=KEYS[e.key];if(!d)return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.key)>=0)e.preventDefault();applyDir(d);});
+  document.addEventListener('keydown',function(e){var d=KEYS[e.key];if(!d)return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.key)>=0&&document.activeElement.tagName!=='INPUT')e.preventDefault();applyDir(d);});
   var tx0,ty0;
   canvas.addEventListener('touchstart',function(e){tx0=e.touches[0].clientX;ty0=e.touches[0].clientY;e.preventDefault();},{passive:false});
   canvas.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx0,dy=e.changedTouches[0].clientY-ty0;if(Math.abs(dx)<10&&Math.abs(dy)<10)return;if(Math.abs(dx)>Math.abs(dy))applyDir(dx>0?'RIGHT':'LEFT');else applyDir(dy>0?'DOWN':'UP');},{passive:false});
@@ -495,7 +990,6 @@ applyLang(LANG);
   init();draw();
   ov('🐍',t('贪吃蛇','Snake Game'),t('用方向键或下方方向盘<br>帮小蛇吃到 🍜！','Use arrow keys or the D-pad<br>to eat the 🍜!'),t('开始游戏','Start Playing'));
 })();
-
 
 </script>
 </body>
