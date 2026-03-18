@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>辛巴 🐾 钧文的暹罗猫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Caveat:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --cream:#fdf8f3;
+  --cream2:#f5ede0;
+  --cream3:#ede0cc;
+  --brown1:#c4a882;
+  --brown2:#8b6355;
+  --brown3:#5c3d2e;
+  --seal:#2d1a0e;
+  --blue:#a8c4d4;
+  --blue2:#7bafc7;
+  --blue3:#5594b0;
+  --pink:#e8c4b8;
+  --pink2:#d4a090;
+  --warm:#f0e6d3;
+  --tx:#3d2415;
+  --tm:#7a5540;
+  --tl:#b89070;
+}
+
+body{
+  font-family:'Noto Sans SC','Nunito',sans-serif;
+  background:var(--cream);
+  color:var(--tx);
+  min-height:100vh;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E🐾%3C/text%3E%3C/svg%3E") 4 4, auto;
+}
+
+/* 纸张纹理背景 */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,150,110,.08) 27px, rgba(180,150,110,.08) 28px),
+    repeating-linear-gradient(90deg, transparent, transparent 27px, rgba(180,150,110,.04) 27px, rgba(180,150,110,.04) 28px);
+  pointer-events:none;
+  z-index:0;
+}
+
+.wrap{max-width:860px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0 14px;
+  border-bottom:2px dashed var(--brown1);
+  margin-bottom:8px;
+}
+.nav-back{
+  display:flex;align-items:center;gap:6px;
+  font-family:'Caveat',cursive;font-size:18px;font-weight:600;
+  color:var(--brown2);text-decoration:none;
+  padding:6px 14px;border-radius:20px;
+  border:2px solid var(--brown1);
+  background:var(--cream2);
+  transition:.18s;
+}
+.nav-back:hover{background:var(--brown1);color:white;border-color:var(--brown2)}
+.nav-title{font-family:'Caveat',cursive;font-size:22px;font-weight:700;color:var(--brown3);letter-spacing:.03em}
+.nav-paw{font-size:22px;animation:pawBounce 2s ease-in-out infinite}
+@keyframes pawBounce{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
+
+/* ── HERO ── */
+.hero{
+  text-align:center;padding:48px 24px 40px;
+  position:relative;
+}
+
+/* 手绘猫咪SVG */
+.cat-hero{
+  width:180px;height:180px;margin:0 auto 24px;
+  position:relative;
+  animation:catFloat 3s ease-in-out infinite;
+}
+@keyframes catFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.hero-name{
+  font-family:'Caveat',cursive;
+  font-size:56px;font-weight:700;
+  color:var(--brown3);
+  line-height:1.1;
+  position:relative;display:inline-block;
+}
+.hero-name::after{
+  content:'';
+  position:absolute;bottom:-4px;left:0;right:0;height:4px;
+  background:linear-gradient(to right, var(--brown1), var(--blue2), var(--brown1));
+  border-radius:4px;
+}
+.hero-sub{
+  font-family:'Caveat',cursive;
+  font-size:22px;color:var(--tm);margin-top:16px;line-height:1.8;
+}
+.hero-tags{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;
+}
+.hero-tag{
+  font-family:'Caveat',cursive;font-size:16px;font-weight:600;
+  padding:6px 16px;border-radius:20px;
+  border:2px solid;
+}
+.hero-tag.cream{background:var(--cream2);border-color:var(--brown1);color:var(--brown3)}
+.hero-tag.blue{background:#e8f4fb;border-color:var(--blue2);color:var(--blue3)}
+.hero-tag.pink{background:#fdf0ec;border-color:var(--pink2);color:#a05540}
+
+/* 装饰小元素 */
+.deco-sticker{
+  position:absolute;
+  font-size:28px;
+  animation:stickerWiggle 4s ease-in-out infinite;
+  user-select:none;
+}
+@keyframes stickerWiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+
+/* ── SECTION ── */
+.sec{margin-top:40px}
+.sec-title{
+  font-family:'Caveat',cursive;
+  font-size:28px;font-weight:700;color:var(--brown3);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:18px;
+  padding-bottom:8px;
+  border-bottom:2px dashed var(--brown1);
+}
+
+/* ── 档案卡 ── */
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.profile-card{
+  background:white;
+  border-radius:16px;
+  padding:18px 22px;
+  border:2px solid var(--cream3);
+  box-shadow:3px 3px 0 var(--cream3);
+  position:relative;overflow:hidden;
+}
+.profile-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(to right,var(--brown1),var(--blue2));
+}
+.profile-label{
+  font-family:'Caveat',cursive;font-size:13px;font-weight:600;
+  color:var(--tl);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;
+}
+.profile-val{
+  font-size:15px;font-weight:700;color:var(--tx);line-height:1.5;
+}
+.profile-sub{font-size:13px;color:var(--tm);margin-top:3px}
+
+/* ── 相册 ── */
+.album-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.album-item{
+  background:white;
+  border-radius:14px;
+  border:2px solid var(--cream3);
+  box-shadow:3px 3px 0 var(--cream3);
+  overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+  cursor:pointer;
+}
+.album-item:hover{transform:translateY(-4px) rotate(1deg);box-shadow:6px 8px 0 var(--cream3)}
+.album-item:nth-child(even):hover{transform:translateY(-4px) rotate(-1deg)}
+.album-photo{
+  width:100%;aspect-ratio:1;
+  background:var(--warm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:60px;
+  position:relative;overflow:hidden;
+}
+/* 照片占位纹理 */
+.album-photo::after{
+  content:'放照片';
+  position:absolute;bottom:8px;right:8px;
+  font-family:'Caveat',cursive;font-size:13px;color:var(--tl);
+  background:rgba(255,255,255,.7);padding:2px 8px;border-radius:10px;
+}
+.album-caption{
+  padding:10px 12px;
+  font-family:'Caveat',cursive;font-size:15px;font-weight:600;color:var(--tm);
+}
+.album-date{font-size:12px;color:var(--tl);margin-top:2px;font-family:'Caveat',cursive}
+
+/* ── 成长日记 ── */
+.diary-list{display:flex;flex-direction:column;gap:14px}
+.diary-item{
+  display:flex;gap:16px;align-items:flex-start;
+  background:white;border-radius:16px;padding:18px 22px;
+  border:2px solid var(--cream3);
+  box-shadow:3px 3px 0 var(--cream3);
+  position:relative;
+}
+.diary-dot{
+  width:14px;height:14px;border-radius:50%;
+  background:var(--brown2);border:3px solid var(--cream);
+  flex-shrink:0;margin-top:4px;
+  box-shadow:0 0 0 2px var(--brown1);
+}
+.diary-content{}
+.diary-date{
+  font-family:'Caveat',cursive;font-size:14px;color:var(--tl);font-weight:600;
+}
+.diary-text{
+  font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:var(--tx);
+  margin-top:3px;line-height:1.5;
+}
+.diary-emoji{font-size:20px;margin-left:6px}
+
+/* ── 逗猫游戏 ── */
+.game-card{
+  background:white;border-radius:20px;
+  padding:28px;border:2px solid var(--cream3);
+  box-shadow:4px 4px 0 var(--cream3);
+}
+.game-area{
+  position:relative;
+  width:100%;height:320px;
+  background:var(--warm);
+  border-radius:14px;
+  border:2px dashed var(--brown1);
+  overflow:hidden;
+  cursor:crosshair;
+  margin-top:16px;
+}
+/* 地板 */
+.game-area::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:40px;
+  background:linear-gradient(to top,var(--cream3),transparent);
+  border-radius:0 0 12px 12px;
+  pointer-events:none;
+}
+
+#simbaSprite{
+  position:absolute;
+  font-size:52px;
+  transition:left .3s cubic-bezier(.34,1.56,.64,1), bottom .3s cubic-bezier(.34,1.56,.64,1);
+  user-select:none;
+  filter:drop-shadow(2px 3px 4px rgba(0,0,0,.15));
+  z-index:2;
+}
+.toy{
+  position:absolute;
+  font-size:32px;
+  cursor:pointer;
+  user-select:none;
+  animation:toyFloat 2s ease-in-out infinite;
+  z-index:3;
+  transition:left .1s, top .1s;
+}
+@keyframes toyFloat{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+
+.game-stats{
+  display:flex;gap:20px;margin-top:14px;flex-wrap:wrap;
+}
+.game-stat{
+  display:flex;align-items:center;gap:6px;
+  font-family:'Caveat',cursive;font-size:17px;font-weight:600;color:var(--brown2);
+}
+.game-stat span{font-size:20px;font-weight:700;color:var(--brown3)}
+.game-msg{
+  font-family:'Caveat',cursive;font-size:18px;color:var(--blue3);
+  margin-top:8px;min-height:28px;
+  animation:msgPop .3s ease;
+}
+@keyframes msgPop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+
+/* 游戏按钮 */
+.game-btn{
+  font-family:'Caveat',cursive;font-size:16px;font-weight:700;
+  padding:8px 22px;border-radius:20px;border:2px solid var(--brown2);
+  background:var(--cream2);color:var(--brown3);cursor:pointer;
+  transition:.15s;margin-top:12px;
+}
+.game-btn:hover{background:var(--brown2);color:white}
+
+/* ── 名言 ── */
+.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.quote-card{
+  background:white;border-radius:16px;padding:20px 22px;
+  border:2px solid var(--cream3);box-shadow:3px 3px 0 var(--cream3);
+  position:relative;
+}
+.quote-mark{
+  font-family:'Caveat',cursive;font-size:48px;color:var(--cream3);
+  line-height:1;margin-bottom:-12px;display:block;
+}
+.quote-text{
+  font-family:'Caveat',cursive;font-size:18px;font-weight:600;
+  color:var(--tx);line-height:1.6;
+}
+.quote-attr{
+  font-family:'Caveat',cursive;font-size:14px;color:var(--tl);
+  margin-top:10px;text-align:right;
+}
+
+/* ── 爱好清单 ── */
+.like-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.like-item{
+  background:white;border-radius:14px;padding:16px;text-align:center;
+  border:2px solid var(--cream3);box-shadow:3px 3px 0 var(--cream3);
+  transition:transform .18s,box-shadow .18s;
+}
+.like-item:hover{transform:translateY(-3px);box-shadow:3px 6px 0 var(--cream3)}
+.like-emoji{font-size:32px;display:block;margin-bottom:6px}
+.like-label{font-family:'Caveat',cursive;font-size:16px;font-weight:600;color:var(--brown3)}
+.like-sub{font-family:'Caveat',cursive;font-size:13px;color:var(--tl);margin-top:2px}
+
+/* ── 猫爪印装饰 ── */
+.paw-divider{
+  text-align:center;padding:14px 0;
+  font-size:20px;letter-spacing:14px;opacity:.35;color:var(--brown2);
+}
+
+/* ── 相框lightbox ── */
+#lightbox{
+  display:none;position:fixed;inset:0;
+  background:rgba(45,26,14,.7);backdrop-filter:blur(4px);
+  z-index:1000;align-items:center;justify-content:center;
+  cursor:pointer;
+}
+#lightbox.show{display:flex}
+#lightbox-inner{
+  background:white;border-radius:20px;padding:28px;
+  border:4px solid var(--cream3);
+  max-width:460px;width:90%;text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  cursor:default;animation:lbPop .25s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes lbPop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.lb-photo{
+  width:100%;aspect-ratio:1;background:var(--warm);
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:80px;margin-bottom:16px;border:2px dashed var(--brown1);
+}
+.lb-caption{font-family:'Caveat',cursive;font-size:22px;font-weight:700;color:var(--brown3)}
+.lb-date{font-family:'Caveat',cursive;font-size:15px;color:var(--tl);margin-top:4px}
+.lb-close{
+  margin-top:14px;font-family:'Caveat',cursive;font-size:15px;
+  color:var(--tl);cursor:pointer;text-decoration:underline;
+}
+
+/* ── 页脚 ── */
+footer{
+  text-align:center;margin-top:40px;padding-top:20px;
+  border-top:2px dashed var(--brown1);
+  font-family:'Caveat',cursive;font-size:17px;color:var(--tl);
+}
+footer a{color:var(--brown2);text-decoration:none;font-weight:700}
+footer a:hover{color:var(--brown3)}
+
+/* ── 心情贴纸 ── */
+.mood-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.mood-tag{
+  font-family:'Caveat',cursive;font-size:15px;font-weight:600;
+  padding:6px 14px;border-radius:20px;border:2px solid;
+  display:flex;align-items:center;gap:5px;
+}
+
+/* ── 猫咪SVG手绘 ── */
+.siamese-svg{width:180px;height:180px}
+
+@media(max-width:600px){
+  .profile-grid,.quote-grid,.album-grid,.like-grid{grid-template-columns:1fr 1fr}
+  .album-grid{grid-template-columns:repeat(2,1fr)}
+  .like-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-name{font-size:42px}
+  .game-area{height:260px}
+  nav{flex-wrap:wrap;gap:8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a class="nav-back" href="index.html">← 回主页</a>
+    <div class="nav-title">辛巴的小窝 🏠</div>
+    <div class="nav-paw">🐾</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="deco-sticker" style="top:10px;left:20px;animation-delay:.5s">🌸</div>
+    <div class="deco-sticker" style="top:20px;right:30px;animation-delay:1s;font-size:22px">⭐</div>
+    <div class="deco-sticker" style="bottom:10px;left:40px;animation-delay:1.5s;font-size:20px">🎀</div>
+    <div class="deco-sticker" style="bottom:20px;right:20px;animation-delay:.8s;font-size:24px">💙</div>
+
+    <!-- 手绘暹罗猫 SVG -->
+    <div class="cat-hero">
+      <svg class="siamese-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <!-- 身体 -->
+        <ellipse cx="90" cy="130" rx="42" ry="34" fill="#f5ede0"/>
+        <!-- 暹罗花纹身体 -->
+        <ellipse cx="90" cy="148" rx="28" ry="18" fill="#c4a882" opacity=".5"/>
+        <!-- 尾巴 -->
+        <path d="M130 148 Q158 140 155 118 Q153 108 142 112" fill="none" stroke="#8b6355" stroke-width="9" stroke-linecap="round"/>
+        <path d="M130 148 Q158 140 155 118 Q153 108 142 112" fill="none" stroke="#f5ede0" stroke-width="5" stroke-linecap="round"/>
+        <!-- 前腿 -->
+        <rect x="68" y="148" width="12" height="20" rx="6" fill="#f5ede0"/>
+        <rect x="100" y="148" width="12" height="20" rx="6" fill="#f5ede0"/>
+        <rect x="68" y="163" width="14" height="8" rx="4" fill="#c4a882"/>
+        <rect x="100" y="163" width="14" height="8" rx="4" fill="#c4a882"/>
+        <!-- 头部 -->
+        <ellipse cx="90" cy="88" rx="38" ry="36" fill="#f5ede0"/>
+        <!-- 暹罗脸部深色 -->
+        <ellipse cx="90" cy="94" rx="24" ry="22" fill="#8b6355" opacity=".25"/>
+        <!-- 左耳 -->
+        <polygon points="56,62 46,38 72,60" fill="#f5ede0"/>
+        <polygon points="58,60 50,42 70,60" fill="#8b6355" opacity=".4"/>
+        <!-- 右耳 -->
+        <polygon points="124,62 134,38 108,60" fill="#f5ede0"/>
+        <polygon points="122,60 130,42 110,60" fill="#8b6355" opacity=".4"/>
+        <!-- 暹罗耳内深色 -->
+        <polygon points="56,60 50,44 68,59" fill="#5c3d2e" opacity=".35"/>
+        <polygon points="124,60 130,44 112,59" fill="#5c3d2e" opacity=".35"/>
+        <!-- 眼睛 - 标志性蓝色 -->
+        <ellipse cx="76" cy="86" rx="10" ry="11" fill="white"/>
+        <ellipse cx="104" cy="86" rx="10" ry="11" fill="white"/>
+        <ellipse cx="76" cy="87" rx="7" ry="8" fill="#5594b0"/>
+        <ellipse cx="104" cy="87" rx="7" ry="8" fill="#5594b0"/>
+        <ellipse cx="76" cy="87" rx="4" ry="5" fill="#1a1a2e"/>
+        <ellipse cx="104" cy="87" rx="4" ry="5" fill="#1a1a2e"/>
+        <circle cx="78" cy="85" r="2" fill="white"/>
+        <circle cx="106" cy="85" r="2" fill="white"/>
+        <!-- 鼻子 -->
+        <ellipse cx="90" cy="99" rx="5" ry="4" fill="#d4a090"/>
+        <!-- 嘴巴 -->
+        <path d="M87 103 Q90 107 93 103" fill="none" stroke="#b07060" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- 胡须 -->
+        <line x1="48" y1="97" x2="74" y2="100" stroke="#8b6355" stroke-width="1.2" opacity=".6"/>
+        <line x1="48" y1="102" x2="74" y2="102" stroke="#8b6355" stroke-width="1.2" opacity=".6"/>
+        <line x1="106" y1="100" x2="132" y2="97" stroke="#8b6355" stroke-width="1.2" opacity=".6"/>
+        <line x1="106" y1="102" x2="132" y2="102" stroke="#8b6355" stroke-width="1.2" opacity=".6"/>
+        <!-- 额头深色花纹 -->
+        <ellipse cx="90" cy="72" rx="10" ry="7" fill="#c4a882" opacity=".4"/>
+      </svg>
+    </div>
+
+    <div class="hero-name">辛巴</div>
+    <div class="hero-sub">
+      本宫乃暹罗猫辛巴是也 🐾<br/>
+      优雅、高冷、但只对钧文撒娇
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag cream">🐱 暹罗猫</span>
+      <span class="hero-tag blue">💙 蓝眼睛</span>
+      <span class="hero-tag pink">🎀 奶茶色毛</span>
+      <span class="hero-tag cream">😼 高冷本冷</span>
+    </div>
+  </section>
+
+  <div class="paw-divider">🐾 🐾 🐾 🐾 🐾</div>
+
+  <!-- 档案 -->
+  <section class="sec">
+    <div class="sec-title">📋 辛巴的小档案</div>
+    <div class="profile-grid">
+      <div class="profile-card">
+        <div class="profile-label">🐱 品种</div>
+        <div class="profile-val">暹罗猫（Siamese）</div>
+        <div class="profile-sub">古老的泰国皇室猫种，天生贵族气质</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-label">🎨 毛色</div>
+        <div class="profile-val">海豹重点色</div>
+        <div class="profile-sub">奶白身体 + 深棕色重点，渐变天然</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-label">👁️ 眼睛</div>
+        <div class="profile-val">深邃蓝宝石色</div>
+        <div class="profile-sub">暹罗猫标配，看一眼就沉沦 💙</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-label">😼 性格</div>
+        <div class="profile-val">高冷 · 话多 · 粘人</div>
+        <div class="profile-sub">对外高冷，对钧文嗷嗷叫个不停</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-label">🍗 最爱</div>
+        <div class="profile-val">零食 + 晒太阳</div>
+        <div class="profile-sub">嗅觉灵敏，开罐头声响彻全屋</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-label">😤 最烦</div>
+        <div class="profile-val">被无视 + 洗澡</div>
+        <div class="profile-sub">talk to me or feel my wrath</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="paw-divider">· · · · ·</div>
+
+  <!-- 爱好清单 -->
+  <section class="sec">
+    <div class="sec-title">❤️ 辛巴最爱的事</div>
+    <div class="like-grid">
+      <div class="like-item">
+        <span class="like-emoji">☀️</span>
+        <div class="like-label">晒太阳</div>
+        <div class="like-sub">窗台是我的王座</div>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">🐟</span>
+        <div class="like-label">吃小鱼干</div>
+        <div class="like-sub">听见声音就跑来</div>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">📦</span>
+        <div class="like-label">钻纸箱</div>
+        <div class="like-sub">if it fits I sits</div>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">🛌</span>
+        <div class="like-label">蹬被子</div>
+        <div class="like-sub">尤其是钧文的被子</div>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">🪴</span>
+        <div class="like-label">啃植物</div>
+        <div class="like-sub">没有它不敢啃的</div>
+      </div>
+      <div class="like-item">
+        <span class="like-emoji">😾</span>
+        <div class="like-label">凌晨发疯</div>
+        <div class="like-sub">3AM最精神</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="paw-divider">🌸 🌸 🌸 🌸 🌸</div>
+
+  <!-- 相册 -->
+  <section class="sec">
+    <div class="sec-title">📸 辛巴的相册</div>
+    <div class="album-grid">
+      <div class="album-item" onclick="openLb('😴','慵懒下午茶','钧文的床上就是我的午睡圣地')">
+        <div class="album-photo" style="background:linear-gradient(135deg,#f5ede0,#e8d5c0)">😴</div>
+        <div class="album-caption">午后小憩</div>
+        <div class="album-date">把钧文的位置占了</div>
+      </div>
+      <div class="album-item" onclick="openLb('🪟','窗台观察员','今天又发现了一只鸟，但我懒得动')">
+        <div class="album-photo" style="background:linear-gradient(135deg,#e8f4fb,#d4e8f5)">🪟</div>
+        <div class="album-caption">窗台值班</div>
+        <div class="album-date">监视小区动态</div>
+      </div>
+      <div class="album-item" onclick="openLb('📦','纸箱研究员','这个箱子的尺寸刚刚好，打9.9分')">
+        <div class="album-photo" style="background:linear-gradient(135deg,#fdf0ec,#f5ddd6)">📦</div>
+        <div class="album-caption">新箱到货</div>
+        <div class="album-date">质检工作一丝不苟</div>
+      </div>
+      <div class="album-item" onclick="openLb('🎀','扎辫子时间','不喜欢，但忍了')">
+        <div class="album-photo" style="background:linear-gradient(135deg,#fce8f3,#f5c8e0)">🎀</div>
+        <div class="album-caption">穿搭日</div>
+        <div class="album-date">被迫配合拍照</div>
+      </div>
+      <div class="album-item" onclick="openLb('🍽️','用餐时刻','专注，优雅，迅速')">
+        <div class="album-photo" style="background:linear-gradient(135deg,#e8f5ee,#c8e8d8)">🍽️</div>
+        <div class="album-caption">晚餐仪式感</div>
+        <div class="album-date">吃饭最认真的时候</div>
+      </div>
+      <div class="album-item" onclick="openLb('💻','工作监督','钧文不专心，需要我盯着')">
+        <div class="album-photo" style="background:linear-gradient(135deg,#f0e8f5,#d8c8e8)">💻</div>
+        <div class="album-caption">上班监工</div>
+        <div class="album-date">坐在键盘上表示关心</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;font-family:'Caveat',cursive;font-size:15px;color:var(--tl);text-align:center">
+      📷 点击照片查看详情 · 这里等待放入辛巴的真实照片～
+    </div>
+  </section>
+
+  <div class="paw-divider">· · · · ·</div>
+
+  <!-- 成长日记 -->
+  <section class="sec">
+    <div class="sec-title">📅 辛巴成长记</div>
+    <div class="diary-list">
+      <div class="diary-item">
+        <div class="diary-dot"></div>
+        <div class="diary-content">
+          <div class="diary-date">第一天到家</div>
+          <div class="diary-text">缩在角落不肯出来，但眼睛一直偷看我 <span class="diary-emoji">👀</span></div>
+        </div>
+      </div>
+      <div class="diary-item">
+        <div class="diary-dot"></div>
+        <div class="diary-content">
+          <div class="diary-date">第三天</div>
+          <div class="diary-text">终于愿意从我手里吃零食了，进步！<span class="diary-emoji">🎉</span></div>
+        </div>
+      </div>
+      <div class="diary-item">
+        <div class="diary-dot"></div>
+        <div class="diary-content">
+          <div class="diary-date">第一周</div>
+          <div class="diary-text">凌晨3点开始在全屋发疯，跑酷高手出现 <span class="diary-emoji">💨</span></div>
+        </div>
+      </div>
+      <div class="diary-item">
+        <div class="diary-dot"></div>
+        <div class="diary-content">
+          <div class="diary-date">第一次洗澡</div>
+          <div class="diary-text">惨烈。非常惨烈。我们各有损伤。<span class="diary-emoji">😅</span></div>
+        </div>
+      </div>
+      <div class="diary-item">
+        <div class="diary-dot" style="background:var(--blue3);box-shadow:0 0 0 2px var(--blue2)"></div>
+        <div class="diary-content">
+          <div class="diary-date">现在</div>
+          <div class="diary-text">已经完全占领我的床、椅子和键盘，自己也心甘情愿被占领 <span class="diary-emoji">🥰</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="paw-divider">🐾 🐾 🐾 🐾 🐾</div>
+
+  <!-- 逗猫游戏 -->
+  <section class="sec">
+    <div class="sec-title">🎮 来逗辛巴玩！</div>
+    <div class="game-card">
+      <div style="font-family:'Caveat',cursive;font-size:17px;color:var(--tm)">
+        点击逗猫棒 🪄，让辛巴去追它！看他能抓几次～
+      </div>
+      <div class="game-stats">
+        <div class="game-stat">😸 抓到 <span id="catchCount">0</span> 次</div>
+        <div class="game-stat">🏃 跑了 <span id="runCount">0</span> 步</div>
+        <div class="game-stat" id="moodDisplay">😼 心情：高冷中</div>
+      </div>
+      <div class="game-msg" id="gameMsg">把逗猫棒移到辛巴眼前试试？</div>
+      <div class="game-area" id="gameArea">
+        <div id="simbaSprite">🐱</div>
+        <div class="toy" id="toy" title="逗猫棒">🪄</div>
+        <!-- 背景装饰 -->
+        <div style="position:absolute;bottom:8px;left:12px;font-size:14px;opacity:.3;font-family:'Caveat',cursive;color:var(--brown3)">辛巴的地盘</div>
+        <div style="position:absolute;top:8px;right:12px;font-size:22px;opacity:.2">🪟</div>
+        <div style="position:absolute;top:8px;left:14px;font-size:22px;opacity:.2">🌱</div>
+      </div>
+      <button class="game-btn" onclick="resetGame()">🔄 重置游戏</button>
+    </div>
+  </section>
+
+  <div class="paw-divider">· · · · ·</div>
+
+  <!-- 辛巴名言 -->
+  <section class="sec">
+    <div class="sec-title">💬 辛巴语录</div>
+    <div class="quote-grid">
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <div class="quote-text">我不是不理你，我只是在思考宇宙的意义。</div>
+        <div class="quote-attr">— 辛巴，每天</div>
+      </div>
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <div class="quote-text">你的键盘，是我最喜欢的床。</div>
+        <div class="quote-attr">— 辛巴，在钧文赶论文的时候</div>
+      </div>
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <div class="quote-text">凌晨三点，是我最有创意的时候。</div>
+        <div class="quote-attr">— 辛巴，用全屋跑酷证明</div>
+      </div>
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <div class="quote-text">小鱼干的香味，是这世间最美的艺术。</div>
+        <div class="quote-attr">— 辛巴，哲学家时刻</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="paw-divider">🌸 · 🐾 · 🌸 · 🐾 · 🌸</div>
+
+  <footer>
+    <div style="font-size:24px;margin-bottom:8px">🐱💙</div>
+    辛巴 · 世界上最可爱的暹罗猫<br/>
+    <a href="index.html">← 回到钧文的主页</a>
+    <div style="margin-top:8px;font-size:13px">© 2026 · 用爱 & 小鱼干做成</div>
+  </footer>
+</div>
+
+<!-- lightbox -->
+<div id="lightbox" onclick="closeLb()">
+  <div id="lightbox-inner" onclick="event.stopPropagation()">
+    <div class="lb-photo" id="lb-emoji">😴</div>
+    <div class="lb-caption" id="lb-caption">照片标题</div>
+    <div class="lb-date" id="lb-date">说明文字</div>
+    <div class="lb-close" onclick="closeLb()">关闭 ✕</div>
+  </div>
+</div>
+
+<script>
+/* ── LIGHTBOX ── */
+function openLb(emoji, caption, date){
+  document.getElementById('lb-emoji').textContent=emoji;
+  document.getElementById('lb-caption').textContent=caption;
+  document.getElementById('lb-date').textContent=date;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLb(){
+  document.getElementById('lightbox').classList.remove('show');
+}
+
+/* ── 逗猫游戏 ── */
+(function(){
+  var area=document.getElementById('gameArea');
+  var simba=document.getElementById('simbaSprite');
+  var toy=document.getElementById('toy');
+  var catchCount=0, runCount=0;
+  var simbaX=60, simbaY=40; // from bottom
+  var toyX=200, toyY=80;
+  var chasing=false, rafId=null;
+  var facing=1; // 1=right, -1=left
+
+  var msgs=[
+    '嗷！抓到了！！😸','ᓚᘏᗢ 看我的！','喵喵喵！！！','别跑！！','我抓住你了！','捕获成功 ✓'
+  ];
+  var missMsg=['哼，我不想追…才不是没追到 😾','故意放你走的','不感兴趣（才怪）','…下次一定'];
+  var moods=['😴 心情：困困的','😼 心情：高冷中','😸 心情：超开心！','😤 心情：微微生气','🥰 心情：撒娇模式'];
+
+  function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
+
+  function getAreaSize(){
+    var r=area.getBoundingClientRect();
+    return {w:r.width, h:r.height};
+  }
+
+  function setSimba(x,y){
+    simbaX=x; simbaY=y;
+    simba.style.left=x+'px';
+    simba.style.bottom=y+'px';
+    simba.style.transform='scaleX('+facing+')';
+  }
+
+  function setToy(x,y){
+    toyX=x; toyY=y;
+    toy.style.left=x+'px';
+    toy.style.top=y+'px';
+  }
+
+  // 初始位置
+  setSimba(60, 40);
+  setToy(180, 60);
+
+  // 拖动逗猫棒
+  var dragging=false, dragOffX=0, dragOffY=0;
+
+  function startDrag(e){
+    dragging=true;
+    var r=area.getBoundingClientRect();
+    var ex=e.touches?e.touches[0].clientX:e.clientX;
+    var ey=e.touches?e.touches[0].clientY:e.clientY;
+    dragOffX=ex-r.left-toyX;
+    dragOffY=ey-r.top-toyY;
+    e.preventDefault();
+  }
+  function onDrag(e){
+    if(!dragging)return;
+    var r=area.getBoundingClientRect();
+    var ex=e.touches?e.touches[0].clientX:e.clientX;
+    var ey=e.touches?e.touches[0].clientY:e.clientY;
+    var sz=getAreaSize();
+    var nx=clamp(ex-r.left-dragOffX,0,sz.w-36);
+    var ny=clamp(ey-r.top-dragOffY,0,sz.h-36);
+    setToy(nx,ny);
+    e.preventDefault();
+  }
+  function endDrag(){dragging=false;}
+
+  toy.addEventListener('mousedown',startDrag);
+  toy.addEventListener('touchstart',startDrag,{passive:false});
+  document.addEventListener('mousemove',onDrag);
+  document.addEventListener('touchmove',onDrag,{passive:false});
+  document.addEventListener('mouseup',endDrag);
+  document.addEventListener('touchend',endDrag);
+
+  // 也可以点击游戏区域移动玩具
+  area.addEventListener('click',function(e){
+    if(dragging)return;
+    var r=area.getBoundingClientRect();
+    var nx=clamp(e.clientX-r.left-18,0,r.width-36);
+    var ny=clamp(e.clientY-r.top-18,0,r.height-36);
+    setToy(nx,ny);
+    startChase();
+  });
+
+  function startChase(){
+    if(chasing)return;
+    chasing=true;
+    runCount++;
+    document.getElementById('runCount').textContent=runCount;
+    updateMood();
+    if(rafId)cancelAnimationFrame(rafId);
+    rafId=requestAnimationFrame(chaseLoop);
+  }
+
+  function chaseLoop(){
+    if(!chasing){rafId=null;return;}
+    var sz=getAreaSize();
+    // 玩具在游戏区中的bottom坐标
+    var toyBottom=sz.h-toyY-36;
+    var dx=toyX-simbaX;
+    var dy=toyBottom-simbaY;
+    var dist=Math.sqrt(dx*dx+dy*dy);
+
+    if(dist<36){
+      // 抓到了！
+      catchCount++;
+      document.getElementById('catchCount').textContent=catchCount;
+      chasing=false;
+      var msg=msgs[Math.floor(Math.random()*msgs.length)];
+      showMsg(msg);
+      updateMood();
+      // 玩具随机跑到新位置
+      setTimeout(function(){
+        var nx=30+Math.random()*(sz.w-80);
+        var ny=20+Math.random()*(sz.h-80);
+        setToy(nx,ny);
+      },600);
+    } else {
+      var speed=Math.min(4, dist*0.08);
+      facing = dx>0?1:-1;
+      var nx=clamp(simbaX+dx/dist*speed, 0, sz.w-52);
+      var ny=clamp(simbaY+dy/dist*speed, 0, sz.h-52);
+      setSimba(nx,ny);
+      rafId=requestAnimationFrame(chaseLoop);
+    }
+  }
+
+  // 一段时间后辛巴懒得追了
+  setInterval(function(){
+    if(chasing && Math.random()<0.08){
+      chasing=false;
+      var msg=missMsg[Math.floor(Math.random()*missMsg.length)];
+      showMsg(msg);
+      // 慢慢溜达
+      setTimeout(function(){
+        var sz=getAreaSize();
+        setSimba(clamp(simbaX+(Math.random()-0.5)*40,0,sz.w-52), clamp(simbaY+(Math.random()-0.5)*30,0,sz.h-52));
+      },800);
+    }
+  },2000);
+
+  // 玩具移动时自动触发追逐
+  var lastToyX=-1;
+  setInterval(function(){
+    if(toyX!==lastToyX){
+      lastToyX=toyX;
+      if(!chasing && Math.random()<0.6) startChase();
+    }
+  },400);
+
+  function showMsg(txt){
+    var el=document.getElementById('gameMsg');
+    el.textContent=txt;
+    el.style.animation='none';
+    requestAnimationFrame(function(){el.style.animation='msgPop .3s ease';});
+  }
+
+  function updateMood(){
+    var idx;
+    if(catchCount===0) idx=2; // 高冷
+    else if(catchCount<3) idx=1;
+    else if(catchCount<6) idx=2; // 开心
+    else idx=4; // 撒娇
+    document.getElementById('moodDisplay').textContent=moods[idx];
+  }
+
+  window.resetGame=function(){
+    catchCount=0; runCount=0; chasing=false;
+    if(rafId){cancelAnimationFrame(rafId);rafId=null;}
+    document.getElementById('catchCount').textContent=0;
+    document.getElementById('runCount').textContent=0;
+    document.getElementById('moodDisplay').textContent='😼 心情：高冷中';
+    showMsg('把逗猫棒移到辛巴眼前试试？');
+    setSimba(60,40); setToy(180,60);
+  };
+
+  // 辛巴偶尔自己溜达
+  setInterval(function(){
+    if(!chasing && Math.random()<0.3){
+      var sz=getAreaSize();
+      var nx=clamp(simbaX+(Math.random()-0.5)*60,0,sz.w-52);
+      var ny=clamp(simbaY+(Math.random()-0.5)*40,0,sz.h-52);
+      facing=nx>simbaX?1:-1;
+      setSimba(nx,ny);
+    }
+  },3000);
+})();
+</script>
+</body>
+</html>
