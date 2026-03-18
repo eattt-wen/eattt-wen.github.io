@@ -51,15 +51,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .food-label{font-size:12px;font-weight:800;color:var(--p3);letter-spacing:.06em}
 .food-items{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
 .food-tag{font-size:12px;font-weight:700;background:var(--p1);color:#a03070;padding:4px 10px;border-radius:12px}
-
-/* ── 饥饿指数 ── */
 .hunger-wrap{margin-top:18px;background:white;border-radius:20px;padding:22px 28px;border:2px solid var(--y2);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .hunger-label{font-size:13px;font-weight:800;color:#b8860b;white-space:nowrap}
 .hunger-bar-bg{flex:1;height:14px;background:var(--y1);border-radius:20px;overflow:hidden;min-width:120px}
 .hunger-bar-fill{height:100%;border-radius:20px;background:linear-gradient(to right,var(--y2),#ffb300);transition:width 1.2s cubic-bezier(.4,0,.2,1)}
 .hunger-emoji{font-size:22px}
 .hunger-text{font-size:13px;font-weight:700;color:#b8860b;white-space:nowrap}
-
 .current-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .cur-card{background:white;border-radius:20px;padding:24px 20px;border:2px solid var(--b1);display:flex;align-items:flex-start;gap:14px}
 .cur-icon{font-size:28px;flex-shrink:0;margin-top:2px}
@@ -131,6 +128,24 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .chat-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
 .chat-chip{font-size:12px;font-weight:700;padding:5px 13px;border-radius:14px;background:var(--p1);color:#a03070;border:1.5px solid var(--p2);cursor:pointer;transition:.15s;font-family:inherit}
 .chat-chip:hover{background:var(--p2)}
+
+/* ── 关于我 Q&A ── */
+.qa-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b2)}
+.qa-messages{height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:16px;padding:4px 2px}
+.qa-messages::-webkit-scrollbar{width:4px}
+.qa-messages::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px}
+.qa-bubble{max-width:80%;padding:10px 16px;border-radius:18px;font-size:14px;line-height:1.6;font-weight:600;animation:popIn .2s ease}
+.qa-bubble.user{background:var(--b5);color:white;align-self:flex-end;border-bottom-right-radius:6px}
+.qa-bubble.bot{background:var(--b1);color:var(--tx);align-self:flex-start;border-bottom-left-radius:6px}
+.qa-bubble.bot .bot-name{font-size:11px;font-weight:800;color:var(--b5);margin-bottom:3px;letter-spacing:.04em}
+.qa-input-row{display:flex;gap:10px}
+.qa-input{flex:1;padding:10px 18px;border-radius:20px;border:2px solid var(--b2);font-size:14px;font-family:inherit;color:var(--tx);background:var(--b1);outline:none;transition:border-color .18s}
+.qa-input:focus{border-color:var(--b4)}
+.qa-send{padding:10px 20px;border-radius:20px;border:none;background:var(--b5);color:white;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s;flex-shrink:0}
+.qa-send:hover{background:var(--b6)}
+.qa-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.qa-chip{font-size:12px;font-weight:700;padding:5px 13px;border-radius:14px;background:var(--b1);color:var(--b6);border:1.5px solid var(--b2);cursor:pointer;transition:.15s;font-family:inherit}
+.qa-chip:hover{background:var(--b2)}
 
 .contrib-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);position:relative;overflow:hidden}
 .contrib-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
@@ -231,6 +246,7 @@ footer span{color:var(--p3)}
       <li><a href="#github"    data-zh="GitHub" data-en="GitHub">GitHub</a></li>
       <li><a href="#projects"  data-zh="论文"   data-en="Paper">论文</a></li>
       <li><a href="#food"      data-zh="吃什么" data-en="Food">吃什么</a></li>
+      <li><a href="#askme"     data-zh="问问我" data-en="Ask Me">问问我</a></li>
       <li><a href="#contact"   data-zh="联系"   data-en="Contact">联系</a></li>
       <li><a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -270,10 +286,10 @@ footer span{color:var(--p3)}
         <div class="food-emoji">🍜</div>
         <div class="food-label" data-zh="靠食物驱动" data-en="FUELED BY FOOD">靠食物驱动</div>
         <div class="food-items">
+          <span class="food-tag" data-zh="🍲 火锅" data-en="🍲 Hotpot">🍲 火锅</span>
+          <span class="food-tag" data-zh="🥩 烤肉" data-en="🥩 BBQ">🥩 烤肉</span>
           <span class="food-tag" data-zh="🍜 面条" data-en="🍜 Noodles">🍜 面条</span>
-          <span class="food-tag" data-zh="🍣 寿司" data-en="🍣 Sushi">🍣 寿司</span>
           <span class="food-tag" data-zh="🧋 奶茶" data-en="🧋 Boba">🧋 奶茶</span>
-          <span class="food-tag" data-zh="🍡 麻薯" data-en="🍡 Mochi">🍡 麻薯</span>
         </div>
       </div>
     </div>
@@ -368,7 +384,7 @@ footer span{color:var(--p3)}
   <!-- 🍜 吃货专区 -->
   <section class="sec" id="food">
     <div class="sec-title"><span class="sec-pill">🍜</span> <span data-zh="吃货专区" data-en="Foodie Zone">吃货专区</span></div>
-   
+
     <!-- 贪吃蛇 -->
     <div class="snake-card">
       <div class="snake-header">
@@ -403,10 +419,10 @@ footer span{color:var(--p3)}
       </div>
     </div>
 
-    <!-- 转盘 + 聊天并排 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+    <!-- 转盘 + 美食聊天并排 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
 
-      <!-- 今天吃什么转盘 -->
+      <!-- 今天吃什么转盘 — 11道菜 -->
       <div class="spinner-card" id="spinnerCard">
         <div style="text-align:center">
           <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="今天吃什么？🎰" data-en="What to eat? 🎰">今天吃什么？🎰</div>
@@ -418,34 +434,33 @@ footer span{color:var(--p3)}
           <div class="spinner-center"></div>
         </div>
         <div class="spinner-result">
-          <div class="spinner-result-food" id="spinResult" data-zh="点击转盘开始！" data-en="Click Spin to start!">点击转盘开始！</div>
+          <div class="spinner-result-food" id="spinResult" data-zh="点击开转！" data-en="Click Spin!">点击开转！</div>
           <div class="spinner-result-sub" id="spinResultSub"></div>
         </div>
         <button class="spin-btn" id="spinBtn" onclick="doSpin()" data-zh="🎰 开转！" data-en="🎰 Spin!">🎰 开转！</button>
       </div>
 
-      <!-- 问问吃吃大王 -->
+      <!-- 问问吃吃大王 — 更新版 -->
       <div class="chat-card">
         <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="🤖 问问吃吃大王" data-en="🤖 Ask the Food King">🤖 问问吃吃大王</div>
-        <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="有关吃的问题，我都懂！" data-en="Ask me anything about food!">有关吃的问题，我都懂！</div>
+        <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="火锅烤肉选哪个？我来帮你!" data-en="Hotpot or BBQ? Let me help!">火锅烤肉选哪个？我来帮你!</div>
         <div class="chat-chips" id="chatChips">
-          <button class="chat-chip" onclick="chipSend(this)">今天吃什么？</button>
-          <button class="chat-chip" onclick="chipSend(this)">推荐大牌档</button>
-          <button class="chat-chip" onclick="chipSend(this)">最爱的食物</button>
-          <button class="chat-chip" onclick="chipSend(this)">新加坡必吃</button>
-          <button class="chat-chip" onclick="chipSend(this)">宵夜吃什么？</button>
+          <button class="chat-chip" onclick="chipSend(this)">火锅还是烤肉？</button>
+          <button class="chat-chip" onclick="chipSend(this)">川菜怎么点？</button>
+          <button class="chat-chip" onclick="chipSend(this)">最爱哪道菜？</button>
+          <button class="chat-chip" onclick="chipSend(this)">深夜想吃什么？</button>
+          <button class="chat-chip" onclick="chipSend(this)">鸡公煲好吃吗？</button>
           <button class="chat-chip" onclick="chipSend(this)">奶茶推荐</button>
         </div>
         <div class="chat-messages" id="chatMessages">
-          <div class="chat-bubble bot"><div class="bot-name">吃吃大王 👑</div>你好！我是吃吃大王，新加坡美食小达人～ 有什么关于吃的问题尽管问我！🍜</div>
+          <div class="chat-bubble bot"><div class="bot-name">吃吃大王 👑</div>本大王驾到！🔥 火锅、烤肉、川菜、麻辣烫……有什么选择困难尽管来！</div>
         </div>
         <div class="chat-input-row">
-          <input class="chat-input" id="chatInput" type="text" placeholder="问我任何关于吃的问题…" onkeydown="if(event.key==='Enter')sendChat()"/>
+          <input class="chat-input" id="chatInput" type="text" placeholder="问我吃什么…" onkeydown="if(event.key==='Enter')sendChat()"/>
           <button class="chat-send" onclick="sendChat()">发送</button>
         </div>
       </div>
     </div>
-
 
     <!-- 接食物游戏 -->
     <div class="catch-card" style="margin-top:18px">
@@ -468,7 +483,7 @@ footer span{color:var(--p3)}
           <div class="catch-overlay" id="catchOverlay">
             <div style="font-size:44px">🥣</div>
             <div style="font-size:20px;font-weight:900;color:var(--tx)" data-zh="接住美食！" data-en="Catch the Food!">接住美食！</div>
-            <div style="font-size:14px;color:var(--tm);font-weight:600;text-align:center;line-height:1.6" data-zh="用方向键或按钮移动碗<br>接住掉落的美食 🍜🍣🧋" data-en="Use arrow keys or buttons<br>to catch falling food 🍜🍣🧋">用方向键或按钮移动碗<br>接住掉落的美食 🍜🍣🧋</div>
+            <div style="font-size:14px;color:var(--tm);font-weight:600;text-align:center;line-height:1.6" data-zh="用方向键或按钮移动碗<br>接住掉落的美食 🍲🥩🌶️" data-en="Use arrow keys or buttons<br>to catch falling food 🍲🥩🌶️">用方向键或按钮移动碗<br>接住掉落的美食 🍲🥩🌶️</div>
             <button style="font-size:14px;font-weight:800;padding:10px 28px;border-radius:20px;cursor:pointer;border:none;background:var(--m3);color:white;font-family:inherit;transition:.15s;margin-top:4px" onclick="startCatch()" data-zh="开始游戏" data-en="Start Playing">开始游戏</button>
           </div>
         </div>
@@ -479,6 +494,33 @@ footer span{color:var(--p3)}
       </div>
     </div>
   </section>
+
+  <!-- 🙋 问问我 Q&A -->
+  <section class="sec" id="askme">
+    <div class="sec-title"><span class="sec-pill">🙋</span> <span data-zh="问问我" data-en="Ask Me Anything">问问我</span></div>
+    <div class="qa-card">
+      <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="💬 有问必答（认真版）" data-en="💬 Q&A — The Real Me">💬 有问必答（认真版）</div>
+      <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="研究、生活、合作都可以问！本人亲自回答 🎤" data-en="Research, life, collab — ask away! Personally answered 🎤">研究、生活、合作都可以问！本人亲自回答 🎤</div>
+      <div class="qa-chips" id="qaChips">
+        <button class="qa-chip" onclick="qaSend(this)">你的研究方向是什么？</button>
+        <button class="qa-chip" onclick="qaSend(this)">论文在哪里可以看？</button>
+        <button class="qa-chip" onclick="qaSend(this)">怎么联系你合作？</button>
+        <button class="qa-chip" onclick="qaSend(this)">日常生活是什么样的？</button>
+        <button class="qa-chip" onclick="qaSend(this)">最喜欢的食物？</button>
+        <button class="qa-chip" onclick="qaSend(this)">研究生活苦不苦？</button>
+        <button class="qa-chip" onclick="qaSend(this)">为什么做医学AI？</button>
+        <button class="qa-chip" onclick="qaSend(this)">下一步打算？</button>
+      </div>
+      <div class="qa-messages" id="qaMessages">
+        <div class="qa-bubble bot"><div class="bot-name">钧文本人 👨‍💻</div>嗨！有啥想问的直接说，研究、生活、怎么找我合作都行，保证亲自回答（不是AI）……好吧是AI，但内容是真实的 😂</div>
+      </div>
+      <div class="qa-input-row">
+        <input class="qa-input" id="qaInput" type="text" placeholder="问我任何事…" onkeydown="if(event.key==='Enter')sendQA()"/>
+        <button class="qa-send" onclick="sendQA()">发送</button>
+      </div>
+    </div>
+  </section>
+
   <section class="sec" id="contact">
     <div class="sec-title"><span class="sec-pill">💌</span> <span data-zh="联系我" data-en="Get in Touch">联系我</span></div>
     <div class="contact-row">
@@ -562,21 +604,22 @@ applyLang(LANG);
   img.src='avatar.jpg';
 })();
 
-/* ── 转盘 ── */
+/* ── 转盘 — 11道菜，修复指针对齐 bug ── */
 (function(){
   var foods=[
-    {name:'🍚 鸡饭',en:'🍚 Chicken Rice',desc:'天天海南鸡饭，人间极品'},
-    {name:'🍜 laksa',en:'🍜 Laksa',desc:'辣椰浆汤底，一口上头'},
-    {name:'🦀 辣椒螃蟹',en:'🦀 Chilli Crab',desc:'新加坡国宝，必须来一只'},
-    {name:'🍢 沙爹',en:'🍢 Satay',desc:'炭烤串串，香味飘十里'},
-    {name:'🥘 肉骨茶',en:'🥘 Bak Kut Teh',desc:'药材猪骨汤，滋补又鲜美'},
-    {name:'🍳 炒粿条',en:'🍳 Char Kway Teow',desc:'镬气十足，腊肠蚶子一起炒'},
-    {name:'🍱 福建面',en:'🍱 Hokkien Mee',desc:'虾汤底，炒得香喷喷'},
-    {name:'🧆 罗惹',en:'🧆 Rojak',desc:'新加坡水果沙拉，奇异好吃'},
-    {name:'🧋 珍珠奶茶',en:'🧋 Bubble Tea',desc:'快乐水，每天都要喝'},
-    {name:'🍡 椰浆饭',en:'🍡 Nasi Lemak',desc:'椰香米饭配参巴酱，绝了'},
+    {name:'🍲 火锅',  en:'🍲 Hotpot',    desc:'鸳鸯锅底，今晚就是你了！'},
+    {name:'🥩 烤肉',  en:'🥩 Korean BBQ', desc:'自己动手烤，快乐加倍！'},
+    {name:'🌶️ 川菜',  en:'🌶️ Sichuan',   desc:'麻辣鲜香，灵魂震颤！'},
+    {name:'🍜 麻辣烫', en:'🍜 Malatang',  desc:'自选食材，幸福满满一锅！'},
+    {name:'🫕 鸡公煲', en:'🫕 Chicken Pot',desc:'麻辣鸡块，越吃越上瘾！'},
+    {name:'🥩 牛排',  en:'🥩 Steak',      desc:'medium rare，仪式感拉满！'},
+    {name:'🍣 日料',  en:'🍣 Japanese',   desc:'刺身+寿司，人生赢家！'},
+    {name:'🍖 东北菜', en:'🍖 NE Chinese', desc:'铁锅炖大鹅，豪爽大口吃！'},
+    {name:'🌿 湘菜',  en:'🌿 Hunan',      desc:'辣椒炒肉，下饭神菜！'},
+    {name:'🍢 韩料',  en:'🍢 Korean',     desc:'部队锅+炸鸡，韩剧氛围感！'},
+    {name:'🍝 沙茶面', en:'🍝 Satay Noodle',desc:'闽南灵魂，一碗封神！'},
   ];
-  var colors=['#f5b8dc','#b8dcff','#a8e8d4','#ffe082','#f5c6a0','#c8b8f5','#b8f0dc','#f5b8b8','#b8e8f5','#e8f5b8'];
+  var colors=['#f5b8dc','#b8dcff','#a8e8d4','#ffe082','#f5c6a0','#c8b8f5','#b8f0dc','#f5b8b8','#b8e8f5','#e8f5b8','#ffd6a5'];
   var canvas=document.getElementById('spinnerCanvas');
   var ctx=canvas.getContext('2d');
   var W=canvas.width,H=canvas.height,R=W/2-10,cx=W/2,cy=H/2;
@@ -600,7 +643,7 @@ applyLang(LANG);
       ctx.rotate(a+(i+0.5)*ARC);
       ctx.textAlign='right';
       ctx.fillStyle='#2d4a6a';
-      ctx.font='bold 13px "Noto Sans SC",sans-serif';
+      ctx.font='bold 12px "Noto Sans SC",sans-serif';
       ctx.fillText(LANG==='zh'?foods[i].name:foods[i].en, R-12, 5);
       ctx.restore();
     }
@@ -616,19 +659,15 @@ applyLang(LANG);
     document.getElementById('spinBtn').disabled=true;
     document.getElementById('spinResult').textContent=t('转转转…','Spinning…');
     document.getElementById('spinResultSub').textContent='';
-    // pick winner first, then calculate exact stop angle
-    var winIdx=Math.floor(Math.random()*N);
-    var totalSpins=6+Math.random()*4; // 6-10 full rotations
-    // needle points up (angle=0 means top). sector winIdx centre should end at top (angle = -PI/2)
-    // after rotation of totalAngle, wheel angle = startAngle + totalAngle
-    // we want: startAngle + totalAngle ≡ -(winIdx+0.5)*ARC  (mod 2PI)
-    var stopAngle = -((winIdx+0.5)*ARC) - angle;
-    stopAngle = ((stopAngle % (2*Math.PI)) + 2*Math.PI) % (2*Math.PI); // normalize to [0,2PI]
-    var totalAngle = totalSpins*2*Math.PI + stopAngle;
+
+    var totalSpins=6+Math.random()*4;
+    var extraAngle=Math.random()*2*Math.PI;
+    var totalAngle=totalSpins*2*Math.PI+extraAngle;
     var startAngle=angle;
-    var duration=4000+Math.random()*1500; // ms
+    var duration=4000+Math.random()*1500;
     var startTime=null;
     if(rafId)cancelAnimationFrame(rafId);
+
     function easeOut(t){return 1-Math.pow(1-t,4);}
     function tick(now){
       if(!startTime)startTime=now;
@@ -642,10 +681,12 @@ applyLang(LANG);
         angle=startAngle+totalAngle;
         drawWheel(angle);
         spinning=false;
-        // 从最终角度反推指针（顶部 = -π/2）指向的扇区
-        var needle = -Math.PI/2;
-        var normalized = ((needle - angle) % (2*Math.PI) + 2*Math.PI) % (2*Math.PI);
-        var realIdx = Math.floor(normalized / ARC) % N;
+
+        // ✅ 修复：停止后从最终角度反推指针（顶部=−π/2）指向的扇区
+        var needle=-Math.PI/2;
+        var normalized=((needle-angle)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+        var realIdx=Math.floor(normalized/ARC)%N;
+
         var food=foods[realIdx];
         document.getElementById('spinResult').textContent=LANG==='zh'?food.name:food.en;
         document.getElementById('spinResultSub').textContent=LANG==='zh'?food.desc:'';
@@ -656,63 +697,103 @@ applyLang(LANG);
   };
 })();
 
-/* ── 聊天框 ── */
+/* ── 美食聊天框 — 围绕11道菜 ── */
 (function(){
   var QA=[
-    {k:['今天吃什么','吃什么','不知道吃什么'],a:['今天就吃鸡饭吧！天天海南鸡饭永远不会错 🍚','去转转盘！让命运决定！🎰','laksa！辣椰浆汤底，一口上头 🍜','建议：肉骨茶配白米饭，滋补又美味 🥘']},
-    {k:['大牌档','hawker','推荐'],a:['Maxwell Food Centre 的天天鸡饭是首选！排队也值得 🍚','Old Airport Road 的 laksa 和炒福建面，强烈推荐！🍜','Chomp Chomp 晚上去烧烤海鲜，氛围超好 🦀','Tiong Bahru Market 的炒粿条，镬气十足！🍳']},
-    {k:['最爱','喜欢','爱吃'],a:['本大王最爱的永远是面条！各种面都行 🍜','鸡饭！简单却完美，是新加坡的灵魂 🍚','其实吧，只要是吃的，我都爱 😂🍜🍣🧋']},
-    {k:['必吃','新加坡','singapore'],a:['新加坡必吃清单：鸡饭、laksa、辣椒螃蟹、肉骨茶、炒粿条！一个都不能少 🇸🇬','还有！沙爹、罗惹、椰浆饭… 吃不完的 😋','别忘了甜点：豆花、Ice Kacang、榴莲！ 🍧']},
-    {k:['宵夜','晚上','midnight','late'],a:['宵夜首选：Chomp Chomp 的烧烤！边吃边聊，太爽了 🍢','或者去24小时的大牌档，来碗热腾腾的面 🍜','要不然…叫外卖？🛵 本大王不评判 😂']},
-    {k:['奶茶','boba','珍珠','bubble'],a:['奶茶是快乐源泉！本大王推荐 Tiger Sugar 的黑糖珍珠 🧋','LiHo 和 Koi 也很不错！冰冰凉凉的，幸福感满满 🧋','每天都要一杯奶茶，这不是上瘾，这是文化 😂']},
+    {k:['火锅','烤肉','选哪'],a:['当然是火锅！往锅里涮什么都行，天花板级别的社交美食 🍲','烤肉！自己动手烤，每一块都是作品 🥩，配上啤酒人生巅峰！','取决于人数——2人以下烤肉，3人以上火锅，这是本大王铁律 😤']},
+    {k:['川菜','辣','麻辣'],a:['川菜的精髓是"麻辣鲜香"，水煮鱼+麻婆豆腐+回锅肉，三件套永远不踩雷 🌶️','点川菜必点：夫妻肺片、辣子鸡、口水鸡，每道都是灵魂震颤级别！','川菜辣不怕，只要配一碗白米饭，什么都能扛住 😂']},
+    {k:['麻辣烫','自选'],a:['麻辣烫的乐趣在于自选！宽粉必放、午餐肉必放、豆皮必放，这是最低配置 🍜','本大王麻辣烫秘籍：汤底选骨汤，辣度中辣，出锅加芝麻酱，绝对绝绝子！','麻辣烫是一种人生态度——什么都要，但要控制重量（钱）😂']},
+    {k:['鸡公煲','鸡'],a:['鸡公煲！麻辣鸡块+宽粉，越吃越烫越停不下来 🫕，是真的上瘾！','鸡公煲选干锅还是有汤底？本大王偏爱有汤底，能多涮点东西 😋','鸡公煲配冰啤酒，是夏天最正确的打开方式！']},
+    {k:['牛排','steak'],a:['medium rare！过了就是暴殄天物 🥩，这不是偏好，这是信仰！','牛排配红酒，或者牛排配可乐，两种都是人生赢家 😂','点牛排记得要黑椒汁，芥末汁，或者直接原味，越简单越能品出肉香！']},
+    {k:['日料','寿司','刺身','日本'],a:['日料是一种仪式感！🍣 大阪烧+刺身+寿司，每一口都是精致生活！','推荐回转寿司扫盘模式，既经济实惠又能尝遍所有口味 😋','日料有个秘密：越简单的越好吃，一块金枪鱼大腹能让人沉默三秒 🤫']},
+    {k:['东北','炖','大鹅'],a:['东北菜！铁锅炖大鹅+小鸡炖蘑菇，豪爽大气，一锅能吃三碗饭 🍖','东北菜的精髓：量大、实在、下饭！锅包肉和地三鲜是永远的经典 😋','来东北菜馆要有心理准备：一道菜能装满整个桌子 😂']},
+    {k:['湘菜','湖南'],a:['湘菜是低调的美食天花板！辣椒炒肉+剁椒鱼头，每口都是下饭神器 🌿','湘菜特点：辣而不麻，鲜香入味！和川菜的麻辣完全不同体验 😋','推荐：毛氏红烧肉+农家小炒肉+辣椒炒肉，湘菜三件套拿走不谢！']},
+    {k:['韩料','韩国','部队锅','炸鸡'],a:['韩料！部队锅在冬天的地位不可撼动 🍢，配上韩剧氛围感直接拉满！','炸鸡+啤酒=韩国世界级组合，任何季节任何时候都适用 😋','去韩餐必点：烤五花肉+冷面+石锅拌饭，小菜全部吃光！']},
+    {k:['沙茶面','闽南'],a:['沙茶面！🍝 闽南的灵魂，甜辣鲜香的沙茶汤底，一碗封神！','沙茶面的正确打开方式：加花生、加豆腐、加鸭血，配料越多越幸福 😋','沙茶面是我吃过最有个性的面条，别的面见了都得叫大哥 😂']},
+    {k:['最爱','喜欢','爱吃'],a:['本大王最爱火锅！因为它是最民主的食物——什么都能涮，没有人会饿着 🍲','要说最爱……说实话是麻辣烫，便宜大碗，想吃什么放什么，人间真理 😂','其实吧，只要是热腾腾的、香喷喷的，本大王都爱！']},
+    {k:['深夜','宵夜','晚上','夜宵'],a:['深夜首选！麻辣烫或者烤肉，边撸串边聊天，生活就该这样 🔥','深夜火锅！空气中都是热气和欢声笑语，治愈一切烦恼 🍲','宵夜的灵魂在于：不看热量、随心所欲！本大王深夜奉行放纵主义 😂']},
+    {k:['奶茶','boba','珍珠'],a:['奶茶是第六餐！饭前奶茶开胃，饭后奶茶收尾，中间奶茶提神 🧋','推荐：厚乳茶系列，奶味超浓，幸福感爆棚！','本大王奶茶标配：大杯、少冰、五分糖，这不是讲究，这是品味 😤']},
   ];
-  var fallback=['这个问题难倒本大王了… 但不管答案是什么，先吃一顿再说！🍜','嗯…本大王觉得吃就对了！🍽️','好问题！本大王的答案是：去吃东西！🎉'];
+  var fallback=['这道题难倒本大王了……但不管答案是什么，先吃一口再说！🍜','本大王思考了一下，觉得选哪道菜都行，因为吃就是对的 😂','嗯哼，不知道吃什么？那就来一份火锅，永远不会错！🍲'];
 
   window.sendChat=function(){
     var input=document.getElementById('chatInput');
     var msg=input.value.trim();
     if(!msg)return;
-    addBubble(msg,'user');
+    addBubble(msg,'user','chatMessages');
     input.value='';
-    setTimeout(function(){
-      var reply=getReply(msg);
-      addBubble(reply,'bot');
-    },600);
+    setTimeout(function(){addBubble(getChatReply(msg),'bot','chatMessages');},600);
   };
-
   window.chipSend=function(btn){
     var msg=btn.textContent;
-    addBubble(msg,'user');
-    setTimeout(function(){
-      var reply=getReply(msg);
-      addBubble(reply,'bot');
-    },600);
+    addBubble(msg,'user','chatMessages');
+    setTimeout(function(){addBubble(getChatReply(msg),'bot','chatMessages');},600);
   };
-
-  function getReply(msg){
+  function getChatReply(msg){
     var m=msg.toLowerCase();
     for(var i=0;i<QA.length;i++){
       for(var j=0;j<QA[i].k.length;j++){
         if(m.indexOf(QA[i].k[j])>=0){
-          var arr=QA[i].a;
-          return arr[Math.floor(Math.random()*arr.length)];
+          var arr=QA[i].a;return arr[Math.floor(Math.random()*arr.length)];
         }
       }
     }
     return fallback[Math.floor(Math.random()*fallback.length)];
   }
-
-  function addBubble(text,type){
-    var box=document.getElementById('chatMessages');
+  function addBubble(text,type,containerId){
+    var box=document.getElementById(containerId);
     var div=document.createElement('div');
-    div.className='chat-bubble '+type;
+    var isChat=(containerId==='chatMessages');
+    div.className=(isChat?'chat-bubble ':'qa-bubble ')+type;
     if(type==='bot'){
-      div.innerHTML='<div class="bot-name">吃吃大王 👑</div>'+text;
+      var name=isChat?'吃吃大王 👑':'钧文本人 👨‍💻';
+      div.innerHTML='<div class="'+(isChat?'bot-name':'bot-name')+'" style="font-size:11px;font-weight:800;color:'+(isChat?'var(--p3)':'var(--b5)')+';margin-bottom:3px;letter-spacing:.04em">'+name+'</div>'+text;
     } else {
       div.textContent=text;
     }
     box.appendChild(div);
     box.scrollTop=box.scrollHeight;
+  }
+  window._addBubble=addBubble;
+})();
+
+/* ── 关于我 Q&A ── */
+(function(){
+  var QADB=[
+    {k:['研究','方向','做什么','领域'],a:['我在做医学图像分析中的可解释 AI！简单说就是：让 AI 不只能做出正确判断，还能告诉医生"为什么"这么判断 🔬','研究方向是可解释 AI + 医学图像。目前主要做皮肤科（黑色素瘤诊断）和眼科（视网膜成像）领域的工作。','我关注的核心问题是：AI 在医疗场景里的可信度。一个准确但不透明的模型在临床上价值有限，所以我致力于让 AI "说清楚" 😄']},
+    {k:['论文','paper','发表','读','看','arXiv'],a:['论文主页在 eattt-wen.github.io/CEFM，arXiv 链接也在页面上，直接点论文区的按钮就能找到 📑','我的 AAAI 2026 论文是做可解释黑色素瘤诊断的，结合了对比学习和 LLM 报告生成，arXiv 编号 2512.06105 📄','欢迎去页面里的"论文"区看，有项目主页、PDF 和代码，如有问题可以直接发邮件交流！']},
+    {k:['合作','collaborate','联系','contact','一起'],a:['欢迎合作！📩 发邮件到 JUNWEN003@e.ntu.edu.sg 就行，请说明来意，我看到后会回复的。','如果是学术合作，请把你的研究方向和想法简单介绍一下，我很乐意交流！','合作的话邮件是最靠谱的方式，GitHub 上也可以提 issue 讨论代码层面的问题 💻']},
+    {k:['日常','生活','平时','一天'],a:['我的日常公式：上午看论文/写代码，下午 debug，晚上……吃东西 😂 然后发现 bug 没修完，继续熬。','研究生日常就是：deadline 追着跑，咖啡续着命，偶尔出去吃顿好的犒劳自己 🍲','生活？就是 NTU 校园 → 大牌档 → 宿舍 → 图书馆的四点一线，偶尔打破一下去别处吃东西 😄']},
+    {k:['食物','吃','最爱','喜欢吃'],a:['最爱：火锅！所有食物里社交属性最高、幸福感最强的，没有之一 🍲','要认真回答的话：我对食物没有偏见，什么都吃，但火锅、烤肉、川菜这个组合是我的快乐三角 😋','别看我做医学 AI 的，吃这件事我比做研究认真多了 哈哈 🍜']},
+    {k:['苦','累','辛苦','研究生'],a:['苦是苦的，但也是值得的。每次模型跑出好结果，那种成就感是真实的 💪','说实话，研究生最难的不是技术，是在无数次失败之后还要继续相信这件事值得做。我大部分时候能撑住 😅','苦但有趣！而且每隔一段时间会用一顿大餐犒劳自己，这是必要的心理健康维护 🍲 哈哈']},
+    {k:['为什么','医学','AI','选择'],a:['因为我觉得 AI 在医疗里最有机会真正帮到人。一个能辅助医生的模型，哪怕只提升一点点准确率，背后意义是不一样的 🏥','进医学 AI 是有点"误打误撞"，但越做越觉得这个方向很有意义——尤其是可解释性，这是 AI 进入临床必须解决的问题。','AI + 医疗 = 高风险高价值。我喜欢做有真实意义的研究，而不是在 benchmark 上刷分 😄']},
+    {k:['下一步','计划','打算','未来'],a:['目前在专心把手头的研究做好，也在探索更多方向。长期来说，希望做的东西是真正能用起来的，而不是只能发论文 😄','还没完全想清楚，但方向是继续在可解释 AI 和医学图像里深耕，同时探索多模态的可能性。','未来计划：先把下一篇论文写完 😂 然后继续吃遍新加坡，其他的再说！']},
+  ];
+  var fallback=['这个问题我没预设答案，但你可以发邮件问我！JUNWEN003@e.ntu.edu.sg 😄','哈哈问到我盲区了，如果是正经问题欢迎邮件交流，我一定回！','好问题！这个要认真回答的话可能要写很久……直接发邮件给我吧 📩'];
+
+  window.sendQA=function(){
+    var input=document.getElementById('qaInput');
+    var msg=input.value.trim();
+    if(!msg)return;
+    window._addBubble(msg,'user','qaMessages');
+    input.value='';
+    setTimeout(function(){window._addBubble(getQAReply(msg),'bot','qaMessages');},700);
+  };
+  window.qaSend=function(btn){
+    var msg=btn.textContent;
+    window._addBubble(msg,'user','qaMessages');
+    setTimeout(function(){window._addBubble(getQAReply(msg),'bot','qaMessages');},700);
+  };
+  function getQAReply(msg){
+    var m=msg.toLowerCase();
+    for(var i=0;i<QADB.length;i++){
+      for(var j=0;j<QADB[i].k.length;j++){
+        if(m.indexOf(QADB[i].k[j])>=0){
+          var arr=QADB[i].a;return arr[Math.floor(Math.random()*arr.length)];
+        }
+      }
+    }
+    return fallback[Math.floor(Math.random()*fallback.length)];
   }
 })();
 
@@ -722,8 +803,8 @@ applyLang(LANG);
   var canvas=document.getElementById('catchCanvas');
   canvas.width=CW;canvas.height=CH;
   var ctx=canvas.getContext('2d');
-  var bowl,items,score,best=0,lives,state='idle',gameTimer=null,frameId=null;
-  var FOODS=['🍜','🍣','🧋','🍱','🍡','🍢','🍳','🥘'];
+  var bowl,items,score,best=0,lives,state='idle',frameId=null;
+  var FOODS=['🍲','🥩','🌶️','🍜','🫕','🍣','🍖','🌿','🍢','🍝','🧋'];
   var BAD=['💀','🤢'];
   var keys={};
 
@@ -748,13 +829,10 @@ applyLang(LANG);
 
   function drawFrame(){
     ctx.fillStyle='#e4f8f2';ctx.fillRect(0,0,CW,CH);
-    // dots
     ctx.fillStyle='rgba(78,201,168,.15)';
     for(var gx=0;gx<CW;gx+=28)for(var gy=0;gy<CH;gy+=28){ctx.beginPath();ctx.arc(gx,gy,2,0,Math.PI*2);ctx.fill();}
-    // items
     ctx.font='24px serif';ctx.textAlign='center';ctx.textBaseline='middle';
     items.forEach(function(it){ctx.fillText(it.emoji,it.x,it.y);});
-    // bowl
     var bx=bowl.x,by=bowl.y,bw=bowl.w,bh=bowl.h;
     ctx.fillStyle='#2484d8';
     ctx.beginPath();if(ctx.roundRect)ctx.roundRect(bx,by,bw,bh,10);else ctx.rect(bx,by,bw,bh);ctx.fill();
@@ -765,10 +843,8 @@ applyLang(LANG);
 
   function gameLoop(){
     if(state!=='running'){frameId=null;return;}
-    // move bowl
     if(keys['ArrowLeft']||keys['a']||bowl.moving===-1) bowl.x=Math.max(0,bowl.x-BOWL_SPD);
     if(keys['ArrowRight']||keys['d']||bowl.moving===1) bowl.x=Math.min(CW-bowl.w,bowl.x+BOWL_SPD);
-    // move items
     spawnTimer++;
     if(spawnTimer>Math.max(38,80-score*2)){spawnItem();spawnTimer=0;}
     var survived=[];
@@ -823,10 +899,7 @@ applyLang(LANG);
     bowl.moving=(d==='L'?-1:1);
     var id=d==='L'?'cLeft':'cRight';
     document.getElementById(id).classList.add('pressed');
-    setTimeout(function(){
-      bowl.moving=0;
-      document.getElementById(id).classList.remove('pressed');
-    },180);
+    setTimeout(function(){bowl.moving=0;document.getElementById(id).classList.remove('pressed');},180);
     if(d==='L')bowl.x=Math.max(0,bowl.x-BOWL_SPD*4);
     else bowl.x=Math.min(CW-bowl.w,bowl.x+BOWL_SPD*4);
   };
