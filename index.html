@@ -328,38 +328,6 @@ footer span{color:var(--p3)}
         <div id="heatmap" class="heatmap"></div>
       </div>
     </div>
-    <div class="snake-card">
-      <div class="snake-header">
-        <div class="snake-score-wrap">
-          <div class="snake-stat"><div class="snake-stat-num" id="scoreDisplay">0</div><div class="snake-stat-lbl" data-zh="得分" data-en="SCORE">得分</div></div>
-          <div class="snake-stat"><div class="snake-stat-num" id="bestDisplay">0</div><div class="snake-stat-lbl" data-zh="最高分" data-en="BEST">最高分</div></div>
-        </div>
-        <div class="snake-btns">
-          <button class="snake-btn snake-btn-pause" id="pauseBtn" onclick="pauseSnake()" style="display:none">⏸ <span data-zh="暂停" data-en="Pause">暂停</span></button>
-          <button class="snake-btn snake-btn-start" id="startBtn" onclick="startSnake()">▶ <span data-zh="开始" data-en="Play">开始</span></button>
-          <span class="snake-hint" id="snakeHint">← ↑ → ↓</span>
-        </div>
-      </div>
-      <div class="game-area">
-        <div class="snake-canvas-wrap" id="canvasWrap">
-          <canvas id="snakeCanvas"></canvas>
-          <div class="snake-overlay" id="snakeOverlay">
-            <div class="overlay-emoji">🐍</div>
-            <div class="overlay-title" data-zh="贪吃蛇" data-en="Snake Game">贪吃蛇</div>
-            <div class="overlay-sub" data-zh="用方向键或下方方向盘<br>帮小蛇吃到 🍜！" data-en="Use arrow keys or the D-pad<br>to eat the 🍜!">用方向键或下方方向盘<br>帮小蛇吃到 🍜！</div>
-            <button class="overlay-btn" id="overlayBtn" onclick="startSnake()" data-zh="开始游戏" data-en="Start Playing">开始游戏</button>
-          </div>
-        </div>
-        <div class="dpad">
-          <div class="dpad-row"><button class="dpad-btn" id="dUp" ontouchstart="dpadPress(event,'UP')" onclick="dpadPress(null,'UP')">▲</button></div>
-          <div class="dpad-row">
-            <button class="dpad-btn" id="dLeft"  ontouchstart="dpadPress(event,'LEFT')"  onclick="dpadPress(null,'LEFT')">◀</button>
-            <button class="dpad-btn" id="dDown"  ontouchstart="dpadPress(event,'DOWN')"  onclick="dpadPress(null,'DOWN')">▼</button>
-            <button class="dpad-btn" id="dRight" ontouchstart="dpadPress(event,'RIGHT')" onclick="dpadPress(null,'RIGHT')">▶</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- 论文 -->
@@ -444,7 +412,82 @@ footer span{color:var(--p3)}
       </div>
     </div>
 
-    <!-- 接食物游戏 -->
+    <!-- 贪吃蛇 -->
+    <div class="snake-card">
+      <div class="snake-header">
+        <div class="snake-score-wrap">
+          <div class="snake-stat"><div class="snake-stat-num" id="scoreDisplay">0</div><div class="snake-stat-lbl" data-zh="得分" data-en="SCORE">得分</div></div>
+          <div class="snake-stat"><div class="snake-stat-num" id="bestDisplay">0</div><div class="snake-stat-lbl" data-zh="最高分" data-en="BEST">最高分</div></div>
+        </div>
+        <div class="snake-btns">
+          <button class="snake-btn snake-btn-pause" id="pauseBtn" onclick="pauseSnake()" style="display:none">⏸ <span data-zh="暂停" data-en="Pause">暂停</span></button>
+          <button class="snake-btn snake-btn-start" id="startBtn" onclick="startSnake()">▶ <span data-zh="开始" data-en="Play">开始</span></button>
+          <span class="snake-hint" id="snakeHint">← ↑ → ↓</span>
+        </div>
+      </div>
+      <div class="game-area">
+        <div class="snake-canvas-wrap" id="canvasWrap">
+          <canvas id="snakeCanvas"></canvas>
+          <div class="snake-overlay" id="snakeOverlay">
+            <div class="overlay-emoji">🐍</div>
+            <div class="overlay-title" data-zh="贪吃蛇" data-en="Snake Game">贪吃蛇</div>
+            <div class="overlay-sub" data-zh="用方向键或下方方向盘<br>帮小蛇吃到 🍜！" data-en="Use arrow keys or the D-pad<br>to eat the 🍜!">用方向键或下方方向盘<br>帮小蛇吃到 🍜！</div>
+            <button class="overlay-btn" id="overlayBtn" onclick="startSnake()" data-zh="开始游戏" data-en="Start Playing">开始游戏</button>
+          </div>
+        </div>
+        <div class="dpad">
+          <div class="dpad-row"><button class="dpad-btn" id="dUp" ontouchstart="dpadPress(event,'UP')" onclick="dpadPress(null,'UP')">▲</button></div>
+          <div class="dpad-row">
+            <button class="dpad-btn" id="dLeft"  ontouchstart="dpadPress(event,'LEFT')"  onclick="dpadPress(null,'LEFT')">◀</button>
+            <button class="dpad-btn" id="dDown"  ontouchstart="dpadPress(event,'DOWN')"  onclick="dpadPress(null,'DOWN')">▼</button>
+            <button class="dpad-btn" id="dRight" ontouchstart="dpadPress(event,'RIGHT')" onclick="dpadPress(null,'RIGHT')">▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 转盘 + 聊天并排 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+
+      <!-- 今天吃什么转盘 -->
+      <div class="spinner-card" id="spinnerCard">
+        <div style="text-align:center">
+          <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="今天吃什么？🎰" data-en="What to eat? 🎰">今天吃什么？🎰</div>
+          <div style="font-size:13px;color:var(--tm);margin-top:4px" data-zh="转一转，让命运决定！" data-en="Spin and let fate decide!">转一转，让命运决定！</div>
+        </div>
+        <div class="spinner-wrap">
+          <canvas class="spinner-canvas" id="spinnerCanvas" width="260" height="260"></canvas>
+          <div class="spinner-needle"></div>
+          <div class="spinner-center"></div>
+        </div>
+        <div class="spinner-result">
+          <div class="spinner-result-food" id="spinResult" data-zh="点击转盘开始！" data-en="Click Spin to start!">点击转盘开始！</div>
+          <div class="spinner-result-sub" id="spinResultSub"></div>
+        </div>
+        <button class="spin-btn" id="spinBtn" onclick="doSpin()" data-zh="🎰 开转！" data-en="🎰 Spin!">🎰 开转！</button>
+      </div>
+
+      <!-- 问问吃吃大王 -->
+      <div class="chat-card">
+        <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="🤖 问问吃吃大王" data-en="🤖 Ask the Food King">🤖 问问吃吃大王</div>
+        <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="有关吃的问题，我都懂！" data-en="Ask me anything about food!">有关吃的问题，我都懂！</div>
+        <div class="chat-chips" id="chatChips">
+          <button class="chat-chip" onclick="chipSend(this)">今天吃什么？</button>
+          <button class="chat-chip" onclick="chipSend(this)">推荐大牌档</button>
+          <button class="chat-chip" onclick="chipSend(this)">最爱的食物</button>
+          <button class="chat-chip" onclick="chipSend(this)">新加坡必吃</button>
+          <button class="chat-chip" onclick="chipSend(this)">宵夜吃什么？</button>
+          <button class="chat-chip" onclick="chipSend(this)">奶茶推荐</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-bubble bot"><div class="bot-name">吃吃大王 👑</div>你好！我是吃吃大王，新加坡美食小达人～ 有什么关于吃的问题尽管问我！🍜</div>
+        </div>
+        <div class="chat-input-row">
+          <input class="chat-input" id="chatInput" type="text" placeholder="问我任何关于吃的问题…" onkeydown="if(event.key==='Enter')sendChat()"/>
+          <button class="chat-send" onclick="sendChat()">发送</button>
+        </div>
+      </div>
+    </div>
     <div class="catch-card" style="margin-top:18px">
       <div class="catch-header">
         <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="🥣 接住美食！" data-en="🥣 Catch the Food!">🥣 接住美食！</div>
