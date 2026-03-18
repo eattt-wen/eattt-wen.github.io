@@ -228,8 +228,9 @@ footer span{color:var(--p3)}
     <ul class="nav-links">
       <li><a href="#about"     data-zh="关于我" data-en="About">关于我</a></li>
       <li><a href="#currently" data-zh="最近"   data-en="Now">最近</a></li>
-      <li><a href="#food"      data-zh="吃什么" data-en="Food">吃什么</a></li>
+      <li><a href="#github"    data-zh="GitHub" data-en="GitHub">GitHub</a></li>
       <li><a href="#projects"  data-zh="论文"   data-en="Paper">论文</a></li>
+      <li><a href="#food"      data-zh="吃什么" data-en="Food">吃什么</a></li>
       <li><a href="#contact"   data-zh="联系"   data-en="Contact">联系</a></li>
       <li><a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -276,13 +277,6 @@ footer span{color:var(--p3)}
         </div>
       </div>
     </div>
-    <!-- 饥饿指数 -->
-    <div class="hunger-wrap" id="hungerWrap">
-      <span class="hunger-emoji">🍽️</span>
-      <span class="hunger-label" data-zh="今日饥饿指数" data-en="Today's Hunger Level">今日饥饿指数</span>
-      <div class="hunger-bar-bg"><div class="hunger-bar-fill" id="hungerFill" style="width:0%"></div></div>
-      <span class="hunger-text" id="hungerText">加载中…</span>
-    </div>
   </section>
 
   <!-- 最近 -->
@@ -309,135 +303,6 @@ footer span{color:var(--p3)}
         <div class="cur-text" data-zh="新加坡" data-en="Singapore">新加坡</div>
         <div class="cur-sub"  data-zh="NTU 校园与美食区。" data-en="NTU campus &amp; food courts.">NTU 校园与美食区。</div>
       </div></div>
-    </div>
-  </section>
-
-  <!-- 🍜 吃什么大区 -->
-  <section class="sec" id="food">
-    <div class="sec-title"><span class="sec-pill">🍜</span> <span data-zh="吃货专区" data-en="Foodie Zone">吃货专区</span></div>
-
-    <!-- 转盘 + 聊天并排 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
-
-      <!-- 今天吃什么转盘 -->
-      <div class="spinner-card" id="spinnerCard">
-        <div style="text-align:center">
-          <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="今天吃什么？🎰" data-en="What to eat? 🎰">今天吃什么？🎰</div>
-          <div style="font-size:13px;color:var(--tm);margin-top:4px" data-zh="转一转，让命运决定！" data-en="Spin and let fate decide!">转一转，让命运决定！</div>
-        </div>
-        <div class="spinner-wrap">
-          <canvas class="spinner-canvas" id="spinnerCanvas" width="260" height="260"></canvas>
-          <div class="spinner-needle"></div>
-          <div class="spinner-center"></div>
-        </div>
-        <div class="spinner-result">
-          <div class="spinner-result-food" id="spinResult" data-zh="点击转盘开始！" data-en="Click Spin to start!">点击转盘开始！</div>
-          <div class="spinner-result-sub" id="spinResultSub"></div>
-        </div>
-        <button class="spin-btn" id="spinBtn" onclick="doSpin()" data-zh="🎰 开转！" data-en="🎰 Spin!">🎰 开转！</button>
-      </div>
-
-      <!-- 问问吃吃大王 -->
-      <div class="chat-card">
-        <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="🤖 问问吃吃大王" data-en="🤖 Ask the Food King">🤖 问问吃吃大王</div>
-        <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="有关吃的问题，我都懂！" data-en="Ask me anything about food!">有关吃的问题，我都懂！</div>
-        <div class="chat-chips" id="chatChips">
-          <button class="chat-chip" onclick="chipSend(this)">今天吃什么？</button>
-          <button class="chat-chip" onclick="chipSend(this)">推荐大牌档</button>
-          <button class="chat-chip" onclick="chipSend(this)">最爱的食物</button>
-          <button class="chat-chip" onclick="chipSend(this)">新加坡必吃</button>
-          <button class="chat-chip" onclick="chipSend(this)">宵夜吃什么？</button>
-          <button class="chat-chip" onclick="chipSend(this)">奶茶推荐</button>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-          <div class="chat-bubble bot"><div class="bot-name">吃吃大王 👑</div>你好！我是吃吃大王，新加坡美食小达人～ 有什么关于吃的问题尽管问我！🍜</div>
-        </div>
-        <div class="chat-input-row">
-          <input class="chat-input" id="chatInput" type="text" placeholder="问我任何关于吃的问题…" onkeydown="if(event.key==='Enter')sendChat()"/>
-          <button class="chat-send" onclick="sendChat()">发送</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 接食物游戏 -->
-    <div class="catch-card" style="margin-top:18px">
-      <div class="catch-header">
-        <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="🥣 接住美食！" data-en="🥣 Catch the Food!">🥣 接住美食！</div>
-        <div class="catch-score-wrap">
-          <div class="catch-stat"><div class="catch-stat-num" id="catchScore">0</div><div class="catch-stat-lbl" data-zh="得分" data-en="SCORE">得分</div></div>
-          <div class="catch-stat"><div class="catch-stat-num" id="catchBest">0</div><div class="catch-stat-lbl" data-zh="最高分" data-en="BEST">最高分</div></div>
-          <div class="catch-stat"><div class="catch-stat-num" id="catchLives">3</div><div class="catch-stat-lbl" data-zh="❤️ 生命" data-en="❤️ LIVES">❤️ 生命</div></div>
-        </div>
-        <div class="catch-btns">
-          <button class="catch-btn catch-btn-pause" id="catchPauseBtn" onclick="pauseCatch()" style="display:none">⏸ <span data-zh="暂停" data-en="Pause">暂停</span></button>
-          <button class="catch-btn catch-btn-start" id="catchStartBtn" onclick="startCatch()">▶ <span data-zh="开始" data-en="Play">开始</span></button>
-          <span style="font-size:13px;color:var(--tl);font-weight:700" id="catchHint">← →</span>
-        </div>
-      </div>
-      <div class="catch-game-area">
-        <div class="catch-canvas-wrap">
-          <canvas id="catchCanvas"></canvas>
-          <div class="catch-overlay" id="catchOverlay">
-            <div style="font-size:44px">🥣</div>
-            <div style="font-size:20px;font-weight:900;color:var(--tx)" data-zh="接住美食！" data-en="Catch the Food!">接住美食！</div>
-            <div style="font-size:14px;color:var(--tm);font-weight:600;text-align:center;line-height:1.6" data-zh="用方向键或按钮移动碗<br>接住掉落的美食 🍜🍣🧋" data-en="Use arrow keys or buttons<br>to catch falling food 🍜🍣🧋">用方向键或按钮移动碗<br>接住掉落的美食 🍜🍣🧋</div>
-            <button style="font-size:14px;font-weight:800;padding:10px 28px;border-radius:20px;cursor:pointer;border:none;background:var(--m3);color:white;font-family:inherit;transition:.15s;margin-top:4px" onclick="startCatch()" data-zh="开始游戏" data-en="Start Playing">开始游戏</button>
-          </div>
-        </div>
-        <div class="catch-dpad">
-          <button class="catch-dpad-btn" id="cLeft"  ontouchstart="catchDpad(event,'L')" onclick="catchDpad(null,'L')">◀</button>
-          <button class="catch-dpad-btn" id="cRight" ontouchstart="catchDpad(event,'R')" onclick="catchDpad(null,'R')">▶</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 美食地图 -->
-    <div class="map-card" style="margin-top:18px">
-      <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="📍 吃吃大王的美食地图" data-en="📍 Food King's Hawker Map">📍 吃吃大王的美食地图</div>
-      <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="新加坡必打卡大牌档 🇸🇬" data-en="Must-visit hawker centres in Singapore 🇸🇬">新加坡必打卡大牌档 🇸🇬</div>
-      <div class="map-spots">
-        <a class="map-spot" href="https://maps.app.goo.gl/Laver" target="_blank" rel="noopener">
-          <span class="map-spot-emoji">🍚</span>
-          <div class="map-spot-info">
-            <span class="map-spot-name">Maxwell Food Centre</span>
-            <span class="map-spot-desc" data-zh="天天海南鸡饭必吃" data-en="Tian Tian Hainanese Chicken Rice">天天海南鸡饭必吃</span>
-          </div>
-        </a>
-        <a class="map-spot" href="https://maps.app.goo.gl/Tiong" target="_blank" rel="noopener">
-          <span class="map-spot-emoji">🍜</span>
-          <div class="map-spot-info">
-            <span class="map-spot-name">Tiong Bahru Market</span>
-            <span class="map-spot-desc" data-zh="炒粿条 + 豆花" data-en="Char Kway Teow + Tau Huay">炒粿条 + 豆花</span>
-          </div>
-        </a>
-        <a class="map-spot" href="https://maps.app.goo.gl/Chomp" target="_blank" rel="noopener">
-          <span class="map-spot-emoji">🦀</span>
-          <div class="map-spot-info">
-            <span class="map-spot-name">Chomp Chomp Food Centre</span>
-            <span class="map-spot-desc" data-zh="烧烤海鲜天堂" data-en="BBQ Seafood paradise">烧烤海鲜天堂</span>
-          </div>
-        </a>
-        <a class="map-spot" href="https://maps.app.goo.gl/OldAirport" target="_blank" rel="noopener">
-          <span class="map-spot-emoji">🍲</span>
-          <div class="map-spot-info">
-            <span class="map-spot-name">Old Airport Road Food Centre</span>
-            <span class="map-spot-desc" data-zh="laksa + 炒福建面" data-en="Laksa + Hokkien Mee">laksa + 炒福建面</span>
-          </div>
-        </a>
-        <a class="map-spot" href="https://maps.app.goo.gl/NTU" target="_blank" rel="noopener">
-          <span class="map-spot-emoji">🎓</span>
-          <div class="map-spot-info">
-            <span class="map-spot-name">NTU North Spine</span>
-            <span class="map-spot-desc" data-zh="日常吃饭圣地" data-en="Daily campus eats">日常吃饭圣地</span>
-          </div>
-        </a>
-      </div>
-      <div class="map-iframe-wrap">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m54!1m12!1m3!1d127641.9!2d103.8198!3d1.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m39!3e0!4m5!1s0x31da19a0a6f7a8c3%3A0x1c4f3b5b3d3d3d3d!2sMaxwell+Food+Centre!3m2!1d1.2804!2d103.8454!4m5!1s0x31da1a4b0b3b3b3b%3A0x2b2b2b2b2b2b2b2b!2sTiong+Bahru+Market!3m2!1d1.2863!2d103.8274!4m5!1s0x31da13b3b3b3b3b3%3A0x3c3c3c3c3c3c3c3c!2sChomp+Chomp+Food+Centre!3m2!1d1.3627!2d103.8652!4m5!1s0x31da17a7a7a7a7a7%3A0x4d4d4d4d4d4d4d4d!2sOld+Airport+Road+Food+Centre!3m2!1d1.3065!2d103.8832!4m5!1s0x31da1091e4c89b17%3A0x2d15c8d3ee8cb33a!2sNTU+North+Spine!3m2!1d1.3483!2d103.6831!5e0!3m2!1sen!2ssg!4v1700000000000"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
     </div>
   </section>
 
@@ -532,7 +397,85 @@ footer span{color:var(--p3)}
     </div>
   </section>
 
-  <!-- 联系 -->
+  <!-- 🍜 吃货专区 -->
+  <section class="sec" id="food">
+    <div class="sec-title"><span class="sec-pill">🍜</span> <span data-zh="吃货专区" data-en="Foodie Zone">吃货专区</span></div>
+
+    <!-- 转盘 + 聊天并排 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+
+      <!-- 今天吃什么转盘 -->
+      <div class="spinner-card" id="spinnerCard">
+        <div style="text-align:center">
+          <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="今天吃什么？🎰" data-en="What to eat? 🎰">今天吃什么？🎰</div>
+          <div style="font-size:13px;color:var(--tm);margin-top:4px" data-zh="转一转，让命运决定！" data-en="Spin and let fate decide!">转一转，让命运决定！</div>
+        </div>
+        <div class="spinner-wrap">
+          <canvas class="spinner-canvas" id="spinnerCanvas" width="260" height="260"></canvas>
+          <div class="spinner-needle"></div>
+          <div class="spinner-center"></div>
+        </div>
+        <div class="spinner-result">
+          <div class="spinner-result-food" id="spinResult" data-zh="点击转盘开始！" data-en="Click Spin to start!">点击转盘开始！</div>
+          <div class="spinner-result-sub" id="spinResultSub"></div>
+        </div>
+        <button class="spin-btn" id="spinBtn" onclick="doSpin()" data-zh="🎰 开转！" data-en="🎰 Spin!">🎰 开转！</button>
+      </div>
+
+      <!-- 问问吃吃大王 -->
+      <div class="chat-card">
+        <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="🤖 问问吃吃大王" data-en="🤖 Ask the Food King">🤖 问问吃吃大王</div>
+        <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="有关吃的问题，我都懂！" data-en="Ask me anything about food!">有关吃的问题，我都懂！</div>
+        <div class="chat-chips" id="chatChips">
+          <button class="chat-chip" onclick="chipSend(this)">今天吃什么？</button>
+          <button class="chat-chip" onclick="chipSend(this)">推荐大牌档</button>
+          <button class="chat-chip" onclick="chipSend(this)">最爱的食物</button>
+          <button class="chat-chip" onclick="chipSend(this)">新加坡必吃</button>
+          <button class="chat-chip" onclick="chipSend(this)">宵夜吃什么？</button>
+          <button class="chat-chip" onclick="chipSend(this)">奶茶推荐</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-bubble bot"><div class="bot-name">吃吃大王 👑</div>你好！我是吃吃大王，新加坡美食小达人～ 有什么关于吃的问题尽管问我！🍜</div>
+        </div>
+        <div class="chat-input-row">
+          <input class="chat-input" id="chatInput" type="text" placeholder="问我任何关于吃的问题…" onkeydown="if(event.key==='Enter')sendChat()"/>
+          <button class="chat-send" onclick="sendChat()">发送</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 接食物游戏 -->
+    <div class="catch-card" style="margin-top:18px">
+      <div class="catch-header">
+        <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="🥣 接住美食！" data-en="🥣 Catch the Food!">🥣 接住美食！</div>
+        <div class="catch-score-wrap">
+          <div class="catch-stat"><div class="catch-stat-num" id="catchScore">0</div><div class="catch-stat-lbl" data-zh="得分" data-en="SCORE">得分</div></div>
+          <div class="catch-stat"><div class="catch-stat-num" id="catchBest">0</div><div class="catch-stat-lbl" data-zh="最高分" data-en="BEST">最高分</div></div>
+          <div class="catch-stat"><div class="catch-stat-num" id="catchLives">3</div><div class="catch-stat-lbl" data-zh="❤️ 生命" data-en="❤️ LIVES">❤️ 生命</div></div>
+        </div>
+        <div class="catch-btns">
+          <button class="catch-btn catch-btn-pause" id="catchPauseBtn" onclick="pauseCatch()" style="display:none">⏸ <span data-zh="暂停" data-en="Pause">暂停</span></button>
+          <button class="catch-btn catch-btn-start" id="catchStartBtn" onclick="startCatch()">▶ <span data-zh="开始" data-en="Play">开始</span></button>
+          <span style="font-size:13px;color:var(--tl);font-weight:700" id="catchHint">← →</span>
+        </div>
+      </div>
+      <div class="catch-game-area">
+        <div class="catch-canvas-wrap">
+          <canvas id="catchCanvas"></canvas>
+          <div class="catch-overlay" id="catchOverlay">
+            <div style="font-size:44px">🥣</div>
+            <div style="font-size:20px;font-weight:900;color:var(--tx)" data-zh="接住美食！" data-en="Catch the Food!">接住美食！</div>
+            <div style="font-size:14px;color:var(--tm);font-weight:600;text-align:center;line-height:1.6" data-zh="用方向键或按钮移动碗<br>接住掉落的美食 🍜🍣🧋" data-en="Use arrow keys or buttons<br>to catch falling food 🍜🍣🧋">用方向键或按钮移动碗<br>接住掉落的美食 🍜🍣🧋</div>
+            <button style="font-size:14px;font-weight:800;padding:10px 28px;border-radius:20px;cursor:pointer;border:none;background:var(--m3);color:white;font-family:inherit;transition:.15s;margin-top:4px" onclick="startCatch()" data-zh="开始游戏" data-en="Start Playing">开始游戏</button>
+          </div>
+        </div>
+        <div class="catch-dpad">
+          <button class="catch-dpad-btn" id="cLeft"  ontouchstart="catchDpad(event,'L')" onclick="catchDpad(null,'L')">◀</button>
+          <button class="catch-dpad-btn" id="cRight" ontouchstart="catchDpad(event,'R')" onclick="catchDpad(null,'R')">▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="sec" id="contact">
     <div class="sec-title"><span class="sec-pill">💌</span> <span data-zh="联系我" data-en="Get in Touch">联系我</span></div>
     <div class="contact-row">
@@ -616,23 +559,6 @@ applyLang(LANG);
   img.src='avatar.jpg';
 })();
 
-/* ── 饥饿指数 ── */
-(function(){
-  var levels=[
-    {min:10,max:30,emoji:'😌',zh:'吃饱了，还不饿',en:'Still full from last meal'},
-    {min:35,max:55,emoji:'🤔',zh:'有点饿了…',en:'Getting a little hungry…'},
-    {min:60,max:75,emoji:'😋',zh:'好饿！想吃东西！',en:'Hungry! Need food!'},
-    {min:80,max:90,emoji:'😤',zh:'非常饿！立刻出发！',en:'Very hungry! Moving out!'},
-    {min:92,max:99,emoji:'🤤',zh:'饿到怀疑人生…',en:'Starving, questioning life…'}
-  ];
-  var pick=levels[Math.floor(Math.random()*levels.length)];
-  var val=pick.min+Math.floor(Math.random()*(pick.max-pick.min+1));
-  setTimeout(function(){
-    document.getElementById('hungerFill').style.width=val+'%';
-    document.getElementById('hungerText').textContent=pick.emoji+' '+t(pick.zh,pick.en)+' ('+val+'%)';
-  },400);
-})();
-
 /* ── 转盘 ── */
 (function(){
   var foods=[
@@ -652,7 +578,7 @@ applyLang(LANG);
   var ctx=canvas.getContext('2d');
   var W=canvas.width,H=canvas.height,R=W/2-10,cx=W/2,cy=H/2;
   var N=foods.length,ARC=2*Math.PI/N;
-  var angle=0,spinning=false,vel=0,targetAngle=0,rafId=null;
+  var angle=0,spinning=false,rafId=null;
 
   function drawWheel(a){
     ctx.clearRect(0,0,W,H);
@@ -676,7 +602,7 @@ applyLang(LANG);
       ctx.restore();
     }
     ctx.beginPath();ctx.arc(cx,cy,14,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();
-    ctx.strokeStyle='var(--p3)';ctx.lineWidth=3;ctx.stroke();
+    ctx.strokeStyle='#e87bbf';ctx.lineWidth=3;ctx.stroke();
   }
 
   drawWheel(angle);
@@ -687,30 +613,39 @@ applyLang(LANG);
     document.getElementById('spinBtn').disabled=true;
     document.getElementById('spinResult').textContent=t('转转转…','Spinning…');
     document.getElementById('spinResultSub').textContent='';
-    var spins=5+Math.random()*5;
-    var extra=Math.floor(Math.random()*N)*ARC;
-    targetAngle=angle+spins*2*Math.PI+extra;
-    vel=0.35;
+    // pick winner first, then calculate exact stop angle
+    var winIdx=Math.floor(Math.random()*N);
+    var totalSpins=6+Math.random()*4; // 6-10 full rotations
+    // needle points up (angle=0 means top). sector winIdx centre should end at top (angle = -PI/2)
+    // after rotation of totalAngle, wheel angle = startAngle + totalAngle
+    // we want: startAngle + totalAngle ≡ -(winIdx+0.5)*ARC  (mod 2PI)
+    var stopAngle = -((winIdx+0.5)*ARC) - angle;
+    stopAngle = ((stopAngle % (2*Math.PI)) + 2*Math.PI) % (2*Math.PI); // normalize to [0,2PI]
+    var totalAngle = totalSpins*2*Math.PI + stopAngle;
+    var startAngle=angle;
+    var duration=4000+Math.random()*1500; // ms
+    var startTime=null;
     if(rafId)cancelAnimationFrame(rafId);
-    function tick(){
-      var diff=targetAngle-angle;
-      if(diff<0.01){
-        angle=targetAngle%(2*Math.PI);
-        spinning=false;
+    function easeOut(t){return 1-Math.pow(1-t,4);}
+    function tick(now){
+      if(!startTime)startTime=now;
+      var elapsed=now-startTime;
+      var progress=Math.min(elapsed/duration,1);
+      angle=startAngle+totalAngle*easeOut(progress);
+      drawWheel(angle);
+      if(progress<1){
+        rafId=requestAnimationFrame(tick);
+      } else {
+        angle=startAngle+totalAngle;
         drawWheel(angle);
-        var idx=Math.floor(N-(((angle%(2*Math.PI))/(2*Math.PI))*N))%N;
-        var food=foods[idx];
+        spinning=false;
+        var food=foods[winIdx];
         document.getElementById('spinResult').textContent=LANG==='zh'?food.name:food.en;
         document.getElementById('spinResultSub').textContent=LANG==='zh'?food.desc:'';
         document.getElementById('spinBtn').disabled=false;
-        return;
       }
-      vel=Math.max(0.003, vel*0.985);
-      angle+=vel;
-      drawWheel(angle);
-      rafId=requestAnimationFrame(tick);
     }
-    tick();
+    rafId=requestAnimationFrame(tick);
   };
 })();
 
@@ -990,7 +925,6 @@ applyLang(LANG);
   init();draw();
   ov('🐍',t('贪吃蛇','Snake Game'),t('用方向键或下方方向盘<br>帮小蛇吃到 🍜！','Use arrow keys or the D-pad<br>to eat the 🍜!'),t('开始游戏','Start Playing'));
 })();
-
 </script>
 </body>
 </html>
