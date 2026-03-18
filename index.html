@@ -642,7 +642,11 @@ applyLang(LANG);
         angle=startAngle+totalAngle;
         drawWheel(angle);
         spinning=false;
-        var food=foods[winIdx];
+        // 从最终角度反推指针（顶部 = -π/2）指向的扇区
+        var needle = -Math.PI/2;
+        var normalized = ((needle - angle) % (2*Math.PI) + 2*Math.PI) % (2*Math.PI);
+        var realIdx = Math.floor(normalized / ARC) % N;
+        var food=foods[realIdx];
         document.getElementById('spinResult').textContent=LANG==='zh'?food.name:food.en;
         document.getElementById('spinResultSub').textContent=LANG==='zh'?food.desc:'';
         document.getElementById('spinBtn').disabled=false;
