@@ -23,13 +23,11 @@
 html{scroll-behavior:smooth}
 body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--tx);min-height:100vh}
 
-/* TOP BAR */
 .top-bar{background:var(--dark);padding:12px 40px;display:flex;align-items:center;justify-content:space-between}
 .top-bar a{font-size:13px;font-weight:500;color:var(--caramel);text-decoration:none;letter-spacing:.08em;transition:.18s}
 .top-bar a:hover{color:white}
 .top-bar-title{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);font-weight:300}
 
-/* HERO */
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
 .hero-left{background:var(--seal);padding:64px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .hero-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 110% 110%,rgba(196,160,122,.18) 0%,transparent 60%),radial-gradient(ellipse 50% 80% at -20% 50%,rgba(255,255,255,.04) 0%,transparent 50%)}
@@ -43,133 +41,101 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--t
 .hero-right img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:80px}
 
-/* WRAP */
-.wrap{max-width:1040px;margin:0 auto;padding:32px 32px 80px}
+.wrap{max-width:1040px;margin:0 auto;padding:40px 32px 80px}
 
-/* SECTION HEADER */
 .sec-hd{display:flex;align-items:baseline;gap:16px;margin-bottom:32px}
 .sec-hd-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--seal)}
 .sec-hd-line{flex:1;height:1px;background:var(--sand)}
 .sec-hd-count{font-size:12px;letter-spacing:.1em;color:var(--tl)}
 
-/* ── MASONRY GALLERY ── */
-.masonry{
-  columns: 4;
-  column-gap: 10px;
-}
-.masonry-item{
-  break-inside: avoid;
-  margin-bottom: 10px;
-  overflow: hidden;
-  border-radius: 10px;
-  cursor: pointer;
-  position: relative;
-  background: var(--sand);
-  display: block;
-}
-.masonry-item img{
-  width: 100%;
-  display: block;
-  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
-  border-radius: 10px;
-}
-.masonry-item:hover img{
-  transform: scale(1.06);
-}
-.masonry-item .overlay{
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(46,26,14,.45) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity .3s;
-  border-radius: 10px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 12px;
-}
-.masonry-item:hover .overlay{
-  opacity: 1;
-}
-.zoom-icon{
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  color: var(--seal);
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  transition: transform .2s;
-}
-.masonry-item:hover .zoom-icon{
-  transform: scale(1.12);
-}
+/* ── MASONRY ── */
+#masonry-wrap{position:relative}
 
-/* ── STRIP / FEATURED ROW ── */
-.strip-row{
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
+.m-item{
+  position:absolute;
+  overflow:hidden;
+  border-radius:12px;
+  cursor:pointer;
+  background:var(--sand);
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .5s ease, transform .5s ease, box-shadow .3s ease;
 }
-.strip-row .strip-item{
-  flex: 1;
-  overflow: hidden;
-  border-radius: 10px;
-  cursor: pointer;
-  position: relative;
-  background: var(--sand);
-  height: 220px;
+.m-item.visible{opacity:1;transform:translateY(0)}
+.m-item:hover{box-shadow:0 8px 32px rgba(46,26,14,.18)}
+
+.m-item img{
+  width:100%;display:block;
+  transition:transform .55s cubic-bezier(.25,.46,.45,.94);
 }
-.strip-row .strip-item.big{
-  flex: 2;
+.m-item:hover img{transform:scale(1.06)}
+
+.m-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(170deg,transparent 35%,rgba(46,26,14,.52) 100%);
+  opacity:0;transition:opacity .3s;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:12px 14px;
 }
-.strip-row .strip-item img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+.m-item:hover .m-ov{opacity:1}
+
+.m-ov-num{
+  font-size:10px;letter-spacing:.18em;
+  color:rgba(255,255,255,.6);font-weight:300;
 }
-.strip-row .strip-item:hover img{
-  transform: scale(1.06);
+.m-ov-btn{
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(255,255,255,.88);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:var(--seal);
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  transition:transform .2s;
 }
-.strip-row .strip-item .overlay{
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(46,26,14,.4) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity .3s;
-  border-radius: 10px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 12px;
+.m-item:hover .m-ov-btn{transform:scale(1.12)}
+
+/* shimmer skeleton */
+.m-item.skel{
+  background:linear-gradient(90deg,var(--sand) 25%,#f3ead9 50%,var(--sand) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s infinite;
 }
-.strip-row .strip-item:hover .overlay{
-  opacity: 1;
-}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
 /* LIGHTBOX */
-#lb{display:none;position:fixed;inset:0;background:rgba(16,6,2,.94);z-index:999;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+#lb{display:none;position:fixed;inset:0;background:rgba(14,5,1,.95);z-index:999;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
 #lb.on{display:flex}
-#lb-inner{max-width:860px;width:100%;display:flex;flex-direction:column;align-items:center;cursor:default}
-#lb-img{max-width:100%;max-height:80vh;border-radius:10px;object-fit:contain;display:block;box-shadow:0 24px 80px rgba(0,0,0,.7)}
-#lb-nav{display:flex;align-items:center;gap:20px;margin-top:20px}
-.lb-btn{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:white;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.18s;font-family:inherit}
-.lb-btn:hover{background:rgba(255,255,255,.22)}
-#lb-counter{font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.14em;min-width:52px;text-align:center}
-#lb-close-btn{position:fixed;top:18px;right:22px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.18s;z-index:1000}
-#lb-close-btn:hover{background:rgba(255,255,255,.2)}
+#lb-inner{max-width:900px;width:100%;display:flex;flex-direction:column;align-items:center;cursor:default}
+#lb-img{
+  max-width:100%;max-height:82vh;
+  border-radius:10px;object-fit:contain;display:block;
+  box-shadow:0 32px 100px rgba(0,0,0,.8);
+  transition:opacity .2s ease;
+}
+#lb-img.fade{opacity:0}
+#lb-nav{display:flex;align-items:center;gap:22px;margin-top:20px}
+.lb-btn{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:white;font-size:22px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.18s;font-family:inherit;user-select:none;
+}
+.lb-btn:hover{background:rgba(255,255,255,.22);transform:scale(1.08)}
+#lb-counter{font-size:11px;color:rgba(255,255,255,.36);letter-spacing:.18em;min-width:56px;text-align:center}
+#lb-close{
+  position:fixed;top:18px;right:22px;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  color:white;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.18s;z-index:1000;
+}
+#lb-close:hover{background:rgba(255,255,255,.2)}
 
-/* EYE DIVIDER */
-.eye-divider{display:flex;align-items:center;gap:12px;margin:48px 0 0}
+.eye-divider{display:flex;align-items:center;gap:12px;margin:56px 0 0}
 .eye-divider::before,.eye-divider::after{content:'';flex:1;height:1px;background:var(--sand)}
 .eye-gem{width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px var(--blue-lt)}
 
-/* FOOTER */
 .footer-strip{background:var(--dark);padding:26px 40px;display:flex;align-items:center;justify-content:space-between;margin-top:56px}
 .footer-left{font-size:13px;color:rgba(255,255,255,.35);letter-spacing:.06em}
 .footer-left strong{color:var(--caramel)}
@@ -180,16 +146,9 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--t
   .hero{grid-template-columns:1fr}
   .hero-right{height:280px}
   .hero-name{font-size:56px}
-  .masonry{columns:2}
-  .strip-row .strip-item{height:160px}
   .top-bar,.footer-strip{padding:12px 20px}
   .wrap{padding:24px 16px 60px}
   .hero-left{padding:44px 28px}
-}
-@media(max-width:480px){
-  .masonry{columns:2}
-  .strip-row{flex-direction:column}
-  .strip-row .strip-item,.strip-row .strip-item.big{height:200px;flex:unset}
 }
 </style>
 </head>
@@ -201,7 +160,6 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--t
   <span></span>
 </div>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-left">
     <div class="hero-eyeline">
@@ -225,82 +183,15 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--t
 </div>
 
 <div class="wrap">
-
-  <!-- 相册 -->
-  <div class="album">
-    <div class="sec-hd">
-      <div class="sec-hd-title">相册</div>
-      <div class="sec-hd-line"></div>
-      <div class="sec-hd-count">13 张</div>
-    </div>
-
-    <!-- 第一行：精选大图横幅 -->
-    <div class="strip-row">
-      <div class="strip-item big" onclick="openLb(0)">
-        <img src="xinba_web/1.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="strip-item" onclick="openLb(1)">
-        <img src="xinba_web/2.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="strip-item" onclick="openLb(2)">
-        <img src="xinba_web/IMG_1209.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-    </div>
-
-    <!-- 第二行：三等分 -->
-    <div class="strip-row">
-      <div class="strip-item" onclick="openLb(3)">
-        <img src="xinba_web/IMG_3186.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="strip-item big" onclick="openLb(4)">
-        <img src="xinba_web/IMG_6202.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="strip-item" onclick="openLb(5)">
-        <img src="xinba_web/IMG_6473.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-    </div>
-
-    <!-- 瀑布流：剩余7张 -->
-    <div class="masonry">
-      <div class="masonry-item" onclick="openLb(6)">
-        <img src="xinba_web/IMG_6977.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="masonry-item" onclick="openLb(7)">
-        <img src="xinba_web/IMG_6980.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="masonry-item" onclick="openLb(8)">
-        <img src="xinba_web/IMG_6983.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="masonry-item" onclick="openLb(9)">
-        <img src="xinba_web/IMG_7019.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="masonry-item" onclick="openLb(10)">
-        <img src="xinba_web/IMG_7020.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="masonry-item" onclick="openLb(11)">
-        <img src="xinba_web/IMG_8810.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-      <div class="masonry-item" onclick="openLb(12)">
-        <img src="xinba_web/IMG_9788.jpg" alt="辛巴"/>
-        <div class="overlay"><div class="zoom-icon">⊕</div></div>
-      </div>
-    </div>
+  <div class="sec-hd">
+    <div class="sec-hd-title">相册</div>
+    <div class="sec-hd-line"></div>
+    <div class="sec-hd-count">13 张</div>
   </div>
 
-  <div class="eye-divider"><div class="eye-gem"></div></div>
+  <div id="masonry-wrap"></div>
 
+  <div class="eye-divider"><div class="eye-gem"></div></div>
 </div>
 
 <div class="footer-strip">
@@ -308,9 +199,8 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--t
   <a href="index.html">← 返回钧文的主页</a>
 </div>
 
-<!-- LIGHTBOX -->
 <div id="lb" onclick="closeLb()">
-  <div id="lb-close-btn" onclick="closeLb()">✕</div>
+  <div id="lb-close" onclick="closeLb()">✕</div>
   <div id="lb-inner" onclick="event.stopPropagation()">
     <img id="lb-img" src="" alt="辛巴"/>
     <div id="lb-nav">
@@ -322,26 +212,127 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--cream);color:var(--t
 </div>
 
 <script>
-var PHOTOS=[
+var PHOTOS = [
   'xinba_web/1.jpg','xinba_web/2.jpg','xinba_web/IMG_1209.jpg',
   'xinba_web/IMG_3186.jpg','xinba_web/IMG_6202.jpg','xinba_web/IMG_6473.jpg',
   'xinba_web/IMG_6977.jpg','xinba_web/IMG_6980.jpg','xinba_web/IMG_6983.jpg',
   'xinba_web/IMG_7019.jpg','xinba_web/IMG_7020.jpg','xinba_web/IMG_8810.jpg',
   'xinba_web/IMG_9788.jpg'
 ];
-var cur=0;
-function openLb(i){cur=i;update();document.getElementById('lb').classList.add('on')}
-function closeLb(){document.getElementById('lb').classList.remove('on')}
-function lbStep(d){cur=(cur+d+PHOTOS.length)%PHOTOS.length;update()}
-function update(){
-  document.getElementById('lb-img').src=PHOTOS[cur];
-  document.getElementById('lb-counter').textContent=(cur+1)+' / '+PHOTOS.length;
+
+var GAP = 10;
+var wrap = document.getElementById('masonry-wrap');
+var items = [];
+
+function numCols(){
+  var w = wrap.offsetWidth;
+  if(w < 480) return 2;
+  if(w < 720) return 3;
+  return 4;
+}
+
+function layout(){
+  var cols = numCols();
+  var totalW = wrap.offsetWidth;
+  var colW = (totalW - GAP*(cols-1)) / cols;
+  var heights = [];
+  for(var c=0;c<cols;c++) heights[c]=0;
+
+  items.forEach(function(o){
+    // shortest column
+    var col=0;
+    for(var c=1;c<cols;c++) if(heights[c]<heights[col]) col=c;
+
+    var x = col*(colW+GAP);
+    var y = heights[col];
+    var imgH = o.nw ? Math.round(colW * o.nh / o.nw) : Math.round(colW * 0.75);
+
+    o.el.style.left  = x + 'px';
+    o.el.style.top   = y + 'px';
+    o.el.style.width = colW + 'px';
+    o.img.style.height = imgH + 'px';
+    o.img.style.objectFit = 'cover';
+
+    heights[col] += imgH + GAP;
+  });
+
+  wrap.style.height = (Math.max.apply(null,heights) - GAP) + 'px';
+}
+
+function buildGallery(){
+  wrap.innerHTML = '';
+  items = [];
+
+  PHOTOS.forEach(function(src, i){
+    var el  = document.createElement('div');
+    el.className = 'm-item skel';
+
+    var img = document.createElement('img');
+    img.alt = '辛巴';
+
+    var ov  = document.createElement('div');
+    ov.className = 'm-ov';
+    ov.innerHTML =
+      '<span class="m-ov-num">'+String(i+1).padStart(2,'0')+' / '+PHOTOS.length+'</span>'+
+      '<div class="m-ov-btn">⊕</div>';
+
+    el.appendChild(img);
+    el.appendChild(ov);
+    el.addEventListener('click',(function(idx){return function(){openLb(idx)}})(i));
+    wrap.appendChild(el);
+
+    var o = {el:el, img:img, nw:0, nh:0};
+    items.push(o);
+
+    img.onload = (function(obj, imgEl, elem){
+      return function(){
+        obj.nw = imgEl.naturalWidth  || 4;
+        obj.nh = imgEl.naturalHeight || 3;
+        elem.classList.remove('skel');
+        layout();
+        setTimeout(function(){ elem.classList.add('visible'); }, i*35);
+      };
+    })(o, img, el);
+
+    img.onerror = (function(elem){
+      return function(){ elem.style.display='none'; layout(); };
+    })(el);
+
+    img.src = src;
+  });
+
+  layout();
+}
+
+window.addEventListener('load', buildGallery);
+window.addEventListener('resize', layout);
+
+/* lightbox */
+var cur = 0;
+var lbImg = document.getElementById('lb-img');
+
+function openLb(i){
+  cur = i;
+  lbImg.classList.remove('fade');
+  lbImg.src = PHOTOS[cur];
+  document.getElementById('lb-counter').textContent = (cur+1)+' / '+PHOTOS.length;
+  document.getElementById('lb').classList.add('on');
+}
+function closeLb(){ document.getElementById('lb').classList.remove('on'); }
+function lbStep(d){
+  lbImg.classList.add('fade');
+  setTimeout(function(){
+    cur = (cur+d+PHOTOS.length)%PHOTOS.length;
+    lbImg.src = PHOTOS[cur];
+    document.getElementById('lb-counter').textContent = (cur+1)+' / '+PHOTOS.length;
+    lbImg.classList.remove('fade');
+  }, 180);
 }
 document.addEventListener('keydown',function(e){
-  if(!document.getElementById('lb').classList.contains('on'))return;
-  if(e.key==='Escape')closeLb();
-  if(e.key==='ArrowLeft')lbStep(-1);
-  if(e.key==='ArrowRight')lbStep(1);
+  if(!document.getElementById('lb').classList.contains('on')) return;
+  if(e.key==='Escape')     closeLb();
+  if(e.key==='ArrowLeft')  lbStep(-1);
+  if(e.key==='ArrowRight') lbStep(1);
 });
 </script>
 </body>
