@@ -11,19 +11,32 @@
 :root{--b0:#f0f7ff;--b1:#dbeeff;--b2:#b8dcff;--b3:#7cbfff;--b4:#4aa3f5;--b5:#2484d8;--b6:#1a6ab8;--p1:#fce8f3;--p2:#f5b8dc;--p3:#e87bbf;--m1:#e4f8f2;--m2:#a8e8d4;--m3:#4ec9a8;--y1:#fff8e1;--y2:#ffe082;--tx:#2d4a6a;--tm:#6b8faa;--tl:#9ab8cc}
 body{font-family:'Noto Sans SC','Nunito',sans-serif;background:var(--b0);color:var(--tx);min-height:100vh;font-size:17px}
 .wrap{max-width:1080px;margin:0 auto;padding-bottom:72px}
-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:white;border-bottom:2px solid var(--b1);position:sticky;top:0;z-index:99}
-.logo{font-size:21px;font-weight:900;color:var(--b5);display:flex;align-items:center;gap:8px}
+
+/* ── NAV ── */
+nav{display:flex;align-items:center;justify-content:space-between;padding:12px 32px;background:white;border-bottom:2px solid var(--b1);position:sticky;top:0;z-index:200}
+.logo{font-size:19px;font-weight:900;color:var(--b5);display:flex;align-items:center;gap:8px;flex-shrink:0}
 .logo-dot{width:10px;height:10px;border-radius:50%;background:var(--p3);display:inline-block}
-.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
-.nav-links a{font-size:15px;font-weight:700;color:var(--tm);text-decoration:none;padding:6px 16px;border-radius:20px;transition:.18s}
+
+/* hamburger — hidden on desktop */
+#nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:8px;border-radius:10px;border:1.5px solid var(--b2);background:var(--b1);z-index:201;flex-shrink:0}
+#nav-toggle span{display:block;width:22px;height:2px;background:var(--b5);border-radius:2px;transition:transform .25s,opacity .2s}
+#nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#nav-toggle.open span:nth-child(2){opacity:0}
+#nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+#nav-menu{display:flex;align-items:center;gap:0}
+.nav-links{display:flex;gap:2px;list-style:none;align-items:center;flex-wrap:nowrap}
+.nav-links a{font-size:13px;font-weight:700;color:var(--tm);text-decoration:none;padding:5px 10px;border-radius:20px;transition:.18s;white-space:nowrap}
 .nav-links a:hover{background:var(--b1);color:var(--b5)}
-.nav-gh{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:700;color:var(--tm);text-decoration:none;padding:6px 16px;border-radius:20px;transition:.18s;border:1.5px solid var(--b2)}
+.nav-gh{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--tm);text-decoration:none;padding:5px 10px;border-radius:20px;transition:.18s;border:1.5px solid var(--b2);white-space:nowrap;margin-left:4px}
 .nav-gh:hover{background:var(--b1);color:var(--b5);border-color:var(--b3)}
-.nav-gh svg{flex-shrink:0}
-.lang-sw{display:flex;align-items:center;background:var(--b1);border:1.5px solid var(--b2);border-radius:20px;overflow:hidden;cursor:pointer;flex-shrink:0;margin-left:4px}
-.lang-opt{font-size:13px;font-weight:800;padding:5px 13px;color:var(--tm);transition:.18s;user-select:none}
+.nav-gh svg{flex-shrink:0;width:18px;height:18px}
+.lang-sw{display:flex;align-items:center;background:var(--b1);border:1.5px solid var(--b2);border-radius:20px;overflow:hidden;cursor:pointer;flex-shrink:0;margin-left:6px}
+.lang-opt{font-size:12px;font-weight:800;padding:5px 11px;color:var(--tm);transition:.18s;user-select:none}
 .lang-opt.active{background:var(--b5);color:white}
 .lang-opt:hover:not(.active){background:var(--b2);color:var(--b6)}
+
+/* ── HERO ── */
 .hero{background:white;padding:64px 72px 56px;text-align:center;position:relative;overflow:hidden;border-bottom:2px solid var(--b1);border-radius:0 0 40px 40px}
 .deco{position:absolute;border-radius:50%;opacity:.14;pointer-events:none}
 .deco.a{width:260px;height:260px;background:var(--b3);top:-80px;left:-80px}
@@ -39,6 +52,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px;position:relative;z-index:1}
 .tag{font-size:13px;font-weight:700;padding:6px 16px;border-radius:20px}
 .tag.b{background:var(--b1);color:var(--b6)}.tag.p{background:var(--p1);color:#a03070}.tag.m{background:var(--m1);color:#1a7a5a}
+
+/* ── SECTIONS ── */
 .sec{margin:40px 32px 0}
 .sec-title{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:900;color:var(--tx);margin-bottom:20px}
 .sec-pill{background:var(--b2);border-radius:12px;padding:4px 12px;font-size:19px;line-height:1}
@@ -51,12 +66,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .food-label{font-size:12px;font-weight:800;color:var(--p3);letter-spacing:.06em}
 .food-items{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
 .food-tag{font-size:12px;font-weight:700;background:var(--p1);color:#a03070;padding:4px 10px;border-radius:12px}
-.hunger-wrap{margin-top:18px;background:white;border-radius:20px;padding:22px 28px;border:2px solid var(--y2);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.hunger-label{font-size:13px;font-weight:800;color:#b8860b;white-space:nowrap}
-.hunger-bar-bg{flex:1;height:14px;background:var(--y1);border-radius:20px;overflow:hidden;min-width:120px}
-.hunger-bar-fill{height:100%;border-radius:20px;background:linear-gradient(to right,var(--y2),#ffb300);transition:width 1.2s cubic-bezier(.4,0,.2,1)}
-.hunger-emoji{font-size:22px}
-.hunger-text{font-size:13px;font-weight:700;color:#b8860b;white-space:nowrap}
 .current-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .cur-card{background:white;border-radius:20px;padding:24px 20px;border:2px solid var(--b1);display:flex;align-items:flex-start;gap:14px}
 .cur-icon{font-size:28px;flex-shrink:0;margin-top:2px}
@@ -64,7 +73,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .cur-text{font-size:15px;font-weight:700;color:var(--tx);line-height:1.5}
 .cur-sub{font-size:13px;color:var(--tm);margin-top:4px;line-height:1.5}
 
-/* ── 转盘 ── */
+/* ── SPINNER ── */
 .spinner-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--p2);display:flex;flex-direction:column;align-items:center;gap:20px}
 .spinner-wrap{position:relative;width:260px;height:260px;flex-shrink:0}
 .spinner-canvas{border-radius:50%;display:block}
@@ -78,7 +87,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .spin-btn:active{transform:scale(.96)}
 .spin-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 
-/* ── 接食物游戏 ── */
+/* ── CATCH GAME ── */
 .catch-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--m2);margin-top:18px}
 .catch-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .catch-score-wrap{display:flex;gap:20px}
@@ -98,19 +107,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .catch-dpad-btn{width:58px;height:58px;border-radius:14px;background:white;border:2px solid var(--m2);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:background .12s,transform .1s;color:var(--m3);font-weight:900;touch-action:manipulation}
 .catch-dpad-btn:active,.catch-dpad-btn.pressed{background:var(--m2);transform:scale(.9)}
 
-/* ── 美食地图 ── */
+/* ── MAP ── */
 .map-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);overflow:hidden}
 .map-iframe-wrap{border-radius:14px;overflow:hidden;border:2px solid var(--b1);margin-top:4px}
 .map-iframe-wrap iframe{display:block;width:100%;height:380px;border:none}
 .map-spots{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .map-spot{display:flex;align-items:center;gap:8px;background:var(--b0);border:1.5px solid var(--b1);border-radius:14px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--tx);cursor:pointer;transition:.18s;text-decoration:none}
 .map-spot:hover{border-color:var(--b3);background:var(--b1);color:var(--b5)}
-.map-spot-emoji{font-size:18px}
-.map-spot-info{display:flex;flex-direction:column}
-.map-spot-name{font-size:13px;font-weight:800;color:var(--tx)}
-.map-spot-desc{font-size:11px;color:var(--tm);font-weight:600;margin-top:1px}
 
-/* ── 聊天框 ── */
+/* ── CHAT ── */
 .chat-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--p2)}
 .chat-messages{height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:16px;padding:4px 2px}
 .chat-messages::-webkit-scrollbar{width:4px}
@@ -121,7 +126,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .chat-bubble.bot{background:var(--p1);color:var(--tx);align-self:flex-start;border-bottom-left-radius:6px}
 .chat-bubble.bot .bot-name{font-size:11px;font-weight:800;color:var(--p3);margin-bottom:3px;letter-spacing:.04em}
 .chat-input-row{display:flex;gap:10px}
-.chat-input{flex:1;padding:10px 18px;border-radius:20px;border:2px solid var(--p2);font-size:14px;font-family:inherit;color:var(--tx);background:var(--p1);outline:none;transition:border-color .18s}
+.chat-input{flex:1;padding:10px 18px;border-radius:20px;border:2px solid var(--p2);font-size:14px;font-family:inherit;color:var(--tx);background:var(--p1);outline:none;transition:border-color .18s;min-width:0}
 .chat-input:focus{border-color:var(--p3)}
 .chat-send{padding:10px 20px;border-radius:20px;border:none;background:var(--p3);color:white;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s;flex-shrink:0}
 .chat-send:hover{background:#d4609f}
@@ -129,7 +134,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .chat-chip{font-size:12px;font-weight:700;padding:5px 13px;border-radius:14px;background:var(--p1);color:#a03070;border:1.5px solid var(--p2);cursor:pointer;transition:.15s;font-family:inherit}
 .chat-chip:hover{background:var(--p2)}
 
-/* ── 关于我 Q&A ── */
+/* ── Q&A ── */
 .qa-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b2)}
 .qa-messages{height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:16px;padding:4px 2px}
 .qa-messages::-webkit-scrollbar{width:4px}
@@ -139,7 +144,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .qa-bubble.bot{background:var(--b1);color:var(--tx);align-self:flex-start;border-bottom-left-radius:6px}
 .qa-bubble.bot .bot-name{font-size:11px;font-weight:800;color:var(--b5);margin-bottom:3px;letter-spacing:.04em}
 .qa-input-row{display:flex;gap:10px}
-.qa-input{flex:1;padding:10px 18px;border-radius:20px;border:2px solid var(--b2);font-size:14px;font-family:inherit;color:var(--tx);background:var(--b1);outline:none;transition:border-color .18s}
+.qa-input{flex:1;padding:10px 18px;border-radius:20px;border:2px solid var(--b2);font-size:14px;font-family:inherit;color:var(--tx);background:var(--b1);outline:none;transition:border-color .18s;min-width:0}
 .qa-input:focus{border-color:var(--b4)}
 .qa-send{padding:10px 20px;border-radius:20px;border:none;background:var(--b5);color:white;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s;flex-shrink:0}
 .qa-send:hover{background:var(--b6)}
@@ -147,6 +152,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .qa-chip{font-size:12px;font-weight:700;padding:5px 13px;border-radius:14px;background:var(--b1);color:var(--b6);border:1.5px solid var(--b2);cursor:pointer;transition:.15s;font-family:inherit}
 .qa-chip:hover{background:var(--b2)}
 
+/* ── GITHUB HEATMAP ── */
 .contrib-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);position:relative;overflow:hidden}
 .contrib-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
 .contrib-count{font-size:15px;font-weight:700;color:var(--tm)}
@@ -167,6 +173,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .wave-mid{background:#4aa3f5 !important;box-shadow:0 0 4px 1px rgba(74,163,245,.45)}
 .wave-back{background:#7cbfff !important;box-shadow:0 0 2px 1px rgba(124,191,255,.3)}
 .wave-wash{background:#b8dcff !important;box-shadow:none}
+
+/* ── SNAKE ── */
 .snake-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);margin-top:18px}
 .snake-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .snake-score-wrap{display:flex;align-items:center;gap:20px}
@@ -191,6 +199,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .dpad-row{display:flex;gap:6px}
 .dpad-btn{width:52px;height:52px;border-radius:14px;background:white;border:2px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:background .12s,transform .1s;color:var(--b5);font-weight:900;touch-action:manipulation}
 .dpad-btn:active,.dpad-btn.pressed{background:var(--b2);transform:scale(.9)}
+
+/* ── PAPER ── */
 .paper-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;max-width:760px}
 .paper-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(to bottom,var(--b4),var(--p3));border-radius:5px 0 0 5px}
 .paper-venue{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--b6);background:var(--b1);padding:4px 12px;border-radius:12px;letter-spacing:.03em}
@@ -212,15 +222,18 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .paper-link.primary{background:var(--b5);color:white}
 .paper-link.secondary{background:var(--b1);color:var(--b6);border:1.5px solid var(--b2)}
 .paper-link.ghost{background:var(--p1);color:#a03070;border:1.5px solid var(--p2)}
+
+/* ── CONTACT ── */
 .contact-row{display:flex;gap:14px;flex-wrap:wrap}
 .contact-card{background:white;border-radius:20px;padding:24px 30px;border:2px solid var(--b1);display:flex;align-items:center;gap:18px;text-decoration:none;transition:border-color .2s,transform .2s,background .2s;flex:1;min-width:240px;max-width:420px}
 .contact-card:hover{border-color:var(--b3);background:var(--b0);transform:translateY(-2px)}
 .contact-card.gh:hover{border-color:var(--tm)}
-.contact-card.xhs:hover{border-color:var(--b3);}
 .c-icon{width:48px;height:48px;border-radius:14px;background:var(--b1);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
 .c-icon.gh-icon{background:#f0f0f0}
 .c-name{font-size:16px;font-weight:800;color:var(--tx)}
 .c-sub{font-size:14px;color:var(--tm);margin-top:2px}
+
+/* ── MISC ── */
 .stars{text-align:center;margin:44px 0 0;font-size:20px;letter-spacing:12px;color:var(--b3);opacity:.6}
 footer{text-align:center;margin-top:20px;font-size:14px;color:var(--tl);font-weight:700}
 footer a{color:var(--b5);text-decoration:none;font-weight:800}
@@ -230,8 +243,141 @@ footer span{color:var(--p3)}
 #back-top{position:fixed;bottom:32px;right:32px;width:46px;height:46px;border-radius:50%;background:white;border:2px solid var(--b2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--b5);box-shadow:0 4px 16px rgba(74,163,245,.18);opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s,border-color .18s,background .18s;pointer-events:none;z-index:998}
 #back-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
 #back-top:hover{background:var(--b1);border-color:var(--b3)}
-@media(max-width:900px){.current-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.hero{padding:44px 24px 40px}.hero h1{font-size:30px}.about-grid,.current-grid{grid-template-columns:1fr}nav{padding:14px 20px}.sec{margin:28px 16px 0}.snake-card,.catch-card{padding:18px 16px}.dpad-btn,.catch-dpad-btn{width:58px;height:58px;font-size:22px}.contact-row{flex-direction:column}#back-top{bottom:20px;right:20px}.spinner-wrap{width:210px;height:210px}}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET 900px
+═══════════════════════════════════════════ */
+@media(max-width:900px){
+  .current-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — MOBILE 768px
+═══════════════════════════════════════════ */
+@media(max-width:768px){
+  /* Nav: show hamburger, hide inline menu */
+  nav{padding:12px 16px;flex-wrap:nowrap}
+  #nav-toggle{display:flex}
+
+  #nav-menu{
+    display:none;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(240,247,255,.97);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    z-index:199;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:80px 24px 40px;
+    overflow-y:auto;
+  }
+  #nav-menu.open{display:flex}
+
+  .nav-links{flex-direction:column;align-items:stretch;width:100%;max-width:320px;gap:4px}
+  .nav-links li{width:100%}
+  .nav-links a{
+    display:flex;align-items:center;
+    font-size:17px;font-weight:800;
+    padding:13px 20px;
+    border-radius:16px;
+    border:2px solid var(--b1);
+    background:white;
+  }
+  .nav-links a:hover{background:var(--b1)}
+
+  .nav-gh{
+    width:100%;max-width:320px;
+    justify-content:center;
+    font-size:16px;font-weight:800;
+    padding:13px 20px;
+    border-radius:16px;
+    border:2px solid var(--b2);
+    background:white;
+    margin-left:0;margin-top:4px;
+  }
+  .lang-sw{margin-left:0;margin-top:8px;transform:scale(1.15);transform-origin:center}
+
+  /* Close button for full-screen menu */
+  #nav-menu::before{
+    content:'✕';
+    position:fixed;
+    top:18px;right:20px;
+    font-size:20px;font-weight:900;
+    color:var(--tm);
+    cursor:pointer;
+    width:40px;height:40px;
+    border-radius:50%;
+    background:white;
+    border:2px solid var(--b1);
+    display:flex;align-items:center;justify-content:center;
+    z-index:202;
+    line-height:1;
+    text-align:center;
+    padding-top:2px;
+  }
+
+  /* Hero */
+  .hero{padding:40px 20px 36px;border-radius:0 0 28px 28px}
+  .hero h1{font-size:30px}
+  .avatar{width:100px;height:100px;margin-bottom:18px}
+  .hero-sub{font-size:15px}
+
+  /* Sections */
+  .sec{margin:24px 14px 0}
+  .sec-title{font-size:19px}
+
+  /* About */
+  .about-grid{grid-template-columns:1fr}
+  .about-card{padding:22px 20px}
+  .food-card{padding:20px 16px}
+
+  /* Currently */
+  .current-grid{grid-template-columns:1fr 1fr}
+
+  /* Food duo: stack vertically */
+  #food-duo{grid-template-columns:1fr !important}
+  .spinner-card{padding:22px 18px}
+  .spinner-wrap{width:230px;height:230px}
+  .chat-card{padding:22px 18px}
+  .chat-messages{height:220px}
+
+  /* Games */
+  .snake-card,.catch-card{padding:18px 14px}
+  .dpad-btn,.catch-dpad-btn{width:60px;height:60px;font-size:22px;border-radius:14px}
+  .catch-score-wrap{gap:14px}
+
+  /* Paper */
+  .paper-card{padding:22px 18px}
+  .paper-title{font-size:16px}
+  .paper-links{gap:8px}
+  .paper-link{font-size:12px;padding:7px 14px}
+
+  /* Contact */
+  .contact-row{flex-direction:column}
+  .contact-card{max-width:100%;min-width:0}
+
+  /* Back to top */
+  #back-top{bottom:18px;right:16px;width:42px;height:42px;font-size:16px}
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE 480px
+═══════════════════════════════════════════ */
+@media(max-width:480px){
+  .hero h1{font-size:25px}
+  .hero-sub{font-size:14px}
+  .tags .tag{font-size:12px;padding:5px 12px}
+  .current-grid{grid-template-columns:1fr}
+  .spinner-wrap{width:200px;height:200px}
+  .qa-card,.chat-card{padding:18px 14px}
+  .qa-messages{height:240px}
+  .contrib-card{padding:20px 14px}
+  .catch-score-wrap{gap:10px}
+  .catch-stat-num{font-size:18px}
+}
   </style>
 </head>
 <body>
@@ -240,26 +386,37 @@ footer span{color:var(--p3)}
 
   <nav>
     <div class="logo"><span class="logo-dot"></span> <span data-zh="吃吃大王" data-en="Junwen">吃吃大王</span></div>
-    <ul class="nav-links">
-      <li><a href="#about"     data-zh="关于我" data-en="About">关于我</a></li>
-      <li><a href="#currently" data-zh="最近"   data-en="Now">最近</a></li>
-      <li><a href="#github"    data-zh="GitHub" data-en="GitHub">GitHub</a></li>
-      <li><a href="#projects"  data-zh="论文"   data-en="Paper">论文</a></li>
-      <li><a href="#food"      data-zh="吃什么" data-en="Food">吃什么</a></li>
-      <li><a href="#askme"     data-zh="问问我" data-en="Ask Me">问问我</a></li>
-      <li><a href="#contact"   data-zh="联系"   data-en="Contact">联系</a></li>
-      <li><a href="simba.html" style="background:linear-gradient(135deg,#f5ede0,#e8d5c0);color:#5c3d2e;border:1.5px solid #c4a882;border-radius:20px;padding:6px 14px;font-weight:800;font-size:15px;text-decoration:none;display:flex;align-items:center;gap:5px;transition:.18s" onmouseover="this.style.background='#c4a882';this.style.color='white'" onmouseout="this.style.background='linear-gradient(135deg,#f5ede0,#e8d5c0)';this.style.color='#5c3d2e'">🐱 辛巴</a></li>
-      <li><a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+
+    <!-- Hamburger button (mobile only) -->
+    <button id="nav-toggle" aria-label="菜单" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Nav menu — full-screen overlay on mobile -->
+    <div id="nav-menu">
+      <ul class="nav-links">
+        <li><a href="#about"     data-zh="关于我" data-en="About"   onclick="closeNav()">关于我</a></li>
+        <li><a href="#currently" data-zh="最近"   data-en="Now"     onclick="closeNav()">最近</a></li>
+        <li><a href="#github"    data-zh="GitHub" data-en="GitHub"  onclick="closeNav()">GitHub</a></li>
+        <li><a href="#projects"  data-zh="论文"   data-en="Paper"   onclick="closeNav()">论文</a></li>
+        <li><a href="#food"      data-zh="吃什么" data-en="Food"    onclick="closeNav()">吃什么</a></li>
+        <li><a href="#askme"     data-zh="问问我" data-en="Ask Me"  onclick="closeNav()">问问我</a></li>
+        <li><a href="#contact"   data-zh="联系"   data-en="Contact" onclick="closeNav()">联系</a></li>
+        <li>
+          <a href="simba.html" onclick="closeNav()" style="background:linear-gradient(135deg,#f5ede0,#e8d5c0);color:#5c3d2e;border:2px solid #c4a882 !important;font-weight:800;display:flex;align-items:center;gap:6px">
+            🐱 辛巴
+          </a>
+        </li>
+      </ul>
+      <a class="nav-gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener" onclick="closeNav()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         eattt-wen
-      </a></li>
-      <li>
-        <div class="lang-sw">
-          <span class="lang-opt active" id="optZH" onclick="setLang('zh')">中</span>
-          <span class="lang-opt" id="optEN" onclick="setLang('en')">EN</span>
-        </div>
-      </li>
-    </ul>
+      </a>
+      <div class="lang-sw">
+        <span class="lang-opt active" id="optZH" onclick="setLang('zh')">中</span>
+        <span class="lang-opt" id="optEN" onclick="setLang('en')">EN</span>
+      </div>
+    </div>
   </nav>
 
   <section class="hero">
@@ -421,10 +578,10 @@ footer span{color:var(--p3)}
       </div>
     </div>
 
-    <!-- 转盘 + 美食聊天并排 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+    <!-- 转盘 + 聊天 -->
+    <div id="food-duo" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
 
-      <!-- 今天吃什么转盘 — 11道菜 -->
+      <!-- 今天吃什么转盘 -->
       <div class="spinner-card" id="spinnerCard">
         <div style="text-align:center">
           <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="今天吃什么？🎰" data-en="What to eat? 🎰">今天吃什么？🎰</div>
@@ -442,7 +599,7 @@ footer span{color:var(--p3)}
         <button class="spin-btn" id="spinBtn" onclick="doSpin()" data-zh="🎰 开转！" data-en="🎰 Spin!">🎰 开转！</button>
       </div>
 
-      <!-- 问问吃吃大王 — 更新版 -->
+      <!-- 问问吃吃大王 -->
       <div class="chat-card">
         <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="🤖 问问吃吃大王" data-en="🤖 Ask the Food King">🤖 问问吃吃大王</div>
         <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="火锅烤肉选哪个？我来帮你!" data-en="Hotpot or BBQ? Let me help!">火锅烤肉选哪个？我来帮你!</div>
@@ -497,7 +654,7 @@ footer span{color:var(--p3)}
     </div>
   </section>
 
-  <!-- 🙋 问问我 Q&A -->
+  <!-- 问问我 Q&A -->
   <section class="sec" id="askme">
     <div class="sec-title"><span class="sec-pill">🙋</span> <span data-zh="问问我" data-en="Ask Me Anything">问问我</span></div>
     <div class="qa-card">
@@ -521,12 +678,13 @@ footer span{color:var(--p3)}
     </div>
   </section>
 
+  <!-- 联系 -->
   <section class="sec" id="contact">
     <div class="sec-title"><span class="sec-pill">💌</span> <span data-zh="联系我" data-en="Get in Touch">联系我</span></div>
     <div class="contact-row">
-      <a class="contact-card" href="/cdn-cgi/l/email-protection#f1bba4bfa6b4bfc1c1c2d7d2c7c5ca94df9f8584df949584df8296">
+      <a class="contact-card" href="mailto:JUNWEN003@e.ntu.edu.sg">
         <div class="c-icon">📧</div>
-        <div><div class="c-name" data-zh="邮箱" data-en="Email">邮箱</div><div class="c-sub">JUNWEN003&#64;e.ntu.edu.sg</div></div>
+        <div><div class="c-name" data-zh="邮箱" data-en="Email">邮箱</div><div class="c-sub">JUNWEN003@e.ntu.edu.sg</div></div>
       </a>
       <a class="contact-card gh" href="https://github.com/eattt-wen" target="_blank" rel="noopener">
         <div class="c-icon gh-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></div>
@@ -548,31 +706,49 @@ footer span{color:var(--p3)}
 </div>
 <div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+/* ── NAV TOGGLE ── */
+function toggleNav(){
+  var t=document.getElementById('nav-toggle');
+  var m=document.getElementById('nav-menu');
+  t.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function closeNav(){
+  document.getElementById('nav-toggle').classList.remove('open');
+  document.getElementById('nav-menu').classList.remove('open');
+  document.body.style.overflow='';
+}
+// Close on overlay click (clicking backdrop area)
+document.getElementById('nav-menu').addEventListener('click',function(e){
+  if(e.target===this) closeNav();
+});
+
 /* ── I18N ── */
-var LANG = localStorage.getItem('lang') || 'zh';
-var MONTHS = {
-  zh: ['3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','1月','2月','3月'],
-  en: ['Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar']
+var LANG=localStorage.getItem('lang')||'zh';
+var MONTHS={
+  zh:['3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','1月','2月','3月'],
+  en:['Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar']
 };
-function t(zh,en){ return LANG==='zh'?zh:en; }
+function t(zh,en){return LANG==='zh'?zh:en;}
 function applyLang(l){
-  LANG=l; localStorage.setItem('lang',l);
+  LANG=l;localStorage.setItem('lang',l);
   document.documentElement.lang=l==='zh'?'zh-CN':'en';
   document.title=l==='zh'?'钧文 — 个人主页':'Junwen — Personal Site';
   document.getElementById('optZH').className='lang-opt'+(l==='zh'?' active':'');
   document.getElementById('optEN').className='lang-opt'+(l==='en'?' active':'');
   document.querySelectorAll('[data-zh]').forEach(function(el){
     var val=el.getAttribute('data-'+l);
-    if(val!==null) el.innerHTML=val;
+    if(val!==null)el.innerHTML=val;
   });
   document.querySelectorAll('.month-lbl').forEach(function(el,i){
-    if(MONTHS[l][i]) el.textContent=MONTHS[l][i];
+    if(MONTHS[l][i])el.textContent=MONTHS[l][i];
   });
   var waveOn=document.getElementById('waveBtn').classList.contains('on');
   document.getElementById('waveBtn').innerHTML=(waveOn?'🌊 ':'☀️ ')+t(waveOn?'海浪':'已暂停',waveOn?'Waves':'Paused');
 }
-window.setLang=function(l){ applyLang(l); };
+window.setLang=function(l){applyLang(l);};
 applyLang(LANG);
 
 /* ── 进度条 ── */
@@ -604,20 +780,20 @@ applyLang(LANG);
   img.src='avatar.jpg';
 })();
 
-/* ── 转盘 — 11道菜，修复指针对齐 bug ── */
+/* ── 转盘 ── */
 (function(){
   var foods=[
-    {name:'🍲 火锅',  en:'🍲 Hotpot',    desc:'鸳鸯锅底，今晚就是你了！'},
+    {name:'🍲 火锅',  en:'🍲 Hotpot',     desc:'鸳鸯锅底，今晚就是你了！'},
     {name:'🥩 烤肉',  en:'🥩 Korean BBQ', desc:'自己动手烤，快乐加倍！'},
     {name:'🌶️ 川菜',  en:'🌶️ Sichuan',   desc:'麻辣鲜香，灵魂震颤！'},
-    {name:'🍜 麻辣烫', en:'🍜 Malatang',  desc:'自选食材，幸福满满一锅！'},
-    {name:'🫕 鸡公煲', en:'🫕 Chicken Pot',desc:'麻辣鸡块，越吃越上瘾！'},
+    {name:'🍜 麻辣烫',en:'🍜 Malatang',   desc:'自选食材，幸福满满一锅！'},
+    {name:'🫕 鸡公煲',en:'🫕 Chicken Pot',desc:'麻辣鸡块，越吃越上瘾！'},
     {name:'🥩 牛排',  en:'🥩 Steak',      desc:'medium rare，仪式感拉满！'},
     {name:'🍣 日料',  en:'🍣 Japanese',   desc:'刺身+寿司，人生赢家！'},
-    {name:'🍖 东北菜', en:'🍖 NE Chinese', desc:'铁锅炖大鹅，豪爽大口吃！'},
+    {name:'🍖 东北菜',en:'🍖 NE Chinese', desc:'铁锅炖大鹅，豪爽大口吃！'},
     {name:'🌿 湘菜',  en:'🌿 Hunan',      desc:'辣椒炒肉，下饭神菜！'},
     {name:'🍢 韩料',  en:'🍢 Korean',     desc:'部队锅+炸鸡，韩剧氛围感！'},
-    {name:'🍝 沙茶面', en:'🍝 Satay Noodle',desc:'闽南灵魂，一碗封神！'},
+    {name:'🍝 沙茶面',en:'🍝 Satay Noodle',desc:'闽南灵魂，一碗封神！'},
   ];
   var colors=['#f5b8dc','#b8dcff','#a8e8d4','#ffe082','#f5c6a0','#c8b8f5','#b8f0dc','#f5b8b8','#b8e8f5','#e8f5b8','#ffd6a5'];
   var canvas=document.getElementById('spinnerCanvas');
@@ -625,68 +801,46 @@ applyLang(LANG);
   var W=canvas.width,H=canvas.height,R=W/2-10,cx=W/2,cy=H/2;
   var N=foods.length,ARC=2*Math.PI/N;
   var angle=0,spinning=false,rafId=null;
-
   function drawWheel(a){
     ctx.clearRect(0,0,W,H);
     for(var i=0;i<N;i++){
-      ctx.beginPath();
-      ctx.moveTo(cx,cy);
+      ctx.beginPath();ctx.moveTo(cx,cy);
       ctx.arc(cx,cy,R,a+i*ARC,a+(i+1)*ARC);
-      ctx.closePath();
-      ctx.fillStyle=colors[i%colors.length];
-      ctx.fill();
-      ctx.strokeStyle='white';
-      ctx.lineWidth=2;
-      ctx.stroke();
-      ctx.save();
-      ctx.translate(cx,cy);
-      ctx.rotate(a+(i+0.5)*ARC);
-      ctx.textAlign='right';
-      ctx.fillStyle='#2d4a6a';
+      ctx.closePath();ctx.fillStyle=colors[i%colors.length];ctx.fill();
+      ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke();
+      ctx.save();ctx.translate(cx,cy);ctx.rotate(a+(i+0.5)*ARC);
+      ctx.textAlign='right';ctx.fillStyle='#2d4a6a';
       ctx.font='bold 12px "Noto Sans SC",sans-serif';
-      ctx.fillText(LANG==='zh'?foods[i].name:foods[i].en, R-12, 5);
+      ctx.fillText(LANG==='zh'?foods[i].name:foods[i].en,R-12,5);
       ctx.restore();
     }
     ctx.beginPath();ctx.arc(cx,cy,14,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();
     ctx.strokeStyle='#e87bbf';ctx.lineWidth=3;ctx.stroke();
   }
-
   drawWheel(angle);
-
   window.doSpin=function(){
     if(spinning)return;
     spinning=true;
     document.getElementById('spinBtn').disabled=true;
     document.getElementById('spinResult').textContent=t('转转转…','Spinning…');
     document.getElementById('spinResultSub').textContent='';
-
     var totalSpins=6+Math.random()*4;
     var extraAngle=Math.random()*2*Math.PI;
     var totalAngle=totalSpins*2*Math.PI+extraAngle;
-    var startAngle=angle;
-    var duration=4000+Math.random()*1500;
-    var startTime=null;
+    var startAngle=angle,duration=4000+Math.random()*1500,startTime=null;
     if(rafId)cancelAnimationFrame(rafId);
-
     function easeOut(t){return 1-Math.pow(1-t,4);}
     function tick(now){
       if(!startTime)startTime=now;
-      var elapsed=now-startTime;
-      var progress=Math.min(elapsed/duration,1);
+      var elapsed=now-startTime,progress=Math.min(elapsed/duration,1);
       angle=startAngle+totalAngle*easeOut(progress);
       drawWheel(angle);
-      if(progress<1){
-        rafId=requestAnimationFrame(tick);
-      } else {
-        angle=startAngle+totalAngle;
-        drawWheel(angle);
-        spinning=false;
-
-        // ✅ 修复：停止后从最终角度反推指针（顶部=−π/2）指向的扇区
+      if(progress<1){rafId=requestAnimationFrame(tick);}
+      else{
+        angle=startAngle+totalAngle;drawWheel(angle);spinning=false;
         var needle=-Math.PI/2;
         var normalized=((needle-angle)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
         var realIdx=Math.floor(normalized/ARC)%N;
-
         var food=foods[realIdx];
         document.getElementById('spinResult').textContent=LANG==='zh'?food.name:food.en;
         document.getElementById('spinResultSub').textContent=LANG==='zh'?food.desc:'';
@@ -697,7 +851,7 @@ applyLang(LANG);
   };
 })();
 
-/* ── 美食聊天框 — 围绕11道菜 ── */
+/* ── 美食聊天 ── */
 (function(){
   var QA=[
     {k:['火锅','烤肉','选哪'],a:['当然是火锅！往锅里涮什么都行，天花板级别的社交美食 🍲','烤肉！自己动手烤，每一块都是作品 🥩，配上啤酒人生巅峰！','取决于人数——2人以下烤肉，3人以上火锅，这是本大王铁律 😤']},
@@ -715,29 +869,20 @@ applyLang(LANG);
     {k:['奶茶','boba','珍珠'],a:['奶茶是第六餐！饭前奶茶开胃，饭后奶茶收尾，中间奶茶提神 🧋','推荐：厚乳茶系列，奶味超浓，幸福感爆棚！','本大王奶茶标配：大杯、少冰、五分糖，这不是讲究，这是品味 😤']},
   ];
   var fallback=['这道题难倒本大王了……但不管答案是什么，先吃一口再说！🍜','本大王思考了一下，觉得选哪道菜都行，因为吃就是对的 😂','嗯哼，不知道吃什么？那就来一份火锅，永远不会错！🍲'];
-
   window.sendChat=function(){
     var input=document.getElementById('chatInput');
-    var msg=input.value.trim();
-    if(!msg)return;
-    addBubble(msg,'user','chatMessages');
-    input.value='';
+    var msg=input.value.trim();if(!msg)return;
+    addBubble(msg,'user','chatMessages');input.value='';
     setTimeout(function(){addBubble(getChatReply(msg),'bot','chatMessages');},600);
   };
   window.chipSend=function(btn){
-    var msg=btn.textContent;
-    addBubble(msg,'user','chatMessages');
+    var msg=btn.textContent;addBubble(msg,'user','chatMessages');
     setTimeout(function(){addBubble(getChatReply(msg),'bot','chatMessages');},600);
   };
   function getChatReply(msg){
     var m=msg.toLowerCase();
-    for(var i=0;i<QA.length;i++){
-      for(var j=0;j<QA[i].k.length;j++){
-        if(m.indexOf(QA[i].k[j])>=0){
-          var arr=QA[i].a;return arr[Math.floor(Math.random()*arr.length)];
-        }
-      }
-    }
+    for(var i=0;i<QA.length;i++)for(var j=0;j<QA[i].k.length;j++)
+      if(m.indexOf(QA[i].k[j])>=0){var arr=QA[i].a;return arr[Math.floor(Math.random()*arr.length)];}
     return fallback[Math.floor(Math.random()*fallback.length)];
   }
   function addBubble(text,type,containerId){
@@ -747,12 +892,10 @@ applyLang(LANG);
     div.className=(isChat?'chat-bubble ':'qa-bubble ')+type;
     if(type==='bot'){
       var name=isChat?'吃吃大王 👑':'钧文本人 👨‍💻';
-      div.innerHTML='<div class="'+(isChat?'bot-name':'bot-name')+'" style="font-size:11px;font-weight:800;color:'+(isChat?'var(--p3)':'var(--b5)')+';margin-bottom:3px;letter-spacing:.04em">'+name+'</div>'+text;
-    } else {
-      div.textContent=text;
-    }
-    box.appendChild(div);
-    box.scrollTop=box.scrollHeight;
+      var nameColor=isChat?'var(--p3)':'var(--b5)';
+      div.innerHTML='<div style="font-size:11px;font-weight:800;color:'+nameColor+';margin-bottom:3px;letter-spacing:.04em">'+name+'</div>'+text;
+    } else {div.textContent=text;}
+    box.appendChild(div);box.scrollTop=box.scrollHeight;
   }
   window._addBubble=addBubble;
 })();
@@ -768,13 +911,10 @@ applyLang(LANG);
     {k:['下一步','计划','打算','未来'],a:['还没完全想清楚...正在迷茫中，也在尝试更多可能！先努力完成新的一篇论文吧！找到一个理想的实习！໒꒱ྀིˎˊ˗']},
   ];
   var fallback=['这个问题我没预设答案，但你可以发邮件问我！JUNWEN003@e.ntu.edu.sg 谢谢泥～🥹'];
-  
   window.sendQA=function(){
     var input=document.getElementById('qaInput');
-    var msg=input.value.trim();
-    if(!msg)return;
-    window._addBubble(msg,'user','qaMessages');
-    input.value='';
+    var msg=input.value.trim();if(!msg)return;
+    window._addBubble(msg,'user','qaMessages');input.value='';
     setTimeout(function(){window._addBubble(getQAReply(msg),'bot','qaMessages');},700);
   };
   window.qaSend=function(btn){
@@ -784,13 +924,8 @@ applyLang(LANG);
   };
   function getQAReply(msg){
     var m=msg.toLowerCase();
-    for(var i=0;i<QADB.length;i++){
-      for(var j=0;j<QADB[i].k.length;j++){
-        if(m.indexOf(QADB[i].k[j])>=0){
-          var arr=QADB[i].a;return arr[Math.floor(Math.random()*arr.length)];
-        }
-      }
-    }
+    for(var i=0;i<QADB.length;i++)for(var j=0;j<QADB[i].k.length;j++)
+      if(m.indexOf(QADB[i].k[j])>=0){var arr=QADB[i].a;return arr[Math.floor(Math.random()*arr.length)];}
     return fallback[Math.floor(Math.random()*fallback.length)];
   }
 })();
@@ -805,26 +940,18 @@ applyLang(LANG);
   var FOODS=['🍲','🥩','🌶️','🍜','🫕','🍣','🍖','🌿','🍢','🍝','🧋'];
   var BAD=['💀','🤢'];
   var keys={};
-
+  var spawnTimer=0;
   function init(){
     bowl={x:CW/2-BOWL_W/2,y:CH-36,w:BOWL_W,h:BOWL_H,moving:0};
-    items=[];score=0;lives=3;
+    items=[];score=0;lives=3;spawnTimer=0;
     document.getElementById('catchScore').textContent=0;
     document.getElementById('catchLives').textContent=3;
-    spawnTimer=0;
   }
-
-  var spawnTimer=0;
   function spawnItem(){
     var bad=Math.random()<0.15;
-    items.push({
-      x:20+Math.random()*(CW-40),y:-20,
-      vy:2+Math.random()*2+score*0.04,
-      emoji:bad?BAD[Math.floor(Math.random()*BAD.length)]:FOODS[Math.floor(Math.random()*FOODS.length)],
-      bad:bad,size:24
-    });
+    items.push({x:20+Math.random()*(CW-40),y:-20,vy:2+Math.random()*2+score*0.04,
+      emoji:bad?BAD[Math.floor(Math.random()*BAD.length)]:FOODS[Math.floor(Math.random()*FOODS.length)],bad:bad,size:24});
   }
-
   function drawFrame(){
     ctx.fillStyle='#e4f8f2';ctx.fillRect(0,0,CW,CH);
     ctx.fillStyle='rgba(78,201,168,.15)';
@@ -832,17 +959,16 @@ applyLang(LANG);
     ctx.font='24px serif';ctx.textAlign='center';ctx.textBaseline='middle';
     items.forEach(function(it){ctx.fillText(it.emoji,it.x,it.y);});
     var bx=bowl.x,by=bowl.y,bw=bowl.w,bh=bowl.h;
-    ctx.fillStyle='#2484d8';
-    ctx.beginPath();if(ctx.roundRect)ctx.roundRect(bx,by,bw,bh,10);else ctx.rect(bx,by,bw,bh);ctx.fill();
-    ctx.fillStyle='#4aa3f5';
-    ctx.beginPath();if(ctx.roundRect)ctx.roundRect(bx+4,by+4,bw-8,6,6);else ctx.rect(bx+4,by+4,bw-8,6);ctx.fill();
+    ctx.fillStyle='#2484d8';ctx.beginPath();
+    if(ctx.roundRect)ctx.roundRect(bx,by,bw,bh,10);else ctx.rect(bx,by,bw,bh);ctx.fill();
+    ctx.fillStyle='#4aa3f5';ctx.beginPath();
+    if(ctx.roundRect)ctx.roundRect(bx+4,by+4,bw-8,6,6);else ctx.rect(bx+4,by+4,bw-8,6);ctx.fill();
     ctx.font='18px serif';ctx.fillText('🥣',bx+bw/2,by+bh/2+1);
   }
-
   function gameLoop(){
     if(state!=='running'){frameId=null;return;}
-    if(keys['ArrowLeft']||keys['a']||bowl.moving===-1) bowl.x=Math.max(0,bowl.x-BOWL_SPD);
-    if(keys['ArrowRight']||keys['d']||bowl.moving===1) bowl.x=Math.min(CW-bowl.w,bowl.x+BOWL_SPD);
+    if(keys['ArrowLeft']||keys['a']||bowl.moving===-1)bowl.x=Math.max(0,bowl.x-BOWL_SPD);
+    if(keys['ArrowRight']||keys['d']||bowl.moving===1)bowl.x=Math.min(CW-bowl.w,bowl.x+BOWL_SPD);
     spawnTimer++;
     if(spawnTimer>Math.max(38,80-score*2)){spawnItem();spawnTimer=0;}
     var survived=[];
@@ -851,19 +977,15 @@ applyLang(LANG);
       if(it.y>bowl.y-4&&it.y<bowl.y+bowl.h+4&&it.x>bowl.x-10&&it.x<bowl.x+bowl.w+10){
         if(it.bad){lives--;document.getElementById('catchLives').textContent=lives;if(lives<=0){gameOver();return;}}
         else{score++;if(score>best)best=score;document.getElementById('catchScore').textContent=score;document.getElementById('catchBest').textContent=best;}
-      } else if(it.y<CH+30){
+      }else if(it.y<CH+30){
         if(!it.bad&&it.y>CH){lives--;document.getElementById('catchLives').textContent=lives;if(lives<=0){gameOver();return;}}
         else survived.push(it);
       }
     });
-    items=survived;
-    drawFrame();
-    frameId=requestAnimationFrame(gameLoop);
+    items=survived;drawFrame();frameId=requestAnimationFrame(gameLoop);
   }
-
   function gameOver(){
-    state='over';
-    if(frameId){cancelAnimationFrame(frameId);frameId=null;}
+    state='over';if(frameId){cancelAnimationFrame(frameId);frameId=null;}
     document.getElementById('catchStartBtn').innerHTML='↺ '+t('重来','Restart');
     document.getElementById('catchPauseBtn').style.display='none';
     drawFrame();
@@ -874,7 +996,6 @@ applyLang(LANG);
     o.querySelector('button').textContent=t('再来一次','Play Again');
     o.classList.remove('hidden');
   }
-
   window.startCatch=function(){
     if(frameId){cancelAnimationFrame(frameId);frameId=null;}
     init();drawFrame();
@@ -885,13 +1006,11 @@ applyLang(LANG);
     document.getElementById('catchPauseBtn').innerHTML='⏸ '+t('暂停','Pause');
     frameId=requestAnimationFrame(gameLoop);
   };
-
   window.pauseCatch=function(){
     var btn=document.getElementById('catchPauseBtn');
     if(state==='running'){cancelAnimationFrame(frameId);frameId=null;state='paused';btn.innerHTML='▶ '+t('继续','Resume');}
     else if(state==='paused'){state='running';btn.innerHTML='⏸ '+t('暂停','Pause');frameId=requestAnimationFrame(gameLoop);}
   };
-
   window.catchDpad=function(e,d){
     if(e)e.preventDefault();
     bowl.moving=(d==='L'?-1:1);
@@ -901,18 +1020,15 @@ applyLang(LANG);
     if(d==='L')bowl.x=Math.max(0,bowl.x-BOWL_SPD*4);
     else bowl.x=Math.min(CW-bowl.w,bowl.x+BOWL_SPD*4);
   };
-
   document.addEventListener('keydown',function(e){keys[e.key]=true;if(['ArrowLeft','ArrowRight'].indexOf(e.key)>=0)e.preventDefault();});
   document.addEventListener('keyup',function(e){keys[e.key]=false;});
-
   var tx0c;
   canvas.addEventListener('touchstart',function(e){tx0c=e.touches[0].clientX;e.preventDefault();},{passive:false});
   canvas.addEventListener('touchend',function(e){
     var dx=e.changedTouches[0].clientX-tx0c;
-    if(Math.abs(dx)>20){bowl.x=Math.max(0,Math.min(CW-bowl.w,bowl.x+dx*0.5));}
+    if(Math.abs(dx)>20)bowl.x=Math.max(0,Math.min(CW-bowl.w,bowl.x+dx*0.5));
   },{passive:false});
-
-  if('ontouchstart' in window){document.getElementById('catchHint').textContent=t('左右滑动或使用按钮','Swipe or use buttons');}
+  if('ontouchstart' in window)document.getElementById('catchHint').textContent=t('左右滑动或使用按钮','Swipe or use buttons');
   init();drawFrame();
 })();
 
@@ -932,8 +1048,7 @@ applyLang(LANG);
   var waveOn=true,waveTimer=null,wavePos=0,WAVE_WIDTH=6,WAVE_SPEED=0.55;
   function clr(c){c.classList.remove('wave-front','wave-mid','wave-back','wave-wash');}
   function tickWave(){
-    wavePos+=WAVE_SPEED;
-    if(wavePos>WEEKS+WAVE_WIDTH)wavePos=-WAVE_WIDTH;
+    wavePos+=WAVE_SPEED;if(wavePos>WEEKS+WAVE_WIDTH)wavePos=-WAVE_WIDTH;
     for(var w=0;w<WEEKS;w++){var dist=wavePos-w;for(var d=0;d<DAYS;d++){clr(cells[w][d]);var eff=dist+Math.sin(d*0.7)*1.4;if(eff>0&&eff<=0.8)cells[w][d].classList.add('wave-front');else if(eff>0.8&&eff<=2)cells[w][d].classList.add('wave-mid');else if(eff>2&&eff<=4)cells[w][d].classList.add('wave-back');else if(eff>4&&eff<=WAVE_WIDTH)cells[w][d].classList.add('wave-wash');}}
   }
   function startWave(){waveOn=true;waveTimer=setInterval(tickWave,55);}
@@ -964,23 +1079,17 @@ applyLang(LANG);
     ctx.fillStyle='#dbeeff';
     for(var gx=0;gx<COLS;gx++)for(var gy=0;gy<ROWS;gy++){ctx.beginPath();ctx.arc(px(gx)+CELL/2,px(gy)+CELL/2,1.5,0,Math.PI*2);ctx.fill();}
     ctx.fillStyle='rgba(232,123,191,.35)';ctx.beginPath();ctx.arc(px(food.x)+CELL/2,px(food.y)+CELL/2,CELL*.85,0,Math.PI*2);ctx.fill();
-    ctx.font='14px serif';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText('🍜',px(food.x)+CELL/2,px(food.y)+CELL/2+1);
+    ctx.font='14px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('🍜',px(food.x)+CELL/2,px(food.y)+CELL/2+1);
     for(var i=snake.length-1;i>=0;i--){
       var seg=snake[i],tt=i/snake.length;
       ctx.fillStyle=i===0?'#2484d8':(tt<.5?'#4aa3f5':'#7cbfff');
-      ctx.beginPath();
-      if(ctx.roundRect)ctx.roundRect(px(seg.x),px(seg.y),CELL,CELL,i===0?7:5);
-      else ctx.rect(px(seg.x),px(seg.y),CELL,CELL);
-      ctx.fill();
+      ctx.beginPath();if(ctx.roundRect)ctx.roundRect(px(seg.x),px(seg.y),CELL,CELL,i===0?7:5);else ctx.rect(px(seg.x),px(seg.y),CELL,CELL);ctx.fill();
       if(i===0){
         var ex=dir.x===0?3:dir.x>0?12:3,ey=dir.y===0?3:dir.y>0?12:3;
         var ex2=dir.x===0?CELL-5:dir.x>0?12:3,ey2=dir.y===0?CELL-5:dir.y>0?12:3;
-        ctx.fillStyle='white';
-        ctx.beginPath();ctx.arc(px(seg.x)+ex,px(seg.y)+ey,2.5,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='white';ctx.beginPath();ctx.arc(px(seg.x)+ex,px(seg.y)+ey,2.5,0,Math.PI*2);ctx.fill();
         ctx.beginPath();ctx.arc(px(seg.x)+ex2,px(seg.y)+ey2,2.5,0,Math.PI*2);ctx.fill();
-        ctx.fillStyle='#1a3a5a';
-        ctx.beginPath();ctx.arc(px(seg.x)+ex+.5,px(seg.y)+ey+.5,1.2,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#1a3a5a';ctx.beginPath();ctx.arc(px(seg.x)+ex+.5,px(seg.y)+ey+.5,1.2,0,Math.PI*2);ctx.fill();
         ctx.beginPath();ctx.arc(px(seg.x)+ex2+.5,px(seg.y)+ey2+.5,1.2,0,Math.PI*2);ctx.fill();
       }
     }
@@ -999,7 +1108,7 @@ applyLang(LANG);
   var tx0,ty0;
   canvas.addEventListener('touchstart',function(e){tx0=e.touches[0].clientX;ty0=e.touches[0].clientY;e.preventDefault();},{passive:false});
   canvas.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx0,dy=e.changedTouches[0].clientY-ty0;if(Math.abs(dx)<10&&Math.abs(dy)<10)return;if(Math.abs(dx)>Math.abs(dy))applyDir(dx>0?'RIGHT':'LEFT');else applyDir(dy>0?'DOWN':'UP');},{passive:false});
-  if('ontouchstart' in window){document.getElementById('snakeHint').textContent=t('滑动或使用方向盘','Swipe or use D-pad');}
+  if('ontouchstart' in window)document.getElementById('snakeHint').textContent=t('滑动或使用方向盘','Swipe or use D-pad');
   init();draw();
   ov('🐍',t('贪吃蛇','Snake Game'),t('用方向键或下方方向盘<br>帮小蛇吃到 🍜！','Use arrow keys or the D-pad<br>to eat the 🍜!'),t('开始游戏','Start Playing'));
 })();
