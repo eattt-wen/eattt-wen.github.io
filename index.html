@@ -294,7 +294,6 @@ footer span{color:var(--p3)}
         </div>
         <a href="simba.html" style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;font-weight:800;color:#5c3d2e;background:linear-gradient(135deg,#f5ede0,#e8d5c0);border:1.5px solid #c4a882;border-radius:14px;padding:7px 14px;text-decoration:none;transition:.18s;width:100%" onmouseover="this.style.background='#c4a882';this.style.color='white'" onmouseout="this.style.background='linear-gradient(135deg,#f5ede0,#e8d5c0)';this.style.color='#5c3d2e'">🐱 认识辛巴 →</a>
       </div>
-      </div>
     </div>
   </section>
 
@@ -510,10 +509,12 @@ footer span{color:var(--p3)}
         <button class="qa-chip" onclick="qaSend(this)">怎么联系你合作？</button>
         <button class="qa-chip" onclick="qaSend(this)">日常生活是什么样的？</button>
         <button class="qa-chip" onclick="qaSend(this)">最喜欢的食物？</button>
+        <button class="qa-chip" onclick="qaSend(this)">研究生活苦不苦？</button>
+        <button class="qa-chip" onclick="qaSend(this)">为什么做医学AI？</button>
         <button class="qa-chip" onclick="qaSend(this)">下一步打算？</button>
       </div>
       <div class="qa-messages" id="qaMessages">
-        <div class="qa-bubble bot"><div class="bot-name">文 👨‍💻</div>嗨! 欢迎来问我问题～ଘ(੭ˊ꒳ˋ)੭</div>
+        <div class="qa-bubble bot"><div class="bot-name">钧文本人 👨‍💻</div>嗨！有啥想问的直接说，研究、生活、怎么找我合作都行，保证亲自回答（不是AI）……好吧是AI，但内容是真实的 😂</div>
       </div>
       <div class="qa-input-row">
         <input class="qa-input" id="qaInput" type="text" placeholder="问我任何事…" onkeydown="if(event.key==='Enter')sendQA()"/>
@@ -525,7 +526,7 @@ footer span{color:var(--p3)}
   <section class="sec" id="contact">
     <div class="sec-title"><span class="sec-pill">💌</span> <span data-zh="联系我" data-en="Get in Touch">联系我</span></div>
     <div class="contact-row">
-      <a class="contact-card" href="mailto:JUNWEN003&#64;e.ntu.edu.sg">
+      <a class="contact-card" href="/cdn-cgi/l/email-protection#f1bba4bfa6b4bfc1c1c2d7d2c7c5ca94df9f8584df949584df8296">
         <div class="c-icon">📧</div>
         <div><div class="c-name" data-zh="邮箱" data-en="Email">邮箱</div><div class="c-sub">JUNWEN003&#64;e.ntu.edu.sg</div></div>
       </a>
@@ -549,7 +550,7 @@ footer span{color:var(--p3)}
 </div>
 <div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── I18N ── */
 var LANG = localStorage.getItem('lang') || 'zh';
 var MONTHS = {
@@ -761,14 +762,16 @@ applyLang(LANG);
 /* ── 关于我 Q&A ── */
 (function(){
   var QADB=[
-    {k:['研究','方向','做什么','领域'],a:['我正在做医学图像分析中的可解释 AI！']},
-    {k:['论文','paper','发表','读','看','arXiv'],a:['欢迎去页面里的"论文"区看，有项目主页、PDF 和代码，如有问题可以直接发邮件交流！']},
-    {k:['合作','collaborate','联系','contact','一起'],a:['欢迎合作！📩 发邮件到 JUNWEN003@e.ntu.edu.sg 就行，请说明来意，我看到后会回复的。']},
-    {k:['日常','生活','平时','一天'],a:['吃吃吃吃吃+赶ddl㌥(ง ˙˘˙ )ว㌥']},
-    {k:['食物','吃','最爱','喜欢吃'],a:['那可太多了...我现在特别想吃西塔老太太，吃十盘土豆泥。我还想喝一杯阿嬷手作。']},
-    {k:['下一步','计划','打算','未来'],a:['还没完全想清楚...正在迷茫中，也在尝试更多可能！先努力完成新的一篇论文吧！找到一个理想的实习！໒꒱ྀིˎˊ˗']},
+    {k:['研究','方向','做什么','领域'],a:['我在做医学图像分析中的可解释 AI！简单说就是：让 AI 不只能做出正确判断，还能告诉医生"为什么"这么判断 🔬','研究方向是可解释 AI + 医学图像。目前主要做皮肤科（黑色素瘤诊断）和眼科（视网膜成像）领域的工作。','我关注的核心问题是：AI 在医疗场景里的可信度。一个准确但不透明的模型在临床上价值有限，所以我致力于让 AI "说清楚" 😄']},
+    {k:['论文','paper','发表','读','看','arXiv'],a:['论文主页在 eattt-wen.github.io/CEFM，arXiv 链接也在页面上，直接点论文区的按钮就能找到 📑','我的 AAAI 2026 论文是做可解释黑色素瘤诊断的，结合了对比学习和 LLM 报告生成，arXiv 编号 2512.06105 📄','欢迎去页面里的"论文"区看，有项目主页、PDF 和代码，如有问题可以直接发邮件交流！']},
+    {k:['合作','collaborate','联系','contact','一起'],a:['欢迎合作！📩 发邮件到 JUNWEN003@e.ntu.edu.sg 就行，请说明来意，我看到后会回复的。','如果是学术合作，请把你的研究方向和想法简单介绍一下，我很乐意交流！','合作的话邮件是最靠谱的方式，GitHub 上也可以提 issue 讨论代码层面的问题 💻']},
+    {k:['日常','生活','平时','一天'],a:['我的日常公式：上午看论文/写代码，下午 debug，晚上……吃东西 😂 然后发现 bug 没修完，继续熬。','研究生日常就是：deadline 追着跑，咖啡续着命，偶尔出去吃顿好的犒劳自己 🍲','生活？就是 NTU 校园 → 大牌档 → 宿舍 → 图书馆的四点一线，偶尔打破一下去别处吃东西 😄']},
+    {k:['食物','吃','最爱','喜欢吃'],a:['最爱：火锅！所有食物里社交属性最高、幸福感最强的，没有之一 🍲','要认真回答的话：我对食物没有偏见，什么都吃，但火锅、烤肉、川菜这个组合是我的快乐三角 😋','别看我做医学 AI 的，吃这件事我比做研究认真多了 哈哈 🍜']},
+    {k:['苦','累','辛苦','研究生'],a:['苦是苦的，但也是值得的。每次模型跑出好结果，那种成就感是真实的 💪','说实话，研究生最难的不是技术，是在无数次失败之后还要继续相信这件事值得做。我大部分时候能撑住 😅','苦但有趣！而且每隔一段时间会用一顿大餐犒劳自己，这是必要的心理健康维护 🍲 哈哈']},
+    {k:['为什么','医学','AI','选择'],a:['因为我觉得 AI 在医疗里最有机会真正帮到人。一个能辅助医生的模型，哪怕只提升一点点准确率，背后意义是不一样的 🏥','进医学 AI 是有点"误打误撞"，但越做越觉得这个方向很有意义——尤其是可解释性，这是 AI 进入临床必须解决的问题。','AI + 医疗 = 高风险高价值。我喜欢做有真实意义的研究，而不是在 benchmark 上刷分 😄']},
+    {k:['下一步','计划','打算','未来'],a:['目前在专心把手头的研究做好，也在探索更多方向。长期来说，希望做的东西是真正能用起来的，而不是只能发论文 😄','还没完全想清楚，但方向是继续在可解释 AI 和医学图像里深耕，同时探索多模态的可能性。','未来计划：先把下一篇论文写完 😂 然后继续吃遍新加坡，其他的再说！']},
   ];
-  var fallback=['这个问题我没预设答案，但你可以发邮件问我！JUNWEN003@e.ntu.edu.sg 谢谢泥～🥹'];
+  var fallback=['这个问题我没预设答案，但你可以发邮件问我！JUNWEN003@e.ntu.edu.sg 😄','哈哈问到我盲区了，如果是正经问题欢迎邮件交流，我一定回！','好问题！这个要认真回答的话可能要写很久……直接发邮件给我吧 📩'];
 
   window.sendQA=function(){
     var input=document.getElementById('qaInput');
@@ -1002,8 +1005,4 @@ applyLang(LANG);
   canvas.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx0,dy=e.changedTouches[0].clientY-ty0;if(Math.abs(dx)<10&&Math.abs(dy)<10)return;if(Math.abs(dx)>Math.abs(dy))applyDir(dx>0?'RIGHT':'LEFT');else applyDir(dy>0?'DOWN':'UP');},{passive:false});
   if('ontouchstart' in window){document.getElementById('snakeHint').textContent=t('滑动或使用方向盘','Swipe or use D-pad');}
   init();draw();
-  ov('🐍',t('贪吃蛇','Snake Game'),t('用方向键或下方方向盘<br>帮小蛇吃到 🍜！','Use arrow keys or the D-pad<br>to eat the 🍜!'),t('开始游戏','Start Playing'));
-})();
-</script>
-</body>
-</html>
+  ov('🐍',t('贪吃蛇','Snake Game'),t('用方向键或下方
