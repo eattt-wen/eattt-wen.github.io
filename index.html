@@ -241,13 +241,53 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:12px 3
 .project-link.primary{background:var(--m3);color:white}
 .project-link.secondary{background:var(--b1);color:var(--b6);border:1.5px solid var(--b2)}
 
-/* Preview thumbnail inside project card */
-.project-preview{border-radius:12px;overflow:hidden;border:2px solid var(--m2);background:var(--m1);position:relative;height:160px;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:border-color .2s}
-.project-preview:hover{border-color:var(--m3)}
-.project-preview-inner{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:20px}
-.project-preview-icon{font-size:40px;line-height:1}
-.project-preview-label{font-size:13px;font-weight:800;color:var(--tm)}
-.project-preview-badge{position:absolute;top:10px;right:10px;background:var(--m3);color:white;font-size:11px;font-weight:900;padding:3px 10px;border-radius:10px;letter-spacing:.04em}
+/* ── PROJECT PREVIEW (iframe版) ── */
+.project-preview{
+  border-radius:12px;overflow:hidden;border:2px solid var(--m2);
+  position:relative;height:200px;flex-shrink:0;cursor:pointer;
+  transition:border-color .2s,box-shadow .2s;
+  background:#f8fdfc;
+}
+.project-preview:hover{border-color:var(--m3);box-shadow:0 4px 20px rgba(78,201,168,.2)}
+.project-preview iframe{
+  position:absolute;top:0;left:0;
+  width:200%;height:200%;
+  border:none;border-radius:10px;
+  transform:scale(0.5);transform-origin:top left;
+  pointer-events:none;
+  transition:opacity .3s;
+}
+/* 悬浮时允许交互 */
+.project-preview.interactive iframe{pointer-events:auto}
+/* 遮罩层：悬浮前拦截点击，显示提示 */
+.project-preview-overlay{
+  position:absolute;inset:0;z-index:10;
+  display:flex;align-items:flex-end;justify-content:flex-start;
+  padding:10px 12px;
+  background:linear-gradient(to top, rgba(78,201,168,.25) 0%, transparent 60%);
+  border-radius:10px;
+  transition:opacity .2s;
+  pointer-events:auto;
+}
+.project-preview-overlay:hover{opacity:0;pointer-events:none}
+.project-preview-badge{
+  background:var(--m3);color:white;font-size:11px;font-weight:900;
+  padding:3px 10px;border-radius:10px;letter-spacing:.04em;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+/* idea2paper 项目卡片用蓝紫色系 */
+.project-card.idea{border-color:var(--b2)}
+.project-card.idea::before{background:linear-gradient(to bottom,var(--b4),var(--p3))}
+.project-card.idea .project-venue{color:var(--b6);background:var(--b1)}
+.project-card.idea .project-desc{border-left-color:var(--b3)}
+.project-card.idea .feat-pill{background:var(--b1);color:var(--b6)}
+.project-card.idea .project-tag{background:var(--b1);color:var(--b6)}
+.project-card.idea .project-link.primary{background:var(--b5)}
+.project-card.idea .project-preview{border-color:var(--b2);background:#f0f7ff}
+.project-card.idea .project-preview:hover{border-color:var(--b4);box-shadow:0 4px 20px rgba(74,163,245,.2)}
+.project-card.idea .project-preview-overlay{background:linear-gradient(to top, rgba(74,163,245,.2) 0%, transparent 60%)}
+.project-card.idea .project-preview-badge{background:var(--b5)}
 
 /* ── CONTACT ── */
 .contact-row{display:flex;gap:14px;flex-wrap:wrap}
@@ -378,7 +418,7 @@ footer span{color:var(--p3)}
 
   #back-top{bottom:18px;right:16px;width:42px;height:42px;font-size:16px}
 
-  .project-preview{height:120px}
+  .project-preview{height:140px}
 }
 
 @media(max-width:480px){
@@ -522,20 +562,26 @@ footer span{color:var(--p3)}
   <!-- ═══ 项目 ═══ -->
   <section class="sec" id="projects-dev">
     <div class="sec-title"><span class="sec-pill">🛠️</span> <span data-zh="项目" data-en="Projects">项目</span></div>
-    <div class="project-card">
+
+    <!-- AlphaPlan -->
+    <div class="project-card" style="margin-bottom:20px">
       <div>
         <span class="project-venue">⚡ Vibe Coding · <span data-zh="独立开发" data-en="Solo Build">独立开发</span></span>
       </div>
       <div class="project-title" data-zh="AlphaPlan 领航计划 — A 股策略分析平台" data-en="AlphaPlan — A-Share Strategy Dashboard">AlphaPlan 领航计划 — A 股策略分析平台</div>
 
-      <!-- Preview thumbnail / CTA -->
-      <a class="project-preview" href="https://alphaplan.vercel.app/analysis/600519" target="_blank" rel="noopener" style="text-decoration:none">
-        <div class="project-preview-inner">
-          <div class="project-preview-icon">📊</div>
-          <div class="project-preview-label" data-zh="点击访问 · 实时行情 · 板块热力图" data-en="Click to visit · Live market · Sector heatmap">点击访问 · 实时行情 · 板块热力图</div>
+      <!-- 真实 iframe 预览 -->
+      <div class="project-preview" id="alphaPreview" onclick="openPreview('https://alphaplan.vercel.app/analysis/600519')">
+        <iframe
+          src="https://alphaplan.vercel.app/analysis/600519"
+          title="AlphaPlan Preview"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-forms"
+        ></iframe>
+        <div class="project-preview-overlay">
+          <span class="project-preview-badge" data-zh="🟢 在线 · 点击访问" data-en="🟢 Live · Click to visit">🟢 在线 · 点击访问</span>
         </div>
-        <div class="project-preview-badge" data-zh="在线" data-en="Live">在线</div>
-      </a>
+      </div>
 
       <div class="project-desc" data-zh="一个面向 A 股散户的策略辅助平台，集成全市场情绪面板、板块轮动热力图、AI 情绪标注资讯流、个股深度分析、交易剧本生成与风险雷达等模块。全栈独立开发，设计与工程均出自一人。" data-en="A strategy-assist dashboard for A-share retail investors — featuring a live sentiment panel, sector rotation heatmap, AI-tagged news feed, individual stock deep-analysis, trading playbook generator, and a risk radar. Fully solo-built: design and engineering all in one.">
         一个面向 A 股散户的策略辅助平台，集成全市场情绪面板、板块轮动热力图、AI 情绪标注资讯流、个股深度分析、交易剧本生成与风险雷达等模块。全栈独立开发，设计与工程均出自一人。
@@ -560,6 +606,50 @@ footer span{color:var(--p3)}
         <a class="project-link primary" href="https://alphaplan.zh-cn.edgeone.cool" target="_blank" rel="noopener">🌐 <span data-zh="访问项目" data-en="Visit Project">访问项目</span></a>
         <a class="project-link secondary" href="https://alphaplan.zh-cn.edgeone.cool/analysis" target="_blank" rel="noopener">📈 <span data-zh="个股分析" data-en="Stock Analysis">个股分析</span></a>
         <a class="project-link secondary" href="https://alphaplan.zh-cn.edgeone.cool/risk" target="_blank" rel="noopener">🛡️ <span data-zh="风险控制" data-en="Risk Control">风险控制</span></a>
+      </div>
+    </div>
+
+    <!-- Idea2Paper -->
+    <div class="project-card idea">
+      <div>
+        <span class="project-venue" style="color:var(--b6);background:var(--b1)">✦ Vibe Coding · <span data-zh="独立开发" data-en="Solo Build">独立开发</span></span>
+      </div>
+      <div class="project-title" data-zh="Idea2Paper — AI 学术文献助手" data-en="Idea2Paper — AI Literature Copilot">Idea2Paper — AI 学术文献助手</div>
+
+      <!-- 真实 iframe 预览 -->
+      <div class="project-preview" id="ideaPreview" onclick="openPreview('https://idea2paper.vercel.app')">
+        <iframe
+          src="https://idea2paper.vercel.app"
+          title="Idea2Paper Preview"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-forms"
+        ></iframe>
+        <div class="project-preview-overlay">
+          <span class="project-preview-badge" style="background:var(--b5);" data-zh="🟢 在线 · 点击访问" data-en="🟢 Live · Click to visit">🟢 在线 · 点击访问</span>
+        </div>
+      </div>
+
+      <div class="project-desc" style="border-left-color:var(--b3)" data-zh="为写论文的学生打造的 AI 文献副驾驶：用自然语言描述研究方向，自动找到值得引用的论文，解释相关原因，支持按用途标注（背景 / 相关工作 / 基线），一键导出 BibTeX。适合毕业论文、课程论文、Related Work 写作。" data-en="An AI literature copilot for students writing papers. Describe your research idea in natural language — Idea2Paper finds relevant papers, explains why they matter, lets you tag them by role (background / related work / baseline), and exports BibTeX in one click. Perfect for theses, course papers, and Related Work sections.">
+        为写论文的学生打造的 AI 文献副驾驶：用自然语言描述研究方向，自动找到值得引用的论文，解释相关原因，支持按用途标注（背景 / 相关工作 / 基线），一键导出 BibTeX。适合毕业论文、课程论文、Related Work 写作。
+      </div>
+
+      <div class="project-feats">
+        <span class="feat-pill" style="background:var(--b1);color:var(--b6)">🔍 <span data-zh="自然语言搜索" data-en="NL Search">自然语言搜索</span></span>
+        <span class="feat-pill" style="background:var(--b1);color:var(--b6)">✦ <span data-zh="结构化相关性解释" data-en="Relevance Explanation">结构化相关性解释</span></span>
+        <span class="feat-pill" style="background:var(--b1);color:var(--b6)">📎 <span data-zh="引用篮 + 标注" data-en="Citation Basket">引用篮 + 标注</span></span>
+        <span class="feat-pill" style="background:var(--b1);color:var(--b6)">📤 <span data-zh="一键导出 BibTeX" data-en="BibTeX Export">一键导出 BibTeX</span></span>
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag" style="background:var(--b1);color:var(--b6)" data-zh="学术工具" data-en="Academic Tool">学术工具</span>
+        <span class="project-tag" style="background:var(--b1);color:var(--b6)" data-zh="NLP" data-en="NLP">NLP</span>
+        <span class="project-tag" style="background:var(--b1);color:var(--b6)" data-zh="论文写作辅助" data-en="Writing Aid">论文写作辅助</span>
+        <span class="project-tag pink" data-zh="Vibe Coding" data-en="Vibe Coding">Vibe Coding</span>
+      </div>
+
+      <div class="project-links">
+        <a class="project-link primary" style="background:var(--b5)" href="https://idea2paper.vercel.app" target="_blank" rel="noopener">🌐 <span data-zh="访问项目" data-en="Visit Project">访问项目</span></a>
+        <a class="project-link secondary" href="https://idea2paper.vercel.app" target="_blank" rel="noopener">✦ <span data-zh="开始找文献" data-en="Find Papers">开始找文献</span></a>
       </div>
     </div>
   </section>
@@ -715,7 +805,7 @@ footer span{color:var(--p3)}
   <section class="sec" id="askme">
     <div class="sec-title"><span class="sec-pill">🙋</span> <span data-zh="问问我" data-en="Ask Me Anything">问问我</span></div>
     <div class="qa-card">
-      <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="💬 有问必答（认真版）" data-en="💬 Q&A — The Real Me">💬 有问必答（认真版）</div>
+      <div style="font-size:16px;font-weight:900;color:var(--tx);margin-bottom:4px" data-zh="💬 有问必答（认真版）" data-en="💬 Q&amp;A — The Real Me">💬 有问必答（认真版）</div>
       <div style="font-size:13px;color:var(--tm);margin-bottom:14px" data-zh="研究、生活、合作都可以问！本人亲自回答 🎤" data-en="Research, life, collab — ask away! Personally answered 🎤">研究、生活、合作都可以问！本人亲自回答 🎤</div>
       <div class="qa-chips" id="qaChips">
         <button class="qa-chip" onclick="qaSend(this)">你的研究方向是什么？</button>
@@ -780,6 +870,11 @@ function closeNav(){
 document.getElementById('nav-menu').addEventListener('click',function(e){
   if(e.target===this) closeNav();
 });
+
+/* ── 项目预览：点击跳转 ── */
+function openPreview(url){
+  window.open(url,'_blank','noopener,noreferrer');
+}
 
 /* ── I18N ── */
 var LANG=localStorage.getItem('lang')||'zh';
@@ -1094,7 +1189,6 @@ applyLang(LANG);
   var MONTHS_ZH=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
   var MONTHS_EN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-  /* 色阶：lv0 = 无贡献，lv4 = 最高 */
   function toLv(n){
     if(n===0)  return 0;
     if(n<=2)   return 1;
@@ -1103,24 +1197,19 @@ applyLang(LANG);
     return 4;
   }
 
-  /* 把 days 数组按"列（周）× 行（星期）"排列成二维网格 */
   function buildGrid(days){
-    /* 找到第一天是星期几，补齐前置空格让第一格对齐 */
     if(!days.length) return {cols:[], monthMarks:[]};
 
-    var firstDow = new Date(days[0].date + 'T00:00:00').getDay(); // 0=Sun
-    /* 在头部插入空占位 */
+    var firstDow = new Date(days[0].date + 'T00:00:00').getDay();
     var padded = [];
     for(var p=0; p<firstDow; p++) padded.push(null);
     days.forEach(function(d){ padded.push(d); });
 
-    /* 切成每列 7 格 */
     var cols = [];
     for(var i=0; i<padded.length; i+=7){
       cols.push(padded.slice(i, i+7));
     }
 
-    /* 月份标记：找每列里第一个非 null 的日期，若月份变化则记录 */
     var monthMarks = [];
     var lastMonth = -1;
     cols.forEach(function(col, ci){
@@ -1138,16 +1227,14 @@ applyLang(LANG);
     var days  = data.days  || [];
     var total = data.total || 0;
 
-    /* 更新总贡献数 */
     var countEl = document.querySelector('.contrib-count strong');
     if(countEl) countEl.textContent = total;
 
     var grid = buildGrid(days);
     var cols = grid.cols;
     var monthMarks = grid.monthMarks;
-    var CELL_W = 15; /* px，和原来 CSS 一致 */
+    var CELL_W = 15;
 
-    /* 月份标签行 */
     var mlRow = document.getElementById('month-labels');
     mlRow.innerHTML = '';
     monthMarks.forEach(function(m){
@@ -1161,10 +1248,9 @@ applyLang(LANG);
       mlRow.appendChild(lbl);
     });
 
-    /* 热力格 */
     var hm = document.getElementById('heatmap');
     hm.innerHTML = '';
-    var cells = []; /* cells[ci][di] for wave animation */
+    var cells = [];
 
     cols.forEach(function(col, ci){
       var colEl = document.createElement('div');
@@ -1175,7 +1261,6 @@ applyLang(LANG);
         var cell = document.createElement('div');
         cell.className = 'cell';
         if(!dayData){
-          /* 占位格，透明不可见 */
           cell.style.visibility = 'hidden';
           cell.classList.add('lv0');
         } else {
@@ -1192,7 +1277,6 @@ applyLang(LANG);
       hm.appendChild(colEl);
     });
 
-    /* ── 海浪动画（逻辑与原版相同，作用在新 cells 上）── */
     var waveOn=true, waveTimer=null, wavePos=0, WAVE_WIDTH=6, WAVE_SPEED=0.55;
     var totalCols = cols.length;
 
@@ -1242,12 +1326,10 @@ applyLang(LANG);
     });
   }
 
-  /* 加载 JSON，失败时静默降级（保留空热力图） */
   fetch('data/contrib.json')
     .then(function(r){ return r.json(); })
     .then(function(data){ render(data); })
     .catch(function(){
-      /* 网络请求失败或文件不存在时，渲染空热力图 */
       render({total:0, days:[], updated:''});
     });
 })();
