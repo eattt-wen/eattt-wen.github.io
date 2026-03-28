@@ -443,7 +443,7 @@ footer span{color:var(--p3)}
 @keyframes navSlideDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
 
 /* Splash screen */
-#splash{position:fixed;inset:0;z-index:9999;background:var(--b0);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;animation:splashOut .45s ease .6s forwards}
+#splash{position:fixed;inset:0;z-index:9999;background:var(--b0);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;animation:splashOut .45s ease 3s forwards}
 .splash-emoji{font-size:70px;animation:bounceIn .65s cubic-bezier(.34,1.56,.64,1) both}
 .splash-text{font-size:17px;font-weight:800;color:var(--b5);opacity:0;animation:fadeInUp .4s ease .22s forwards;letter-spacing:.05em}
 
@@ -510,12 +510,7 @@ nav{animation:navSlideDown .5s cubic-bezier(.34,1.56,.64,1) .05s both}
 
   <section class="hero">
     <div class="deco a"></div><div class="deco b"></div><div class="deco c"></div><div class="deco d"></div>
-    <span class="particle" style="top:18%;left:7%;animation-delay:0s;animation-duration:3.3s">⭐</span>
-    <span class="particle" style="top:28%;right:10%;animation-delay:.9s;animation-duration:2.9s">💫</span>
-    <span class="particle" style="bottom:22%;left:13%;animation-delay:1.6s;animation-duration:3.6s">🌸</span>
-    <span class="particle" style="bottom:18%;right:7%;animation-delay:.4s;animation-duration:2.6s">✨</span>
-    <span class="particle" style="top:50%;left:4%;animation-delay:2.1s;animation-duration:4s">🌟</span>
-    <div class="avatar"><div class="avatar-in" id="avatarIn"><img src="avatar.jpg" alt="钧文" id="avatarImg"/></div></div>
+<div class="avatar"><div class="avatar-in" id="avatarIn"><img src="avatar.jpg" alt="钧文" id="avatarImg"/></div></div>
     <h1><span data-zh="你好，我是 " data-en="Hi, I'm ">你好，我是 </span><em>钧文</em> ✨</h1>
     <p class="hero-sub" data-zh="南洋理工大学硕士在读 · 医学 AI 研究者<br>专注于可解释 AI，以及吃吃吃。" data-en="Master's student at NTU · Medical AI Researcher<br>Into explainable AI, and eating.">南洋理工大学硕士在读 · 医学 AI 研究者<br>专注于可解释 AI、视网膜成像，以及吃东西。</p>
     <div class="tags">
@@ -1479,7 +1474,7 @@ applyLang(LANG);
   var s=document.getElementById('splash');
   if(!s)return;
   s.addEventListener('animationend',function(){s.remove();});
-  setTimeout(function(){s.remove();},1200);
+  setTimeout(function(){s.remove();},3600);
 })();
 
 // Scroll-triggered section fade-in
