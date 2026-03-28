@@ -433,9 +433,44 @@ footer span{color:var(--p3)}
   .catch-score-wrap{gap:10px}
   .catch-stat-num{font-size:18px}
 }
+
+/* ── PAGE ENTRANCE ANIMATIONS ── */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounceIn{0%{opacity:0;transform:scale(.3)}55%{opacity:1;transform:scale(1.12)}75%{transform:scale(.95)}100%{opacity:1;transform:scale(1)}}
+@keyframes popStagger{from{opacity:0;transform:scale(.65) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes floatDrift{0%,100%{transform:translateY(0) rotate(-5deg);opacity:.45}50%{transform:translateY(-18px) rotate(10deg);opacity:.85}}
+@keyframes splashOut{0%,65%{opacity:1}100%{opacity:0;pointer-events:none}}
+@keyframes navSlideDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
+
+/* Splash screen */
+#splash{position:fixed;inset:0;z-index:9999;background:var(--b0);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;animation:splashOut .45s ease .6s forwards}
+.splash-emoji{font-size:70px;animation:bounceIn .65s cubic-bezier(.34,1.56,.64,1) both}
+.splash-text{font-size:17px;font-weight:800;color:var(--b5);opacity:0;animation:fadeInUp .4s ease .22s forwards;letter-spacing:.05em}
+
+/* Nav entrance */
+nav{animation:navSlideDown .5s cubic-bezier(.34,1.56,.64,1) .05s both}
+
+/* Hero entrance */
+.hero .avatar{animation:bounceIn .78s cubic-bezier(.34,1.56,.64,1) .65s both}
+.hero h1{opacity:0;animation:fadeInUp .55s ease .9s forwards}
+.hero .hero-sub{opacity:0;animation:fadeInUp .5s ease 1.05s forwards}
+.hero .tag:nth-child(1){opacity:0;animation:popStagger .38s cubic-bezier(.34,1.56,.64,1) 1.18s forwards}
+.hero .tag:nth-child(2){opacity:0;animation:popStagger .38s cubic-bezier(.34,1.56,.64,1) 1.32s forwards}
+.hero .tag:nth-child(3){opacity:0;animation:popStagger .38s cubic-bezier(.34,1.56,.64,1) 1.46s forwards}
+
+/* Floating particles in hero */
+.particle{position:absolute;font-size:17px;pointer-events:none;animation:floatDrift 3s ease-in-out infinite;user-select:none;z-index:0;line-height:1}
+
+/* Scroll-triggered sections */
+.sec{opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease}
+.sec.visible{opacity:1;transform:translateY(0)}
   </style>
 </head>
 <body>
+<div id="splash">
+  <div class="splash-emoji">🍜</div>
+  <div class="splash-text">吃吃大王，启动！</div>
+</div>
 <div id="progress-bar"></div>
 <div class="wrap">
 
@@ -475,6 +510,11 @@ footer span{color:var(--p3)}
 
   <section class="hero">
     <div class="deco a"></div><div class="deco b"></div><div class="deco c"></div><div class="deco d"></div>
+    <span class="particle" style="top:18%;left:7%;animation-delay:0s;animation-duration:3.3s">⭐</span>
+    <span class="particle" style="top:28%;right:10%;animation-delay:.9s;animation-duration:2.9s">💫</span>
+    <span class="particle" style="bottom:22%;left:13%;animation-delay:1.6s;animation-duration:3.6s">🌸</span>
+    <span class="particle" style="bottom:18%;right:7%;animation-delay:.4s;animation-duration:2.6s">✨</span>
+    <span class="particle" style="top:50%;left:4%;animation-delay:2.1s;animation-duration:4s">🌟</span>
     <div class="avatar"><div class="avatar-in" id="avatarIn"><img src="avatar.jpg" alt="钧文" id="avatarImg"/></div></div>
     <h1><span data-zh="你好，我是 " data-en="Hi, I'm ">你好，我是 </span><em>钧文</em> ✨</h1>
     <p class="hero-sub" data-zh="南洋理工大学硕士在读 · 医学 AI 研究者<br>专注于可解释 AI，以及吃吃吃。" data-en="Master's student at NTU · Medical AI Researcher<br>Into explainable AI, and eating.">南洋理工大学硕士在读 · 医学 AI 研究者<br>专注于可解释 AI、视网膜成像，以及吃东西。</p>
@@ -1431,6 +1471,32 @@ applyLang(LANG);
   if('ontouchstart' in window)document.getElementById('snakeHint').textContent=t('滑动或使用方向盘','Swipe or use D-pad');
   init();draw();
   ov('🐍',t('贪吃蛇','Snake Game'),t('用方向键或下方方向盘<br>帮小蛇吃到 🍜！','Use arrow keys or the D-pad<br>to eat the 🍜!'),t('开始游戏','Start Playing'));
+})();
+</script>
+<script>
+// Remove splash after animation
+(function(){
+  var s=document.getElementById('splash');
+  if(!s)return;
+  s.addEventListener('animationend',function(){s.remove();});
+  setTimeout(function(){s.remove();},1200);
+})();
+
+// Scroll-triggered section fade-in
+(function(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.sec').forEach(function(el){el.classList.add('visible');});
+    return;
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    });
+  },{threshold:.1,rootMargin:'0px 0px -36px 0px'});
+  document.querySelectorAll('.sec').forEach(function(el,i){
+    el.style.transitionDelay=Math.min(i*0.05,.12)+'s';
+    obs.observe(el);
+  });
 })();
 </script>
 </body>
