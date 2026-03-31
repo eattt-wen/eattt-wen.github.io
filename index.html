@@ -38,10 +38,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:12px 3
 /* ── HERO ── */
 .hero{background:white;padding:64px 72px 56px;text-align:center;position:relative;overflow:hidden;border-bottom:2px solid var(--b1);border-radius:0 0 40px 40px}
 .deco{position:absolute;border-radius:50%;opacity:.14;pointer-events:none}
-.deco.a{width:260px;height:260px;background:var(--b3);top:-80px;left:-80px}
-.deco.b{width:180px;height:180px;background:var(--p2);top:-30px;right:-50px}
-.deco.c{width:140px;height:140px;background:var(--m2);bottom:-30px;right:80px}
-.deco.d{width:90px;height:90px;background:var(--y2);bottom:10px;left:50px}
+.deco.a{width:260px;height:260px;background:var(--b3);top:-80px;left:-80px;animation:decoFloat 7s ease-in-out infinite}
+.deco.b{width:180px;height:180px;background:var(--p2);top:-30px;right:-50px;animation:decoFloat 9s ease-in-out 1.2s infinite reverse}
+.deco.c{width:140px;height:140px;background:var(--m2);bottom:-30px;right:80px;animation:decoFloat 5.5s ease-in-out 2.4s infinite}
+.deco.d{width:90px;height:90px;background:var(--y2);bottom:10px;left:50px;animation:decoFloat 6.5s ease-in-out 0.6s infinite reverse}
 .avatar{width:130px;height:130px;border-radius:50%;margin:0 auto 24px;padding:3px;background:linear-gradient(135deg,var(--b3),var(--p2),var(--m2));position:relative;z-index:1}
 .avatar-in{width:100%;height:100%;border-radius:50%;background:var(--b1);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:52px}
 .avatar-in img{width:100%;height:100%;object-fit:cover;border-radius:50%}
@@ -60,6 +60,21 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:12px 3
 .about-card{background:white;border-radius:20px;padding:32px 36px;border:2px solid var(--b1)}
 .about-text{font-size:16px;color:var(--tx);line-height:2.0}
 .about-text strong{color:var(--b5)}
+
+/* ── HERO GLOW ── */
+.hero-glow{position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(74,163,245,.16) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);z-index:0;opacity:0;transition:opacity .3s}
+
+/* ── SKILL BARS ── */
+.skill-bars{margin-top:22px;display:flex;flex-direction:column;gap:11px}
+.skill-row{display:block}
+.skill-label{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--tx);margin-bottom:5px}
+.skill-pct{color:var(--tm);font-weight:800}
+.skill-track{height:8px;background:var(--b1);border-radius:8px;overflow:hidden}
+.skill-fill{height:100%;border-radius:8px;width:0%;transition:width 1.3s cubic-bezier(.25,.46,.45,.94)}
+
+/* ── TYPEWRITER CURSOR ── */
+.tw-cursor{display:inline-block;width:2px;background:var(--b5);margin-left:2px;animation:twBlink .7s step-end infinite;vertical-align:middle;height:1em;border-radius:1px}
+@keyframes twBlink{0%,100%{opacity:1}50%{opacity:0}}
 .food-card{background:white;border-radius:20px;padding:24px 16px;border:2px solid var(--p2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
 .food-emoji{font-size:42px}
 .food-label{font-size:12px;font-weight:800;color:var(--p3);letter-spacing:.06em}
@@ -305,7 +320,7 @@ footer{text-align:center;margin-top:20px;font-size:14px;color:var(--tl);font-wei
 footer a{color:var(--b5);text-decoration:none;font-weight:800}
 footer a:hover{text-decoration:underline}
 footer span{color:var(--p3)}
-#progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(to right,var(--b4),var(--p3));z-index:9999;transition:width .1s linear;border-radius:0 2px 2px 0;pointer-events:none}
+#progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(to right,#4aa3f5,#e87bbf,#4ec9a8,#ffe082,#4aa3f5);background-size:200% 100%;animation:rainbowShift 2.5s linear infinite;z-index:9999;transition:width .1s linear;border-radius:0 2px 2px 0;pointer-events:none}
 #back-top{position:fixed;bottom:32px;right:32px;width:46px;height:46px;border-radius:50%;background:white;border:2px solid var(--b2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--b5);box-shadow:0 4px 16px rgba(74,163,245,.18);opacity:0;transform:translateY(12px);transition:opacity .25s,transform .25s,border-color .18s,background .18s;pointer-events:none;z-index:998}
 #back-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
 #back-top:hover{background:var(--b1);border-color:var(--b3)}
@@ -439,11 +454,13 @@ footer span{color:var(--p3)}
 @keyframes bounceIn{0%{opacity:0;transform:scale(.3)}55%{opacity:1;transform:scale(1.12)}75%{transform:scale(.95)}100%{opacity:1;transform:scale(1)}}
 @keyframes popStagger{from{opacity:0;transform:scale(.65) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes floatDrift{0%,100%{transform:translateY(0) rotate(-5deg);opacity:.45}50%{transform:translateY(-18px) rotate(10deg);opacity:.85}}
+@keyframes decoFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-14px) scale(1.04)}}
+@keyframes rainbowShift{from{background-position:0% 0}to{background-position:200% 0}}
 @keyframes splashOut{0%,65%{opacity:1}100%{opacity:0;pointer-events:none}}
 @keyframes navSlideDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
 
 /* Splash screen */
-#splash{position:fixed;inset:0;z-index:9999;background:var(--b0);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;animation:splashOut .45s ease 3s forwards}
+#splash{position:fixed;inset:0;z-index:9999;background:var(--b0);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;animation:splashOut .6s ease 4s forwards}
 .splash-emoji{font-size:70px;animation:bounceIn .65s cubic-bezier(.34,1.56,.64,1) both}
 .splash-text{font-size:17px;font-weight:800;color:var(--b5);opacity:0;animation:fadeInUp .4s ease .22s forwards;letter-spacing:.05em}
 
@@ -453,7 +470,7 @@ nav{animation:navSlideDown .5s cubic-bezier(.34,1.56,.64,1) .05s both}
 /* Hero entrance */
 .hero .avatar{animation:bounceIn .78s cubic-bezier(.34,1.56,.64,1) .65s both}
 .hero h1{opacity:0;animation:fadeInUp .55s ease .9s forwards}
-.hero .hero-sub{opacity:0;animation:fadeInUp .5s ease 1.05s forwards}
+.hero .hero-sub{opacity:0}
 .hero .tag:nth-child(1){opacity:0;animation:popStagger .38s cubic-bezier(.34,1.56,.64,1) 1.18s forwards}
 .hero .tag:nth-child(2){opacity:0;animation:popStagger .38s cubic-bezier(.34,1.56,.64,1) 1.32s forwards}
 .hero .tag:nth-child(3){opacity:0;animation:popStagger .38s cubic-bezier(.34,1.56,.64,1) 1.46s forwards}
@@ -510,6 +527,7 @@ nav{animation:navSlideDown .5s cubic-bezier(.34,1.56,.64,1) .05s both}
 
   <section class="hero">
     <div class="deco a"></div><div class="deco b"></div><div class="deco c"></div><div class="deco d"></div>
+    <div class="hero-glow" id="heroGlow"></div>
 <div class="avatar"><div class="avatar-in" id="avatarIn"><img src="avatar.jpg" alt="钧文" id="avatarImg"/></div></div>
     <h1><span data-zh="你好，我是 " data-en="Hi, I'm ">你好，我是 </span><em>钧文</em> ✨</h1>
     <p class="hero-sub" data-zh="南洋理工大学硕士在读 · 医学 AI 研究者<br>专注于可解释 AI，以及吃吃吃。" data-en="Master's student at NTU · Medical AI Researcher<br>Into explainable AI, and eating.">南洋理工大学硕士在读 · 医学 AI 研究者<br>专注于可解释 AI、视网膜成像，以及吃东西。</p>
@@ -527,6 +545,28 @@ nav{animation:navSlideDown .5s cubic-bezier(.34,1.56,.64,1) .05s both}
       <div class="about-card">
         <div class="about-text" data-zh="我是<strong>南洋理工大学（NTU）的硕士研究生</strong>，研究方向是医学图像分析中的可解释 AI 模型。<br><br>我不只关心模型是否准确，更在乎它是否<strong>可以被理解</strong>——因为在医疗领域，知道&ldquo;为什么&rdquo;和得出正确答案同样重要。<br><br>科研之外，我基本在吃东西。非常认真地吃。" data-en="I'm a <strong>Master's student at NTU</strong> working in medical AI, with a focus on explainable models for medical image analysis.<br><br>I care about making AI not just accurate, but <strong>interpretable</strong> — because in medicine, understanding <em>why</em> matters as much as getting the right answer.<br><br>Outside of research, I'm mostly eating. Very seriously.">
           我是<strong>南洋理工大学（NTU）的硕士研究生</strong>，研究方向是医学图像分析中的可解释 AI 模型。<br><br>我不只关心模型是否准确，更在乎它是否<strong>可以被理解</strong>——因为在医疗领域，知道&ldquo;为什么&rdquo;和得出正确答案同样重要。<br><br>科研之外，我基本在吃东西。非常认真地吃。
+        </div>
+        <div class="skill-bars" id="skillBars">
+          <div class="skill-row">
+            <div class="skill-label"><span>Python &amp; PyTorch</span><span class="skill-pct">92%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-pct="92" style="background:linear-gradient(90deg,var(--b3),var(--b5))"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span data-zh="医学图像分析" data-en="Medical Imaging">医学图像分析</span><span class="skill-pct">88%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-pct="88" style="background:linear-gradient(90deg,var(--p2),var(--p3))"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span data-zh="可解释 AI / XAI" data-en="Explainable AI / XAI">可解释 AI / XAI</span><span class="skill-pct">85%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-pct="85" style="background:linear-gradient(90deg,var(--m2),var(--m3))"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span data-zh="全栈开发" data-en="Full-Stack Dev">全栈开发</span><span class="skill-pct">78%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-pct="78" style="background:linear-gradient(90deg,var(--y2),#f5a623)"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span data-zh="🍜 吃东西" data-en="🍜 Eating">🍜 吃东西</span><span class="skill-pct">99%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-pct="99" style="background:linear-gradient(90deg,#f5c6a0,var(--p3))"></div></div>
+          </div>
         </div>
       </div>
       <div class="food-card">
@@ -1474,7 +1514,7 @@ applyLang(LANG);
   var s=document.getElementById('splash');
   if(!s)return;
   s.addEventListener('animationend',function(){s.remove();});
-  setTimeout(function(){s.remove();},7200);
+  setTimeout(function(){s.remove();},8200);
 })();
 
 // Scroll-triggered section fade-in
@@ -1492,6 +1532,98 @@ applyLang(LANG);
     el.style.transitionDelay=Math.min(i*0.05,.12)+'s';
     obs.observe(el);
   });
+})();
+
+/* ── HERO CURSOR GLOW ── */
+(function(){
+  var hero=document.querySelector('.hero');
+  var glow=document.getElementById('heroGlow');
+  if(!hero||!glow)return;
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    glow.style.left=(e.clientX-r.left)+'px';
+    glow.style.top=(e.clientY-r.top)+'px';
+    glow.style.opacity='1';
+  });
+  hero.addEventListener('mouseleave',function(){glow.style.opacity='0';});
+})();
+
+/* ── 3D CARD TILT ── */
+(function(){
+  var TILT=8;
+  document.querySelectorAll('.about-card,.cur-card,.paper-card,.project-card,.contact-card,.contrib-card').forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var r=card.getBoundingClientRect();
+      var x=(e.clientX-r.left)/r.width-.5;
+      var y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform='perspective(700px) rotateY('+(x*TILT)+'deg) rotateX('+(-y*TILT)+'deg) translateY(-4px)';
+      card.style.boxShadow='0 16px 40px rgba(36,132,216,.13)';
+      card.style.transition='box-shadow .15s,border-color .15s';
+    });
+    card.addEventListener('mouseleave',function(){
+      card.style.transform='';
+      card.style.boxShadow='';
+      card.style.transition='transform .4s ease,box-shadow .4s ease,border-color .18s';
+      setTimeout(function(){card.style.transition='';},400);
+    });
+  });
+})();
+
+/* ── TYPEWRITER for hero-sub ── */
+(function(){
+  var sub=document.querySelector('.hero-sub');
+  if(!sub)return;
+  var originalHTML=sub.innerHTML;
+  function runTypewriter(html){
+    // Parse html into chunks, splitting on <br> tags
+    var parts=html.split(/(<br\s*\/?>)/i);
+    sub.style.opacity='1';
+    sub.innerHTML='';
+    var cursor=document.createElement('span');
+    cursor.className='tw-cursor';
+    sub.appendChild(cursor);
+    var pi=0,ci=0,textParts=[];
+    // Build flat list: each item is either a text char or 'br'
+    parts.forEach(function(p){
+      if(/^<br/i.test(p)){textParts.push({t:'br'});}
+      else{for(var i=0;i<p.length;i++)textParts.push({t:'c',v:p[i]});}
+    });
+    var ti=0;
+    function tick(){
+      if(ti>=textParts.length){cursor.remove();return;}
+      var item=textParts[ti++];
+      if(item.t==='br'){
+        cursor.insertAdjacentElement('beforebegin',document.createElement('br'));
+      } else {
+        cursor.insertAdjacentText('beforebegin',item.v);
+      }
+      setTimeout(tick,item.t==='br'?80:28);
+    }
+    tick();
+  }
+  // Delay until splash is gone (~4.6s)
+  setTimeout(function(){runTypewriter(originalHTML);},4500);
+})();
+
+/* ── SKILL BAR ANIMATION ── */
+(function(){
+  var animated=false;
+  function animateBars(){
+    if(animated)return;
+    animated=true;
+    document.querySelectorAll('.skill-fill').forEach(function(bar,i){
+      setTimeout(function(){
+        bar.style.width=bar.getAttribute('data-pct')+'%';
+      },i*120);
+    });
+  }
+  var about=document.getElementById('about');
+  if(!about)return;
+  if(!('IntersectionObserver' in window)){animateBars();return;}
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){animateBars();obs.unobserve(e.target);}});
+  },{threshold:0.25});
+  obs.observe(about);
 })();
 </script>
 </body>
