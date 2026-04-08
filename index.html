@@ -773,9 +773,54 @@ nav{animation:navSlideDown .5s cubic-bezier(.34,1.56,.64,1) .05s both}
         <a class="project-link secondary" href="https://lucky-offer-gamma.vercel.app/mock-interview" target="_blank" rel="noopener">🎤 <span data-zh="模拟面试" data-en="Mock Interview">模拟面试</span></a>
       </div>
     </div>
+
+    <!-- AI 情报简报 -->
+    <div class="project-card" style="margin-top:20px;border-color:#c4b5fd">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(to bottom,#8b5cf6,#6366f1);border-radius:5px 0 0 5px"></div>
+      <div>
+        <span class="project-venue" style="color:#5b21b6;background:#ede9fe">📡 Vibe Coding · <span data-zh="独立开发" data-en="Solo Build">独立开发</span></span>
+      </div>
+      <div class="project-title" data-zh="你的每日 AI 情报简报" data-en="Your Daily AI Intelligence Briefing">你的每日 AI 情报简报</div>
+
+      <!-- iframe 预览 -->
+      <div class="project-preview" style="border-color:#c4b5fd;background:#faf5ff" id="ainewsPreview" onclick="openPreview('https://ai-newsletter-self.vercel.app')">
+        <iframe
+          src="https://ai-newsletter-self.vercel.app"
+          title="AI 情报简报 Preview"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-forms"
+        ></iframe>
+        <div class="project-preview-overlay" style="background:linear-gradient(to top,rgba(139,92,246,.2) 0%,transparent 60%)">
+          <span class="project-preview-badge" style="background:#8b5cf6" data-zh="🟢 在线 · 点击访问" data-en="🟢 Live · Click to visit">🟢 在线 · 点击访问</span>
+        </div>
+      </div>
+
+      <div class="project-desc" style="border-left-color:#c4b5fd">
+        <span data-zh="每天自动聚合全网 AI 领域最新资讯，经过 AI 筛选与摘要后以简报形式推送。涵盖大模型发布、研究突破、产品动态与行业观察，让你每天 5 分钟掌握 AI 世界的关键情报。" data-en="A daily AI news digest that automatically aggregates top AI news from across the web, curated and summarized by AI. Covers model releases, research breakthroughs, product updates, and industry insights — your 5-minute daily AI briefing.">每天自动聚合全网 AI 领域最新资讯，经过 AI 筛选与摘要后以简报形式推送。涵盖大模型发布、研究突破、产品动态与行业观察，让你每天 5 分钟掌握 AI 世界的关键情报。</span>
+      </div>
+
+      <div class="project-feats">
+        <span class="feat-pill" style="background:#ede9fe;color:#5b21b6">📡 <span data-zh="自动聚合资讯" data-en="Auto Aggregation">自动聚合资讯</span></span>
+        <span class="feat-pill" style="background:#ede9fe;color:#5b21b6">🤖 <span data-zh="AI 筛选摘要" data-en="AI Curation">AI 筛选摘要</span></span>
+        <span class="feat-pill" style="background:#ede9fe;color:#5b21b6">📰 <span data-zh="每日简报推送" data-en="Daily Briefing">每日简报推送</span></span>
+        <span class="feat-pill blue">⚡ <span data-zh="5 分钟读完" data-en="5-min Read">5 分钟读完</span></span>
+      </div>
+
+      <div class="project-tags">
+        <span class="project-tag" style="background:#ede9fe;color:#5b21b6" data-zh="AI 资讯" data-en="AI News">AI 资讯</span>
+        <span class="project-tag" style="background:#ede9fe;color:#5b21b6" data-zh="自动化" data-en="Automation">自动化</span>
+        <span class="project-tag blue" data-zh="全栈" data-en="Full-Stack">全栈</span>
+        <span class="project-tag pink" data-zh="Vibe Coding" data-en="Vibe Coding">Vibe Coding</span>
+      </div>
+
+      <div class="project-links">
+        <a class="project-link primary" style="background:#8b5cf6" href="https://ai-newsletter-self.vercel.app" target="_blank" rel="noopener">🌐 <span data-zh="访问项目" data-en="Visit Project">访问项目</span></a>
+        <a class="project-link secondary" href="https://ai-newsletter-self.vercel.app" target="_blank" rel="noopener">📡 <span data-zh="今日简报" data-en="Today's Briefing">今日简报</span></a>
+      </div>
+    </div>
   </section>
 
-  
+
 
   <!-- 论文 -->
   <section class="sec" id="papers">
