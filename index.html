@@ -166,27 +166,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:12px 3
 .qa-chip{font-size:12px;font-weight:700;padding:5px 13px;border-radius:14px;background:var(--b1);color:var(--b6);border:1.5px solid var(--b2);cursor:pointer;transition:.15s;font-family:inherit}
 .qa-chip:hover{background:var(--b2)}
 
-/* ── GITHUB HEATMAP ── */
-.contrib-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);position:relative;overflow:hidden}
-.contrib-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
-.contrib-count{font-size:15px;font-weight:700;color:var(--tm)}
-.contrib-count strong{color:var(--b5);font-size:18px}
-.contrib-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.wave-toggle{font-size:12px;font-weight:800;color:var(--b5);background:var(--b1);border:1.5px solid var(--b2);padding:5px 14px;border-radius:20px;cursor:pointer;transition:.18s;user-select:none}
-.wave-toggle:hover{background:var(--b2)}.wave-toggle.on{background:var(--b4);color:white;border-color:var(--b4)}
-.contrib-legend{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--tl);font-weight:600}
-.legend-cell{width:12px;height:12px;border-radius:3px;flex-shrink:0}
-.heatmap-scroll{overflow-x:auto;padding-bottom:4px;position:relative;z-index:1}
-.month-labels{display:flex;margin-bottom:6px}
-.month-lbl{font-size:11px;font-weight:700;color:var(--tl);text-align:left;flex-shrink:0}
-.heatmap{display:flex;gap:3px}.heatmap-col{display:flex;flex-direction:column;gap:3px}
-.cell{width:12px;height:12px;border-radius:3px;flex-shrink:0;transition:background-color .3s,box-shadow .3s,transform .12s}
-.cell:hover{transform:scale(1.5);z-index:5;position:relative}
-.lv0{background:#dbeeff}.lv1{background:#b8e0c8}.lv2{background:#72c794}.lv3{background:#3aaa68}.lv4{background:#196e40}
-.wave-front{background:#2484d8 !important;box-shadow:0 0 6px 2px rgba(36,132,216,.65)}
-.wave-mid{background:#4aa3f5 !important;box-shadow:0 0 4px 1px rgba(74,163,245,.45)}
-.wave-back{background:#7cbfff !important;box-shadow:0 0 2px 1px rgba(124,191,255,.3)}
-.wave-wash{background:#b8dcff !important;box-shadow:none}
 
 /* ── SNAKE ── */
 .snake-card{background:white;border-radius:20px;padding:28px 32px;border:2px solid var(--b1);margin-top:18px}
@@ -444,7 +423,6 @@ footer span{color:var(--p3)}
   .spinner-wrap{width:200px;height:200px}
   .qa-card,.chat-card{padding:18px 14px}
   .qa-messages{height:240px}
-  .contrib-card{padding:20px 14px}
   .catch-score-wrap{gap:10px}
   .catch-stat-num{font-size:18px}
 }
@@ -502,7 +480,6 @@ nav{animation:navSlideDown .5s cubic-bezier(.34,1.56,.64,1) .05s both}
       <ul class="nav-links">
         <li><a href="#about"     data-zh="关于我" data-en="About"   onclick="closeNav()">关于我</a></li>
         <li><a href="#currently" data-zh="最近"   data-en="Now"     onclick="closeNav()">最近</a></li>
-        <li><a href="#github"    data-zh="GitHub" data-en="GitHub"  onclick="closeNav()">GitHub</a></li>
         <li><a href="#projects-dev" data-zh="项目" data-en="Projects" onclick="closeNav()">项目</a></li>
         <li><a href="#papers"    data-zh="论文"   data-en="Paper"   onclick="closeNav()">论文</a></li>
         <li><a href="#food"      data-zh="吃什么" data-en="Food"    onclick="closeNav()">吃什么</a></li>
@@ -610,29 +587,6 @@ nav{animation:navSlideDown .5s cubic-bezier(.34,1.56,.64,1) .05s both}
     </div>
   </section>
 
-  <!-- GitHub -->
-  <section class="sec" id="github">
-    <div class="sec-title"><span class="sec-pill">🐙</span> <span data-zh="GitHub 动态" data-en="GitHub Activity">GitHub 动态</span></div>
-    <div class="contrib-card">
-      <div class="contrib-header">
-        <div class="contrib-count">
-          <span data-zh="过去一年共 " data-en="">过去一年共 </span><strong>358</strong><span data-zh=" 次贡献" data-en=" contributions in the last year"> 次贡献</span>
-        </div>
-        <div class="contrib-meta">
-          <button class="wave-toggle on" id="waveBtn" onclick="toggleWave()">🌊 <span id="waveTxt" data-zh="海浪" data-en="Waves">海浪</span></button>
-          <div class="contrib-legend">
-            <span data-zh="少" data-en="Less">少</span>
-            <div class="legend-cell lv0"></div><div class="legend-cell lv1"></div><div class="legend-cell lv2"></div><div class="legend-cell lv3"></div><div class="legend-cell lv4"></div>
-            <span data-zh="多" data-en="More">多</span>
-          </div>
-        </div>
-      </div>
-      <div class="heatmap-scroll">
-        <div id="month-labels" class="month-labels"></div>
-        <div id="heatmap" class="heatmap"></div>
-      </div>
-    </div>
-  </section>
 
   <!-- ═══ 项目 ═══ -->
   <section class="sec" id="projects-dev">
@@ -1061,11 +1015,6 @@ function applyLang(l){
     var val=el.getAttribute('data-'+l);
     if(val!==null)el.innerHTML=val;
   });
-  document.querySelectorAll('.month-lbl').forEach(function(el,i){
-    if(MONTHS[l][i])el.textContent=MONTHS[l][i];
-  });
-  var waveOn=document.getElementById('waveBtn').classList.contains('on');
-  document.getElementById('waveBtn').innerHTML=(waveOn?'🌊 ':'☀️ ')+t(waveOn?'海浪':'已暂停',waveOn?'Waves':'Paused');
 }
 window.setLang=function(l){applyLang(l);};
 applyLang(LANG);
@@ -1351,157 +1300,6 @@ applyLang(LANG);
   init();drawFrame();
 })();
 
-/* ── REAL GITHUB HEATMAP ── */
-(function(){
-  var WEEKS=53, DAYS=7;
-  var MONTHS_ZH=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-  var MONTHS_EN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-  function toLv(n){
-    if(n===0)  return 0;
-    if(n<=2)   return 1;
-    if(n<=5)   return 2;
-    if(n<=9)   return 3;
-    return 4;
-  }
-
-  function buildGrid(days){
-    if(!days.length) return {cols:[], monthMarks:[]};
-
-    var firstDow = new Date(days[0].date + 'T00:00:00').getDay();
-    var padded = [];
-    for(var p=0; p<firstDow; p++) padded.push(null);
-    days.forEach(function(d){ padded.push(d); });
-
-    var cols = [];
-    for(var i=0; i<padded.length; i+=7){
-      cols.push(padded.slice(i, i+7));
-    }
-
-    var monthMarks = [];
-    var lastMonth = -1;
-    cols.forEach(function(col, ci){
-      var first = col.find(function(c){ return c!==null; });
-      if(!first){ monthMarks.push(null); return; }
-      var m = new Date(first.date+'T00:00:00').getMonth();
-      if(m !== lastMonth){ monthMarks.push(m); lastMonth=m; }
-      else monthMarks.push(null);
-    });
-
-    return {cols: cols, monthMarks: monthMarks};
-  }
-
-  function render(data){
-    var days  = data.days  || [];
-    var total = data.total || 0;
-
-    var countEl = document.querySelector('.contrib-count strong');
-    if(countEl) countEl.textContent = total;
-
-    var grid = buildGrid(days);
-    var cols = grid.cols;
-    var monthMarks = grid.monthMarks;
-    var CELL_W = 15;
-
-    var mlRow = document.getElementById('month-labels');
-    mlRow.innerHTML = '';
-    monthMarks.forEach(function(m){
-      var lbl = document.createElement('div');
-      lbl.className = 'month-lbl';
-      lbl.style.width = CELL_W + 'px';
-      if(m !== null){
-        lbl.textContent = LANG==='zh' ? MONTHS_ZH[m] : MONTHS_EN[m];
-        lbl.setAttribute('data-month', m);
-      }
-      mlRow.appendChild(lbl);
-    });
-
-    var hm = document.getElementById('heatmap');
-    hm.innerHTML = '';
-    var cells = [];
-
-    cols.forEach(function(col, ci){
-      var colEl = document.createElement('div');
-      colEl.className = 'heatmap-col';
-      cells[ci] = [];
-      for(var di=0; di<7; di++){
-        var dayData = col[di];
-        var cell = document.createElement('div');
-        cell.className = 'cell';
-        if(!dayData){
-          cell.style.visibility = 'hidden';
-          cell.classList.add('lv0');
-        } else {
-          var lv = toLv(dayData.count);
-          cell.classList.add('lv'+lv);
-          var tip = LANG==='zh'
-            ? (dayData.count===0 ? '无贡献' : dayData.count+' 次贡献') + ' · ' + dayData.date
-            : (dayData.count===0 ? 'No contributions' : dayData.count+' contribution'+(dayData.count>1?'s':'')) + ' · ' + dayData.date;
-          cell.title = tip;
-        }
-        cells[ci][di] = cell;
-        colEl.appendChild(cell);
-      }
-      hm.appendChild(colEl);
-    });
-
-    var waveOn=true, waveTimer=null, wavePos=0, WAVE_WIDTH=6, WAVE_SPEED=0.55;
-    var totalCols = cols.length;
-
-    function clr(c){ c.classList.remove('wave-front','wave-mid','wave-back','wave-wash'); }
-    function tickWave(){
-      wavePos += WAVE_SPEED;
-      if(wavePos > totalCols + WAVE_WIDTH) wavePos = -WAVE_WIDTH;
-      for(var w=0; w<totalCols; w++){
-        var dist = wavePos - w;
-        for(var d=0; d<7; d++){
-          var cell = cells[w] && cells[w][d];
-          if(!cell) continue;
-          clr(cell);
-          var eff = dist + Math.sin(d*0.7)*1.4;
-          if     (eff>0 && eff<=0.8)        cell.classList.add('wave-front');
-          else if(eff>0.8 && eff<=2)        cell.classList.add('wave-mid');
-          else if(eff>2 && eff<=4)          cell.classList.add('wave-back');
-          else if(eff>4 && eff<=WAVE_WIDTH) cell.classList.add('wave-wash');
-        }
-      }
-    }
-    function startWave(){ waveOn=true;  waveTimer=setInterval(tickWave,55); }
-    function stopWave(){
-      waveOn=false;
-      if(waveTimer){ clearInterval(waveTimer); waveTimer=null; }
-      for(var w=0; w<totalCols; w++)
-        for(var d=0; d<7; d++){ var c=cells[w]&&cells[w][d]; if(c) clr(c); }
-    }
-
-    window.toggleWave = function(){
-      var btn = document.getElementById('waveBtn');
-      if(waveOn){
-        stopWave();
-        btn.innerHTML = '☀️ ' + (LANG==='zh'?'已暂停':'Paused');
-        btn.classList.remove('on');
-      } else {
-        startWave();
-        btn.innerHTML = '🌊 ' + (LANG==='zh'?'海浪':'Waves');
-        btn.classList.add('on');
-      }
-    };
-
-    startWave();
-    document.addEventListener('visibilitychange', function(){
-      if(document.hidden){ if(waveTimer){ clearInterval(waveTimer); waveTimer=null; } }
-      else if(waveOn){ waveTimer=setInterval(tickWave,55); }
-    });
-  }
-
-  fetch('data/contrib.json')
-    .then(function(r){ return r.json(); })
-    .then(function(data){ render(data); })
-    .catch(function(){
-      render({total:0, days:[], updated:''});
-    });
-})();
- 
 /* ── SNAKE ── */
 (function(){
   var COLS=28,ROWS=16,CELL=18,GAP=2;
@@ -1596,7 +1394,7 @@ applyLang(LANG);
 /* ── 3D CARD TILT ── */
 (function(){
   var TILT=8;
-  document.querySelectorAll('.about-card,.cur-card,.paper-card,.project-card,.contact-card,.contrib-card').forEach(function(card){
+  document.querySelectorAll('.about-card,.cur-card,.paper-card,.project-card,.contact-card').forEach(function(card){
     card.addEventListener('mousemove',function(e){
       var r=card.getBoundingClientRect();
       var x=(e.clientX-r.left)/r.width-.5;
