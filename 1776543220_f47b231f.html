@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>新春狂欢购 - 好礼送不停</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.5;
+            padding-bottom: constant(safe-area-inset-bottom);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        /* 顶部Banner */
+        .banner {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        .banner-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .banner-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .banner::after {
+            content: '✨';
+            position: absolute;
+            font-size: 60px;
+            top: 20px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        /* 通用区块标题 */
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 16px 16px 8px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #ff6b6b;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        /* 优惠券区 */
+        .coupon-section {
+            padding: 0 16px 24px;
+        }
+        .coupon-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .coupon-item {
+            background: linear-gradient(to right, #fff7f0, #fff);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px dashed #ffa940;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .coupon-info {
+            flex: 1;
+        }
+        .coupon-value {
+            color: #ff6b6b;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .coupon-value span {
+            font-size: 16px;
+        }
+        .coupon-desc {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .coupon-condition {
+            font-size: 12px;
+            color: #999;
+            margin-top: 2px;
+        }
+        .claim-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .claim-btn:active {
+            transform: scale(0.95);
+        }
+        .claim-btn.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .coupon-item.claimed {
+            border-color: #ccc;
+            background: #f9f9f9;
+        }
+        .coupon-item.claimed .coupon-value {
+            color: #999;
+        }
+
+        /* 商品推荐区 */
+        .product-section {
+            padding: 0 16px 24px;
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .product-card:active {
+            transform: scale(0.98);
+        }
+        .product-img {
+            width: 100%;
+            height: 160px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            position: relative;
+        }
+        .product-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: #ff6b6b;
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .product-info {
+            padding: 12px;
+        }
+        .product-name {
+            font-size: 14px;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin-bottom: 8px;
+        }
+        .product-price {
+            color: #ff6b6b;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .product-price s {
+            color: #999;
+            font-size: 12px;
+            margin-left: 4px;
+            font-weight: normal;
+        }
+        .product-sales {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* 抽奖互动区 */
+        .lottery-section {
+            padding: 0 16px 24px;
+            text-align: center;
+        }
+        .lottery-container {
+            background: linear-gradient(to bottom, #fff9e6, #fff);
+            border-radius: 16px;
+            padding: 24px 16px;
+            border: 1px solid #ffe58f;
+            margin-top: 8px;
+        }
+        .lottery-desc {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .lottery-wheel {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 24px;
+            position: relative;
+            background-color: #ffecd2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #999;
+            font-weight: bold;
+            border: 8px solid #ffb142;
+        }
+        .lottery-wheel.spinning {
+            animation: spin 2s cubic-bezier(0.2, 0.8, 0.3, 1);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(1080deg); }
+        }
+        .lottery-btn {
+            background: linear-gradient(to right, #ff8e53, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.3);
+            transition: all 0.2s;
+        }
+        .lottery-btn:active {
+            transform: scale(0.95);
+        }
+        .lottery-btn.disabled {
+            background: #ccc;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+        .lottery-tips {
+            font-size: 12px;
+            color: #999;
+            margin-top: 12px;
+        }
+
+        /* 活动规则区 */
+        .rules-section {
+            background-color: #f9f9f9;
+            padding: 16px;
+            margin: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+        }
+        .rules-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .rules-content {
+            padding-left: 16px;
+        }
+        .rules-content li {
+            margin-bottom: 6px;
+        }
+
+        /* 弹窗 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            width: 280px;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            animation: popup 0.3s ease-out;
+        }
+        @keyframes popup {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #ff6b6b;
+        }
+        .modal-desc {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .modal-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部Banner -->
+        <section class="banner" id="topBanner">
+            <div class="banner-content">
+                <div class="banner-title">新春狂欢购</div>
+                <div class="banner-subtitle">好礼送不停，券享超值优惠</div>
+            </div>
+        </section>
+
+        <!-- 优惠券区 -->
+        <div class="section-title">超值优惠券</div>
+        <section class="coupon-section">
+            <div class="coupon-list" id="couponList">
+                <!-- 优惠券将由JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 商品推荐区 -->
+        <div class="section-title">热销商品推荐</div>
+        <section class="product-section">
+            <div class="product-list" id="productList">
+                <!-- 商品卡片将由JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 抽奖互动区 -->
+        <div class="section-title">幸运大抽奖</div>
+        <section class="lottery-section">
+            <div class="lottery-container">
+                <p class="lottery-desc">试试手气，赢取新春好礼！</p>
+                <div class="lottery-wheel" id="lotteryWheel">点击抽奖</div>
+                <button class="lottery-btn" id="lotteryBtn">立即抽奖</button>
+                <p class="lottery-tips">每位用户限参与1次</p>
+            </div>
+        </section>
+
+        <!-- 活动规则区 -->
+        <section class="rules-section">
+            <div class="rules-title">活动规则</div>
+            <ol class="rules-content">
+                <li>活动时间：即日起至2024年2月29日。</li>
+                <li>优惠券领取后7天内有效，可在指定商品范围内使用。</li>
+                <li>抽奖活动每位用户仅限参与一次，奖品将在活动结束后7个工作日内发放。</li>
+                <li>商品库存有限，售完即止，价格可能随市场情况调整。</li>
+                <li>如遇任何问题，请联系客服协助处理。</li>
+            </ol>
+        </section>
+    </div>
+
+    <!-- 抽奖结果弹窗 -->
+    <div class="modal" id="resultModal">
+        <div class="modal-content">
+            <div class="modal-title" id="resultTitle">恭喜中奖！</div>
+            <div class="modal-desc" id="resultDesc">获得【5元无门槛券】一张</div>
+            <button class="modal-btn" id="closeModalBtn">好的</button>
+        </div>
+    </div>
+
+    <script>
+        // Mock 数据
+        const mockData = {
+            coupons: [
+                { id: 'C1', value: 20, desc: '满199元使用', condition: '部分商品可用', claimed: false },
+                { id: 'C2', value: 50, desc: '满399元使用', condition: '全品类可用', claimed: false },
+                { id: 'C3', value: 10, desc: '无门槛券', condition: '限新用户', claimed: true }
+            ],
+            products: [
+                { id: 'P1', name: '智能温控保温杯 450ml', price: 89.00, originalPrice: 129.00, tag: '限时特惠', sales: '2.3万+', imgColor: '#e3f2fd' },
+                { id: 'P2', name: '无线蓝牙耳机 高续航版', price: 199.00, originalPrice: 299.00, tag: '热门', sales: '5.1万+', imgColor: '#f3e5f5' },
+                { id: 'P3', name: '家用多功能早餐机', price: 159.00, originalPrice: 239.00, tag: '新品', sales: '8千+', imgColor: '#e8f5e8' },
+                { id: 'P4', name: '经典文学丛书系列（共10册）', price: 288.00, originalPrice: 450.00, tag: '套装', sales: '1.2万+', imgColor: '#fff3e0' }
+            ],
+            lotteryPrizes: [
+                '谢谢参与',
+                '5元无门槛券',
+                '10元优惠券',
+                '谢谢参与',
+                '限量纪念品',
+                '谢谢参与',
+                '满199减30券',
+                '谢谢参与'
+            ]
+        };
+
+        // 埋点函数
+        function track(eventName, params = {}) {
+            console.log(`[Track] ${eventName}:`, params);
+            // 在实际环境中，这里会发送数据到数据分析平台
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            track('page_view', { page_name: '新春活动主页', timestamp: Date.now() });
+
+            // 渲染优惠券
+            const couponListEl = document.getElementById('couponList');
+            mockData.coupons.forEach(coupon => {
+                const couponEl = document.createElement('div');
+                couponEl.className = `coupon-item ${coupon.claimed ? 'claimed' : ''}`;
+                couponEl.innerHTML = `
+                    <div class="coupon-info">
+                        <div class="coupon-value">¥<span>${coupon.value}</span></div>
+                        <div class="coupon-desc">${coupon.desc}</div>
+                        <div class="coupon-condition">${coupon.condition}</div>
+                    </div>
+                    <button class="claim-btn ${coupon.claimed ? 'disabled' : ''}" data-id="${coupon.id}">
+                        ${coupon.claimed ? '已领取' : '立即领取'}
+                    </button>
+                `;
+                couponListEl.appendChild(couponEl);
+            });
+
+            // 渲染商品
+            const productListEl = document.getElementById('productList');
+            mockData.products.forEach(product => {
+                const productEl = document.createElement('div');
+                productEl.className = 'product-card';
+                productEl.setAttribute('data-id', product.id);
+                productEl.innerHTML = `
+                    <div class="product-img" style="background-color:${product.imgColor}">
+                        <div class="product-tag">${product.tag}</div>
+                        商品图片
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">¥${product.price.toFixed(2)} <s>¥${product.originalPrice.toFixed(2)}</s></div>
+                        <div class="product-sales">已售 ${product.sales}</div>
+                    </div>
+                `;
+                productListEl.appendChild(productEl);
+            });
+
+            // Banner 点击
+            document.getElementById('topBanner').addEventListener('click', function() {
+                track('banner_click', { position: 'top' });
+                alert('跳转到活动详情页');
+            });
+
+            // 优惠券领取
+            couponListEl.addEventListener('click', function(e) {
+                const btn = e.target.closest('.claim-btn');
+                if (!btn || btn.classList.contains('disabled')) return;
+
+                const couponId = btn.getAttribute('data-id');
+                const couponItem = btn.closest('.coupon-item');
+                btn.textContent = '已领取';
+                btn.classList.add('disabled');
+                couponItem.classList.add('claimed');
+
+                track('coupon_claim', { coupon_id: couponId, value: mockData.coupons.find(c => c.id === couponId)?.value });
+                alert('领取成功！可在“我的优惠券”中查看。');
+            });
+
+            // 商品点击
+            productListEl.addEventListener('click', function(e) {
+                const card = e.target.closest('.product-card');
+                if (!card) return;
+                const productId = card.getAttribute('data-id');
+                const product = mockData.products.find(p => p.id === productId);
+                track('product_click', { product_id: productId, product_name: product?.name });
+                alert(`跳转到商品 ${product?.name} 的详情页`);
+            });
+
+            // 抽奖逻辑
+            const lotteryWheelEl = document.getElementById('lotteryWheel');
+            const lotteryBtnEl = document.getElementById('lotteryBtn');
+            const resultModalEl = document.getElementById('resultModal');
+            const resultTitleEl = document.getElementById('resultTitle');
+            const resultDescEl = document.getElementById('resultDesc');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            let hasLottery = false;
+
+            lotteryBtnEl.addEventListener('click', function() {
+                if (hasLottery || lotteryBtnEl.classList.contains('disabled')) return;
+
+                track('lottery_click', { action: 'start' });
+                lotteryBtnEl.classList.add('disabled');
+                lotteryWheelEl.classList.add('spinning');
+                lotteryWheelEl.textContent = '抽奖中...';
+
+                // 模拟抽奖过程
+                setTimeout(() => {
+                    const randomPrize = mockData.lotteryPrizes[Math.floor(Math.random() * mockData.lotteryPrizes.length)];
+                    lotteryWheelEl.classList.remove('spinning');
+                    lotteryWheelEl.textContent = randomPrize;
+                    hasLottery = true;
+
+                    // 显示结果
+                    resultTitleEl.textContent = randomPrize === '谢谢参与' ? '再接再厉' : '恭喜中奖！';
+                    resultDescEl.textContent = randomPrize === '谢谢参与' ? '下次好运！' : `获得【${randomPrize}】`;
+                    resultModalEl.style.display = 'flex';
+
+                    track('lottery_result', { prize: randomPrize });
+                }, 2000);
+            });
+
+            // 关闭弹窗
+            closeModalBtn.addEventListener('click', function() {
+                resultModalEl.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
