@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>周末快乐，饮力加满！</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .page-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Banner */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #FFBD00 0%, #FF9500 50%, #FF7733 100%);
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .banner-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .bubble:nth-child(1) { width: 60px; height: 60px; top: 20px; right: 30px; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 40px; height: 40px; top: 80px; right: 80px; animation-delay: 0.5s; }
+        .bubble:nth-child(3) { width: 30px; height: 30px; bottom: 40px; left: 20px; animation-delay: 1s; }
+        .bubble:nth-child(4) { width: 50px; height: 50px; bottom: 60px; right: 20px; animation-delay: 1.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .banner-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        
+        .banner-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 8px;
+        }
+        
+        .banner-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        
+        .banner-time {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #fff;
+        }
+        
+        /* Section Title */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px 12px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFBD00);
+            margin: 0 10px;
+        }
+        
+        .section-title::after {
+            background: linear-gradient(90deg, #FFBD00, transparent);
+        }
+        
+        /* Coupon Area */
+        .coupon-area {
+            padding: 0 16px 20px;
+        }
+        
+        .coupon-card {
+            position: relative;
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFFDF5 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #FFBD00;
+            box-shadow: 0 4px 12px rgba(255, 189, 0, 0.15);
+        }
+        
+        .coupon-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .coupon-value {
+            display: flex;
+            align-items: baseline;
+        }
+        
+        .coupon-symbol {
+            font-size: 20px;
+            font-weight: 600;
+            color: #FF5722;
+        }
+        
+        .coupon-amount {
+            font-size: 48px;
+            font-weight: 700;
+            color: #FF5722;
+            line-height: 1;
+        }
+        
+        .coupon-info {
+            flex: 1;
+            margin-left: 16px;
+        }
+        
+        .coupon-threshold {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .coupon-scope {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 4px;
+        }
+        
+        .coupon-validity {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .coupon-btn {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #FFBD00 0%, #FF9500 100%);
+            border: none;
+            border-radius: 22px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
+        }
+        
+        .coupon-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .coupon-btn.claimed {
+            background: #ccc;
+            box-shadow: none;
+        }
+        
+        .coupon-btn.use {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .coupon-tag {
+            position: absolute;
+            top: -8px;
+            left: 16px;
+            padding: 4px 10px;
+            background: #FF5722;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 500;
+            border-radius: 10px;
+        }
+        
+        /* Product List */
+        .product-area {
+            padding: 0 0 20px;
+        }
+        
+        .product-scroll {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 16px;
+            gap: 12px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .product-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .product-card {
+            flex-shrink: 0;
+            width: 140px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:active {
+            transform: scale(0.98);
+        }
+        
+        .product-image {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+        
+        .product-tag {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            padding: 3px 8px;
+            background: linear-gradient(90deg, #FF5722, #FF7043);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 500;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .product-info {
+            padding: 10px;
+        }
+        
+        .product-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+            line-height: 1.3;
+            height: 34px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .product-shop {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            margin-top: 8px;
+        }
+        
+        .price-current {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FF5722;
+        }
+        
+        .price-current::before {
+            content: '¥';
+            font-size: 12px;
+        }
+        
+        .price-original {
+            font-size: 12px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+        
+        .product-sold {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+        
+        /* Interactive Module */
+        .interactive-area {
+            padding: 0 16px 20px;
+        }
+        
+        .lottery-card {
+            background: linear-gradient(135deg, #FF7733 0%, #FF5722 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lottery-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+        
+        .star:nth-child(1) { top: 10%; left: 10%; font-size: 16px; animation-delay: 0s; }
+        .star:nth-child(2) { top: 20%; right: 15%; font-size: 12px; animation-delay: 0.3s; }
+        .star:nth-child(3) { bottom: 20%; left: 15%; font-size: 14px; animation-delay: 0.6s; }
+        .star:nth-child(4) { bottom: 15%; right: 10%; font-size: 18px; animation-delay: 0.9s; }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .lottery-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .lottery-subtitle {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .lottery-prizes {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .prize-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .prize-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .prize-name {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .lottery-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 48px;
+            background: linear-gradient(135deg, #FFBD00 0%, #FFD54F 100%);
+            border: none;
+            border-radius: 28px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #8B4513;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(255, 189, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .lottery-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .lottery-btn.disabled {
+            background: #ccc;
+            color: #666;
+            box-shadow: none;
+        }
+        
+        .lottery-chances {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Rules Section */
+        .rules-area {
+            padding: 0 16px 30px;
+        }
+        
+        .rules-card {
+            background: #f9f9f9;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .rules-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: #fff;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .rules-header-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .rules-arrow {
+            font-size: 12px;
+            color: #999;
+            transition: transform 0.3s ease;
+        }
+        
+        .rules-arrow.expanded {
+            transform: rotate(180deg);
+        }
+        
+        .rules-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .rules-content.expanded {
+            padding: 16px;
+            max-height: 500px;
+        }
+        
+        .rules-list {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .rules-list li {
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+        
+        .rules-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 4px;
+            height: 4px;
+            background: #FFBD00;
+            border-radius: 50%;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            width: 280px;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            animation: modalIn 0.3s ease;
+        }
+        
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .modal-header {
+            padding: 24px 20px 16px;
+            text-align: center;
+        }
+        
+        .modal-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .modal-body {
+            padding: 0 20px 24px;
+            text-align: center;
+        }
+        
+        .modal-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .modal-prize {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 20px;
+            background: #FFF8E6;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #FF5722;
+        }
+        
+        .modal-footer {
+            padding: 0 20px 20px;
+        }
+        
+        .modal-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #FFBD00 0%, #FF9500 100%);
+            border: none;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 11px;
+            color: #999;
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Hero Banner -->
+        <div class="hero-banner" id="heroBanner">
+            <div class="banner-decoration">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+            </div>
+            <div class="banner-content">
+                <div class="banner-icon">☕🧋🍰</div>
+                <h1 class="banner-title">周末快乐，饮力加满！</h1>
+                <p class="banner-subtitle">咖啡奶茶甜品专享福利</p>
+                <span class="banner-time">🕐 10月27日-29日 限时开启</span>
+            </div>
+        </div>
+        
+        <!-- Coupon Area -->
+        <div class="section-title">领券下单，立享优惠</div>
+        <div class="coupon-area">
+            <div class="coupon-card">
+                <span class="coupon-tag">限量福利</span>
+                <div class="coupon-main">
+                    <div class="coupon-value">
+                        <span class="coupon-symbol">¥</span>
+                        <span class="coupon-amount">10</span>
+                    </div>
+                    <div class="coupon-info">
+                        <div class="coupon-threshold">满30元可用</div>
+                        <div class="coupon-scope">限北京·咖啡奶茶甜品</div>
+                        <div class="coupon-validity">有效期至10月29日</div>
+                    </div>
+                    <button class="coupon-btn" id="couponBtn">立即领取</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product List -->
+        <div class="section-title">人气爆品推荐</div>
+        <div class="product-area">
+            <div class="product-scroll" id="productList">
+                <!-- Products will be rendered here -->
+            </div>
+        </div>
+        
+        <!-- Interactive Module -->
+        <div class="section-title">幸运抽奖，惊喜加码</div>
+        <div class="interactive-area">
+            <div class="lottery-card">
+                <div class="lottery-decoration">
+                    <span class="star">✦</span>
+                    <span class="star">✦</span>
+                    <span class="star">✦</span>
+                    <span class="star">✦</span>
+                </div>
+                <h2 class="lottery-title">🎁 试试手气</h2>
+                <p class="lottery-subtitle">有机会获得更多惊喜优惠</p>
+                <div class="lottery-prizes">
+                    <div class="prize-item">
+                        <div class="prize-icon">🧧</div>
+                        <span class="prize-name">5元红包</span>
+                    </div>
+                    <div class="prize-item">
+                        <div class="prize-icon">🎫</div>
+                        <span class="prize-name">满减券</span>
+                    </div>
+                    <div class="prize-item">
+                        <div class="prize-icon">🎉</div>
+                        <span class="prize-name">神秘礼品</span>
+                    </div>
+                </div>
+                <button class="lottery-btn" id="lotteryBtn">马上试试</button>
+                <p class="lottery-chances" id="lotteryChances">今日剩余 1 次抽奖机会</p>
+            </div>
+        </div>
+        
+        <!-- Rules Section -->
+        <div class="rules-area">
+            <div class="rules-card">
+                <div class="rules-header" id="rulesHeader">
+                    <span class="rules-header-title">📋 活动规则</span>
+                    <span class="rules-arrow" id="rulesArrow">▼</span>
+                </div>
+                <div class="rules-content" id="rulesContent">
+                    <ul class="rules-list">
+                        <li><strong>活动时间：</strong>2023年10月27日00:00至10月29日23:59</li>
+                        <li><strong>优惠券规则：</strong>每人限领1张"满30减10"优惠券，限活动期间在北京地区参与活动的咖啡、奶茶、甜品类商家使用，具体以下单页面显示为准</li>
+                        <li><strong>抽奖规则：</strong>活动期间每位用户有1次抽奖机会。奖品为随机发放的美团平台优惠权益，中奖结果以页面提示为准</li>
+                        <li>本活动由美团发起，优惠券及奖品由美团提供，与苹果公司无关</li>
+                        <li>如有任何问题，请联系美团客服</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="page-footer">
+            本活动最终解释权归美团所有<br>
+            © 2023 美团
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon">🎉</div>
+                <h3 class="modal-title" id="modalTitle">恭喜您！</h3>
+            </div>
+            <div class="modal-body">
+                <p class="modal-text" id="modalText">您已成功领取优惠券</p>
+                <div class="modal-prize" id="modalPrize"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" id="modalBtn">我知道了</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mock Data
+        const mockData = {
+            coupon: {
+                amount: 10,
+                threshold: 30,
+                validity: "2023-10-27 00:00:00 至 2023-10-29 23:59:59",
+                scope: "限北京地区参与活动的咖啡、奶茶、甜品类商家使用",
+                status: "unclaimed"
+            },
+            products: [
+                { id: 1, name: "【星巴克】大杯拿铁", emoji: "☕", originalPrice: 35, discountPrice: 28, sold: "月售2万+", shop: "星巴克(国贸店)", tag: "口碑爆款" },
+                { id: 2, name: "【喜茶】多肉葡萄", emoji: "🧋", originalPrice: 29, discountPrice: 25, sold: "月售5万+", shop: "喜茶(三里屯店)", tag: "人气推荐" },
+                { id: 3, name: "【鲍师傅】肉松小贝", emoji: "🧁", originalPrice: 32, discountPrice: 26, sold: "月售3万+", shop: "鲍师傅(西单店)", tag: "经典必点" },
+                { id: 4, name: "【奈雪】霸气芝士草莓", emoji: "🍓", originalPrice: 32, discountPrice: 27, sold: "月售1.5万+", shop: "奈雪(王府井店)", tag: "季节限定" }
+            ],
+            lottery: {
+                prizes: ["5元无门槛红包", "满20减5优惠券", "谢谢参与"],
+                userChances: 1,
+                result: null
+            }
+        };
+        
+        // Track Function
+        function track(eventName, params) {
+            const trackData = {
+                event: eventName,
+                params: params,
+                timestamp: new Date().toISOString(),
+                page: "weekend_tea_promotion"
+            };
+            console.log("[Track Event]", JSON.stringify(trackData, null, 2));
+        }
+        
+        // Page View Track
+        document.addEventListener("DOMContentLoaded", function() {
+            track("page_view", {
+                page_name: "周末下午茶活动页",
+                campaign_id: "weekend_tea_2023",
+                city: "北京"
+            });
+            
+            renderProducts();
+        });
+        
+        // Render Products
+        function renderProducts() {
+            const productList = document.getElementById("productList");
+            productList.innerHTML = mockData.products.map(product => `
+                <div class="product-card" data-id="${product.id}" onclick="handleProductClick(${product.id})">
+                    <div class="product-image">
+                        <span class="product-tag">${product.tag}</span>
+                        ${product.emoji}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-shop">${product.shop}</div>
+                        <div class="product-price">
+                            <span class="price-current">${product.discountPrice}</span>
+                            <span class="price-original">¥${product.originalPrice}</span>
+                        </div>
+                        <div class="product-sold">${product.sold}</div>
+                    </div>
+                </div>
+            `).join("");
+        }
+        
+        // Banner Click
+        document.getElementById("heroBanner").addEventListener("click", function() {
+            track("banner_click", {
+                banner_name: "周末快乐饮力加满",
+                position: "top"
+            });
+        });
+        
+        // Coupon Claim
+        document.getElementById("couponBtn").addEventListener("click", function() {
+            const btn = this;
+            if (mockData.coupon.status === "unclaimed") {
+                mockData.coupon.status = "claimed";
+                btn.textContent = "去使用";
+                btn.classList.remove("claimed");
+                btn.classList.add("use");
+                
+                track("coupon_claim", {
+                    coupon_amount: mockData.coupon.amount,
+                    coupon_threshold: mockData.coupon.threshold,
+                    success: true
+                });
+                
+                showModal("🎉", "领取成功！", "满30减10优惠券已放入您的卡包", "满30减10");
+            } else if (mockData.coupon.status === "claimed") {
+                track("coupon_use_click", {
+                    coupon_amount: mockData.coupon.amount
+                });
+                showModal("👍", "即将跳转", "前往选购心仪的咖啡奶茶甜品", "");
+            }
+        });
+        
+        // Product Click
+        function handleProductClick(productId) {
+            const product = mockData.products.find(p => p.id === productId);
+            track("product_click", {
+                product_id: productId,
+                product_name: product.name,
+                product_price: product.discountPrice,
+                shop_name: product.shop
+            });
+            showModal("☕", product.name, "即将跳转到商品详情页", "¥" + product.discountPrice);
+        }
+        
+        // Lottery Click
+        document.getElementById("lotteryBtn").addEventListener("click", function() {
+            const btn = this;
+            if (mockData.lottery.userChances > 0) {
+                track("lottery_click", {
+                    remaining_chances: mockData.lottery.userChances
+                });
+                
+                btn.textContent = "抽奖中...";
+                btn.classList.add("disabled");
+                
+                setTimeout(function() {
+                    mockData.lottery.userChances = 0;
+                    const randomIndex = Math.floor(Math.random() * mockData.lottery.prizes.length);
+                    const prize = mockData.lottery.prizes[randomIndex];
+                    mockData.lottery.result = prize;
+                    
+                    document.getElementById("lotteryChances").textContent = "今日抽奖机会已用完";
+                    btn.textContent = "已抽奖";
+                    
+                    if (prize !== "谢谢参与") {
+                        showModal("🎊", "恭喜中奖！", "您获得了以下奖励", prize);
+                    } else {
+                        showModal("😊", "谢谢参与", "下次一定有好运哦", "");
+                    }
+                    
+                    track("lottery_result", {
+                        prize: prize,
+                        is_win: prize !== "谢谢参与"
+                    });
+                }, 1500);
+            }
+        });
+        
+        // Rules Toggle
+        document.getElementById("rulesHeader").addEventListener("click", function() {
+            const content = document.getElementById("rulesContent");
+            const arrow = document.getElementById("rulesArrow");
+            content.classList.toggle("expanded");
+            arrow.classList.toggle("expanded");
+            
+            track("rules_toggle", {
+                action: content.classList.contains("expanded") ? "expand" : "collapse"
+            });
+        });
+        
+        // Modal Functions
+        function showModal(icon, title, text, prize) {
+            document.getElementById("modalIcon").textContent = icon;
+            document.getElementById("modalTitle").textContent = title;
+            document.getElementById("modalText").textContent = text;
+            const prizeEl = document.getElementById("modalPrize");
+            if (prize) {
+                prizeEl.textContent = prize;
+                prizeEl.style.display = "inline-block";
+            } else {
+                prizeEl.style.display = "none";
+            }
+            document.getElementById("modalOverlay").classList.add("active");
+        }
+        
+        document.getElementById("modalBtn").addEventListener("click", function() {
+            document.getElementById("modalOverlay").classList.remove("active");
+        });
+        
+        document.getElementById("modalOverlay").addEventListener("click", function(e) {
+            if (e.target === this) {
+                this.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+</html>
