@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>春日焕新季 - 精选好物限时优惠</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding-bottom: 20px;
+        }
+        /* 顶部 Banner */
+        .banner {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-content {
+            text-align: center;
+            z-index: 2;
+            padding: 0 15px;
+        }
+        .banner-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        .banner-subtitle {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        .banner::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -150px;
+            right: -100px;
+        }
+        /* 优惠券区 */
+        .section {
+            margin: 20px 15px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #222;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #ff6b6b;
+            border-radius: 2px;
+            margin-right: 8px;
+        }
+        .coupon-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .coupon-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to right, #fff5f5, #fff);
+            border: 1px dashed #ff6b6b;
+            border-radius: 10px;
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .coupon-info {
+            flex: 1;
+        }
+        .coupon-value {
+            color: #ff6b6b;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .coupon-value span {
+            font-size: 14px;
+        }
+        .coupon-condition {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .coupon-validity {
+            font-size: 12px;
+            color: #999;
+            margin-top: 2px;
+        }
+        .coupon-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .coupon-btn:active {
+            background-color: #e55a5a;
+        }
+        .coupon-btn.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        /* 商品推荐区 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .product-card:active {
+            transform: scale(0.98);
+        }
+        .product-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+            display: block;
+        }
+        .product-info {
+            padding: 10px;
+        }
+        .product-title {
+            font-size: 14px;
+            color: #333;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin-bottom: 8px;
+        }
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+        .current-price {
+            color: #ff6b6b;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .current-price span {
+            font-size: 12px;
+        }
+        .original-price {
+            color: #999;
+            font-size: 12px;
+            text-decoration: line-through;
+        }
+        /* 抽奖互动区 */
+        .lottery-section {
+            text-align: center;
+        }
+        .lottery-desc {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .lottery-wheel {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 20px;
+            position: relative;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #999;
+            border: 8px solid #ffd166;
+        }
+        .lottery-btn {
+            background: linear-gradient(to right, #ffd166, #ffb347);
+            color: #333;
+            border: none;
+            border-radius: 30px;
+            padding: 14px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 179, 71, 0.3);
+            transition: transform 0.2s;
+        }
+        .lottery-btn:active {
+            transform: scale(0.95);
+        }
+        .lottery-result {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+            min-height: 20px;
+        }
+        /* 活动规则区 */
+        .rules-list {
+            padding-left: 18px;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .rules-list li {
+            margin-bottom: 8px;
+        }
+        /* 底部 */
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 30px;
+            padding: 0 15px;
+        }
+        .divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 20px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部 Banner -->
+        <section class="banner" id="topBanner">
+            <div class="banner-content">
+                <h1 class="banner-title">春日焕新季</h1>
+                <p class="banner-subtitle">精选好物 · 限时优惠</p>
+            </div>
+        </section>
+
+        <!-- 优惠券区 -->
+        <section class="section">
+            <h2 class="section-title">专属优惠券</h2>
+            <div class="coupon-list" id="couponList">
+                <!-- Mock 数据通过 JS 生成 -->
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 商品推荐区 -->
+        <section class="section">
+            <h2 class="section-title">人气推荐</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Mock 数据通过 JS 生成 -->
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 抽奖互动区 -->
+        <section class="section lottery-section">
+            <h2 class="section-title">幸运抽奖</h2>
+            <p class="lottery-desc">试试手气，有机会获得惊喜礼品</p>
+            <div class="lottery-wheel" id="lotteryWheel">
+                点击下方按钮开始
+            </div>
+            <button class="lottery-btn" id="lotteryBtn">立即抽奖</button>
+            <div class="lottery-result" id="lotteryResult"></div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 活动规则区 -->
+        <section class="section">
+            <h2 class="section-title">活动规则</h2>
+            <ul class="rules-list">
+                <li>活动时间：即日起至2024年4月30日23:59。</li>
+                <li>优惠券领取后7天内有效，请在有效期内使用。</li>
+                <li>优惠券每人限领一次，不可与其他优惠叠加。</li>
+                <li>抽奖活动每人每天可参与一次，礼品数量有限。</li>
+                <li>商品价格可能因活动调整，请以结算页为准。</li>
+                <li>如发现恶意刷奖行为，主办方有权取消参与资格。</li>
+                <li>如有任何问题，请联系客服咨询。</li>
+            </ul>
+        </section>
+
+        <footer class="footer">
+            <p>本活动最终解释权归主办方所有</p>
+        </footer>
+    </div>
+
+    <script>
+        // 埋点函数
+        function track(eventName, params = {}) {
+            console.log(`[Track] ${eventName}:`, params);
+            // 在实际项目中，这里会发送数据到数据分析平台
+            // 例如：fetch('/api/track', { method: 'POST', body: JSON.stringify({ event: eventName, ...params }) });
+        }
+
+        // 页面加载埋点
+        document.addEventListener('DOMContentLoaded', function() {
+            track('page_view', {
+                page_title: '春日焕新季活动页',
+                timestamp: Date.now(),
+                user_agent: navigator.userAgent
+            });
+
+            // 初始化 Mock 数据
+            initCoupons();
+            initProducts();
+            initLottery();
+            initBannerClick();
+        });
+
+        // Mock 优惠券数据
+        const mockCoupons = [
+            { id: 1, value: 10, condition: '满50元可用', validity: '2024-04-30', claimed: false },
+            { id: 2, value: 20, condition: '满100元可用', validity: '2024-04-30', claimed: false },
+            { id: 3, value: 30, condition: '满200元可用', validity: '2024-04-30', claimed: true }
+        ];
+
+        // Mock 商品数据
+        const mockProducts = [
+            { id: 101, title: '简约纯棉休闲T恤 多色可选', imgColor: '#a5d8ff', price: 89.9, originalPrice: 129.9 },
+            { id: 102, title: '春季新款轻薄防风外套', imgColor: '#ffc9c9', price: 199.0, originalPrice: 299.0 },
+            { id: 103, title: '舒适百搭休闲裤 弹力面料', imgColor: '#d8f5a2', price: 149.0, originalPrice: 219.0 },
+            { id: 104, title: '时尚潮流运动鞋 轻便透气', imgColor: '#ffd8a8', price: 259.0, originalPrice: 399.0 }
+        ];
+
+        // Mock 奖品数据
+        const mockPrizes = [
+            '谢谢参与',
+            '5元优惠券',
+            '10元优惠券',
+            '帆布包',
+            '手机支架',
+            '公仔玩偶'
+        ];
+
+        // 初始化优惠券
+        function initCoupons() {
+            const container = document.getElementById('couponList');
+            container.innerHTML = '';
+
+            mockCoupons.forEach(coupon => {
+                const couponEl = document.createElement('div');
+                couponEl.className = 'coupon-item';
+                couponEl.innerHTML = `
+                    <div class="coupon-info">
+                        <div class="coupon-value">¥<span>${coupon.value}</span></div>
+                        <div class="coupon-condition">${coupon.condition}</div>
+                        <div class="coupon-validity">有效期至 ${coupon.validity}</div>
+                    </div>
+                    <button class="coupon-btn ${coupon.claimed ? 'disabled' : ''}" data-id="${coupon.id}">
+                        ${coupon.claimed ? '已领取' : '立即领取'}
+                    </button>
+                `;
+                container.appendChild(couponEl);
+
+                // 绑定点击事件（仅未领取的）
+                if (!coupon.claimed) {
+                    const btn = couponEl.querySelector('.coupon-btn');
+                    btn.addEventListener('click', function() {
+                        const couponId = this.getAttribute('data-id');
+                        this.textContent = '已领取';
+                        this.classList.add('disabled');
+                        track('coupon_claim', {
+                            coupon_id: couponId,
+                            coupon_value: coupon.value,
+                            timestamp: Date.now()
+                        });
+                        alert(`成功领取 ¥${coupon.value} 优惠券！`);
+                    });
+                }
+            });
+        }
+
+        // 初始化商品
+        function initProducts() {
+            const container = document.getElementById('productGrid');
+            container.innerHTML = '';
+
+            mockProducts.forEach(product => {
+                const productEl = document.createElement('div');
+                productEl.className = 'product-card';
+                productEl.innerHTML = `
+                    <img class="product-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 100 100'><rect width='100%' height='100%' fill='${encodeURIComponent(product.imgColor)}'/><text x='50%' y='50%' font-size='12' text-anchor='middle' dy='.3em' fill='%23666'>商品图片</text></svg>" alt="${product.title}">
+                    <div class="product-info">
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-price">
+                            <div class="current-price">¥<span>${product.price.toFixed(1)}</span></div>
+                            <div class="original-price">¥${product.originalPrice.toFixed(1)}</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(productEl);
+
+                // 绑定点击事件
+                productEl.addEventListener('click', function() {
+                    track('product_click', {
+                        product_id: product.id,
+                        product_title: product.title,
+                        product_price: product.price,
+                        timestamp: Date.now()
+                    });
+                    // 模拟跳转到商品详情页
+                    alert(`即将查看商品：${product.title}`);
+                });
+            });
+        }
+
+        // 初始化抽奖
+        function initLottery() {
+            const lotteryBtn = document.getElementById('lotteryBtn');
+            const lotteryResult = document.getElementById('lotteryResult');
+            let isLottering = false;
+
+            lotteryBtn.addEventListener('click', function() {
+                if (isLottering) return;
+                isLottering = true;
+
+                track('lottery_click', { timestamp: Date.now() });
+
+                // 模拟抽奖过程
+                lotteryResult.textContent = '抽奖中...';
+                lotteryBtn.disabled = true;
+
+                // 模拟网络请求延迟
+                setTimeout(() => {
+                    const randomIndex = Math.floor(Math.random() * mockPrizes.length);
+                    const prize = mockPrizes[randomIndex];
+                    
+                    lotteryResult.textContent = `恭喜您获得：${prize}`;
+                    lotteryBtn.disabled = false;
+                    isLottering = false;
+
+                    // 模拟中奖提示
+                    if (prize !== '谢谢参与') {
+                        alert(`恭喜您获得 ${prize}！`);
+                    }
+                }, 1500);
+            });
+        }
+
+        // 初始化 Banner 点击
+        function initBannerClick() {
+            const banner = document.getElementById('topBanner');
+            banner.addEventListener('click', function() {
+                track('banner_click', {
+                    banner_id: 'top_banner',
+                    banner_title: '春日焕新季',
+                    timestamp: Date.now()
+                });
+                // 模拟跳转到活动主会场
+                alert('即将进入活动主会场');
+            });
+        }
+    </script>
+</body>
+</html>
