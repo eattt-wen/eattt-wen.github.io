@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>夏日奶茶节 · 新客专享</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(180deg, #FFF9E6 0%, #FFFFFF 100%);
+            min-height: 100vh;
+            color: #333;
+            padding-bottom: 20px;
+        }
+        
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #FFBD00 0%, #FF9900 50%, #FFD54F 100%);
+            padding: 20px 16px 30px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+        }
+        
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .banner-tag {
+            display: inline-block;
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .banner-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 8px;
+        }
+        
+        .banner-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 16px;
+        }
+        
+        .countdown-wrapper {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .countdown-label {
+            font-size: 14px;
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .countdown-item {
+            background: #FF6B6B;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            min-width: 32px;
+            text-align: center;
+        }
+        
+        .countdown-separator {
+            color: #fff;
+            font-weight: 700;
+        }
+        
+        .ice-decoration {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.6;
+        }
+        
+        .ice-1 { top: 20px; right: 20px; }
+        .ice-2 { bottom: 40px; left: 20px; }
+        .ice-3 { top: 60px; left: 60px; }
+        
+        /* Coupon Area */
+        .coupon-section {
+            padding: 20px 16px;
+            margin-top: -15px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(180deg, #FFBD00, #FF9900);
+            border-radius: 2px;
+        }
+        
+        .coupon-card {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFFFFF 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(255, 189, 0, 0.2);
+            position: relative;
+            border: 2px solid #FFBD00;
+        }
+        
+        .coupon-card::before,
+        .coupon-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFF9E6;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .coupon-card::before { left: -10px; }
+        .coupon-card::after { right: -10px; }
+        
+        .coupon-content {
+            display: flex;
+            padding: 20px;
+        }
+        
+        .coupon-left {
+            flex: 1;
+        }
+        
+        .coupon-value {
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+            color: #FF6B6B;
+        }
+        
+        .coupon-currency {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .coupon-amount {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .coupon-condition {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .coupon-tag {
+            display: inline-block;
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+        
+        .coupon-right {
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            border-left: 2px dashed #FFE082;
+        }
+        
+        .claim-btn {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            animation: breathe 2s infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(255, 107, 107, 0.6); }
+        }
+        
+        .claim-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .claim-btn.claimed {
+            background: #ccc;
+            animation: none;
+            box-shadow: none;
+        }
+        
+        .coupon-expiry {
+            text-align: center;
+            padding: 10px;
+            background: #FFF8E1;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* Product Section */
+        .product-section {
+            padding: 20px 16px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .product-card:active {
+            transform: scale(0.98);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #FFE4B5, #FFECD2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 12px;
+        }
+        
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .product-shop {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .product-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+        
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FF6B6B;
+        }
+        
+        .product-price::before {
+            content: '¥';
+            font-size: 12px;
+        }
+        
+        .product-original-price {
+            font-size: 12px;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .product-sales {
+            font-size: 11px;
+            color: #999;
+            margin-top: 6px;
+        }
+        
+        .coupon-applicable-tag {
+            display: inline-block;
+            background: #FFF3E0;
+            color: #FF9800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            margin-top: 6px;
+        }
+        
+        /* Interactive Section */
+        .interactive-section {
+            padding: 20px 16px;
+        }
+        
+        .interactive-card {
+            background: linear-gradient(135deg, #A2D729 0%, #7BCFFF 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interactive-card::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        .interactive-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .interactive-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+        
+        .shake-area {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .shake-area:active {
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) rotate(0); }
+            25% { transform: translateX(-10px) rotate(-5deg); }
+            50% { transform: translateX(10px) rotate(5deg); }
+            75% { transform: translateX(-10px) rotate(-5deg); }
+        }
+        
+        .shake-btn {
+            background: white;
+            color: #A2D729;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .shake-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .prize-examples {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .prize-item {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: white;
+        }
+        
+        /* Rules Section */
+        .rules-section {
+            padding: 20px 16px;
+        }
+        
+        .rules-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .rules-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: #FAFAFA;
+        }
+        
+        .rules-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .rules-arrow {
+            font-size: 12px;
+            color: #999;
+            transition: transform 0.3s ease;
+        }
+        
+        .rules-arrow.expanded {
+            transform: rotate(180deg);
+        }
+        
+        .rules-content {
+            padding: 0 16px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .rules-content.expanded {
+            padding: 16px;
+            max-height: 500px;
+        }
+        
+        .rules-list {
+            list-style: none;
+        }
+        
+        .rules-list li {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+            padding-left: 16px;
+            position: relative;
+        }
+        
+        .rules-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: #FFBD00;
+            border-radius: 50%;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 24px;
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+            animation: modalIn 0.3s ease;
+        }
+        
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 16px;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        
+        .modal-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .modal-btn {
+            background: linear-gradient(135deg, #FFBD00 0%, #FF9900 100%);
+            color: white;
+            border: none;
+            padding: 14px 48px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 14px;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .toast.active {
+            display: block;
+            animation: fadeInOut 2s ease;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Banner -->
+    <div class="hero-banner" id="heroBanner">
+        <span class="ice-decoration ice-1">🧊</span>
+        <span class="ice-decoration ice-2">🍹</span>
+        <span class="ice-decoration ice-3">✨</span>
+        <div class="banner-content">
+            <span class="banner-tag">🔥 限时特惠</span>
+            <h1 class="banner-title">夏日奶茶节</h1>
+            <p class="banner-subtitle">新客专享 · 满20减8 · 清爽一夏</p>
+            <div class="countdown-wrapper">
+                <span class="countdown-label">距活动结束</span>
+                <div class="countdown-timer">
+                    <span class="countdown-item" id="days">00</span>
+                    <span class="countdown-separator">天</span>
+                    <span class="countdown-item" id="hours">00</span>
+                    <span class="countdown-separator">:</span>
+                    <span class="countdown-item" id="minutes">00</span>
+                    <span class="countdown-separator">:</span>
+                    <span class="countdown-item" id="seconds">00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coupon Area -->
+    <section class="coupon-section">
+        <h2 class="section-title">新客专享福利</h2>
+        <div class="coupon-card">
+            <div class="coupon-content">
+                <div class="coupon-left">
+                    <div class="coupon-value">
+                        <span class="coupon-currency">¥</span>
+                        <span class="coupon-amount">8</span>
+                    </div>
+                    <p class="coupon-condition">满20元可用</p>
+                    <span class="coupon-tag">🎁 新客专享</span>
+                </div>
+                <div class="coupon-right">
+                    <button class="claim-btn" id="claimBtn">立即领取</button>
+                </div>
+            </div>
+            <div class="coupon-expiry">限外卖奶茶品类 · 领取后7天内有效</div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <h2 class="section-title">新人必喝榜 · 用券更划算</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- Products will be rendered by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Interactive Section -->
+    <section class="interactive-section">
+        <h2 class="section-title">摇摇乐 · 惊喜加码</h2>
+        <div class="interactive-card">
+            <h3 class="interactive-title">🎉 摇一摇，解锁惊喜</h3>
+            <p class="interactive-subtitle">每日1次机会，随机获得额外福利</p>
+            <div class="shake-area" id="shakeArea">🥤</div>
+            <button class="shake-btn" id="shakeBtn">摇一摇有惊喜</button>
+            <div class="prize-examples">
+                <span class="prize-item">5元红包</span>
+                <span class="prize-item">20金币</span>
+                <span class="prize-item">更多惊喜</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section class="rules-section">
+        <div class="rules-card">
+            <div class="rules-header" id="rulesHeader">
+                <span class="rules-title">📋 活动规则</span>
+                <span class="rules-arrow" id="rulesArrow">▼</span>
+            </div>
+            <div class="rules-content" id="rulesContent">
+                <ul class="rules-list">
+                    <li>活动时间：2024年7月1日00:00:00至2024年7月31日23:59:59</li>
+                    <li>参与对象：活动期间，美团APP内未下过外卖订单的新用户</li>
+                    <li>优惠规则：新用户可领取"满20减8"新客专享券1张，具体可用商家及品类以券面及下单页提示为准</li>
+                    <li>商品推荐：页面商品信息（价格、库存等）可能实时变动，请以订单提交页为准</li>
+                    <li>互动玩法：每日可参与1次"摇摇乐"，奖励随机发放，奖品库存有限，先到先得</li>
+                    <li>本活动由美团提供，在法律允许范围内，美团有权对活动规则进行变更或调整</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-icon" id="modalIcon">🎉</div>
+            <h3 class="modal-title" id="modalTitle">恭喜获得</h3>
+            <p class="modal-desc" id="modalDesc">领取成功</p>
+            <button class="modal-btn" id="modalBtn">知道了</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // 埋点函数
+        function track(eventName, params) {
+            console.log('[Track Event]', eventName, params);
+            // 实际项目中这里会发送到数据分析平台
+        }
+
+        // Mock 数据
+        const mockProducts = [
+            {
+                id: 101,
+                name: "霸气芝士草莓",
+                shop: "XXの茶（中关村店）",
+                originalPrice: 28,
+                currentPrice: 20,
+                monthlySales: "月售2000+",
+                tags: ["人气TOP"],
+                emoji: "🍓",
+                isCouponApplicable: true
+            },
+            {
+                id: 102,
+                name: "经典珍珠奶茶",
+                shop: "CoCo都可（王府井店）",
+                originalPrice: 22,
+                currentPrice: 15,
+                monthlySales: "月售5000+",
+                tags: ["口碑推荐"],
+                emoji: "🧋",
+                isCouponApplicable: true
+            },
+            {
+                id: 103,
+                name: "杨枝甘露",
+                shop: "满记甜品（三里屯店）",
+                originalPrice: 32,
+                currentPrice: 25,
+                monthlySales: "月售1500+",
+                tags: ["夏日特饮"],
+                emoji: "🥭",
+                isCouponApplicable: true
+            },
+            {
+                id: 104,
+                name: "多肉葡萄",
+                shop: "喜茶（国贸店）",
+                originalPrice: 29,
+                currentPrice: 22,
+                monthlySales: "月售3000+",
+                tags: ["新客优选"],
+                emoji: "🍇",
+                isCouponApplicable: true
+            }
+        ];
+
+        const mockPrizePool = [
+            { id: 1, name: "5元无门槛红包", emoji: "🧧" },
+            { id: 2, name: "20金币", emoji: "🪙" },
+            { id: 3, name: "谢谢参与，下次好运", emoji: "🍀" }
+        ];
+
+        // 状态管理
+        let couponClaimed = false;
+        let lotteryUsed = false;
+
+        // 页面加载埋点
+        document.addEventListener('DOMContentLoaded', function() {
+            track('page_view', {
+                page_name: '夏日奶茶节',
+                campaign_id: 'summer_tea_2024',
+                timestamp: new Date().toISOString()
+            });
+
+            renderProducts();
+            initCountdown();
+        });
+
+        // 渲染商品列表
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = mockProducts.map(product => `
+                <div class="product-card" onclick="handleProductClick(${product.id}, '${product.name}')">
+                    <div class="product-image">
+                        ${product.tags[0] ? `<span class="product-badge">${product.tags[0]}</span>` : ''}
+                        ${product.emoji}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-shop">${product.shop}</p>
+                        <div class="product-price-row">
+                            <span class="product-price">${product.currentPrice}</span>
+                            <span class="product-original-price">¥${product.originalPrice}</span>
+                        </div>
+                        <p class="product-sales">${product.monthlySales}</p>
+                        ${product.isCouponApplicable ? '<span class="coupon-applicable-tag">可用满20减8券</span>' : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 倒计时
+        function initCountdown() {
+            const endDate = new Date('2024-07-31T23:59:59');
+            
+            function updateCountdown() {
+                const now = new Date();
+                const diff = endDate - now;
+                
+                if (diff <= 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Banner 点击
+        document.getElementById('heroBanner').addEventListener('click', function() {
+            track('banner_click', {
+                banner_id: 'summer_tea_hero',
+                campaign_id: 'summer_tea_2024',
+                timestamp: new Date().toISOString()
+            });
+        });
+
+        // 领券按钮
+        document.getElementById('claimBtn').addEventListener('click', function() {
+            if (couponClaimed) {
+                showToast('您已领取过该优惠券');
+                return;
+            }
+            
+            track('coupon_claim', {
+                coupon_id: 'new_user_8off',
+                coupon_value: 8,
+                coupon_condition: '满20可用',
+                timestamp: new Date().toISOString()
+            });
+            
+            couponClaimed = true;
+            this.textContent = '已领取';
+            this.classList.add('claimed');
+            
+            showModal('🎉', '领取成功', '满20减8优惠券已放入您的账户，7天内有效，快去下单吧！');
+        });
+
+        // 商品点击
+        function handleProductClick(productId, productName) {
+            track('product_click', {
+                product_id: productId,
+                product_name: productName,
+                campaign_id: 'summer_tea_2024',
+                timestamp: new Date().toISOString()
+            });
+            
+            showToast('正在跳转商品详情...');
+        }
+
+        // 摇一摇/抽奖
+        document.getElementById('shakeBtn').addEventListener('click', handleLottery);
+        document.getElementById('shakeArea').addEventListener('click', handleLottery);
+
+        function handleLottery() {
+            if (lotteryUsed) {
+                showToast('今日次数已用完，明天再来吧');
+                return;
+            }
+            
+            track('lottery_click', {
+                lottery_type: 'shake',
+                campaign_id: 'summer_tea_2024',
+                timestamp: new Date().toISOString()
+            });
+            
+            // 添加摇晃动画
+            const shakeArea = document.getElementById('shakeArea');
+            shakeArea.style.animation = 'shake 0.5s ease';
+            
+            setTimeout(() => {
+                shakeArea.style.animation = 'float 3s ease-in-out infinite';
+                
+                // 随机抽取奖品
+                const prize = mockPrizePool[Math.floor(Math.random() * mockPrizePool.length)];
+                lotteryUsed = true;
+                
+                showModal(prize.emoji, '恭喜获得', prize.name);
+            }, 500);
+        }
+
+        // 规则展开/收起
+        document.getElementById('rulesHeader').addEventListener('click', function() {
+            const content = document.getElementById('rulesContent');
+            const arrow = document.getElementById('rulesArrow');
+            
+            content.classList.toggle('expanded');
+            arrow.classList.toggle('expanded');
+        });
+
+        // 显示弹窗
+        function showModal(icon, title, desc) {
+            document.getElementById('modalIcon').textContent = icon;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        // 关闭弹窗
+        document.getElementById('modalBtn').addEventListener('click', function() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        });
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+
+        // 显示 Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('active');
+            
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
