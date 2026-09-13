@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f8ff"><meta name="description" content="Junwen Zheng · Catch the Food"><title>Catch the Food · Junwen Zheng</title><link rel="stylesheet" href="assets/portfolio.css"><link rel="stylesheet" href="assets/pages.css"><link rel="stylesheet" href="assets/games.css"><script src="assets/site.js" defer></script><script src="assets/catch.js" defer></script></head><body class="subpage" data-title-en="Catch the Food" data-title-zh="接住美食"><a class="skip" href="#main"><span data-en="Skip to content" data-zh="跳转到正文">Skip to content</span></a><header class="page-header"><a class="page-back" href="index.html">← <span data-en="My universe" data-zh="我的小宇宙">My universe</span></a><nav aria-label="Page navigation"><a href="research.html" ><span data-en="Research" data-zh="研究">Research</span></a><a href="publications.html" ><span data-en="Paper" data-zh="论文">Paper</span></a><a href="luckyoffer.html" ><span data-en="LuckyOffer" data-zh="LuckyOffer">LuckyOffer</span></a><a href="index.html#about" ><span data-en="About" data-zh="关于我">About</span></a></nav><button id="language" class="language" aria-label="切换为中文">中文</button></header><main id="main"><section class="section game-page"><div class="game-page-heading"><div><p class="eyebrow">PLAYROOM / CATCH</p><h1><span data-en="Catch the Food" data-zh="接住美食">Catch the Food</span></h1></div><a href="games.html">← <span data-en="Choose a game" data-zh="选择小游戏">Choose a game</span></a></div><p class="game-instructions"><span data-en="← → / A D / touch controls · Catch food; avoid 💀 and 🤢. Missing food costs a heart." data-zh="← → / A D / 触屏按钮 · 接美食，躲开 💀 和 🤢；漏接美食也会失去一颗心。">← → / A D / touch controls · Catch food; avoid 💀 and 🤢. Missing food costs a heart.</span></p><div class="catch-card">
+      <div class="catch-header">
+        <div style="font-size:16px;font-weight:900;color:var(--tx)" data-zh="🥣 接住美食！" data-en="🥣 Catch the Food!">🥣 接住美食！</div>
+        <div class="catch-score-wrap">
+          <div class="catch-stat"><div class="catch-stat-num" id="catchScore">0</div><div class="catch-stat-lbl" data-zh="得分" data-en="SCORE">得分</div></div>
+          <div class="catch-stat"><div class="catch-stat-num" id="catchBest">0</div><div class="catch-stat-lbl" data-zh="最高分" data-en="BEST">最高分</div></div>
+          <div class="catch-stat"><div class="catch-stat-num" id="catchLives">3</div><div class="catch-stat-lbl" data-zh="❤️ 生命" data-en="❤️ LIVES">❤️ 生命</div></div>
+        </div>
+        <div class="catch-btns">
+          <button class="catch-btn catch-btn-pause" id="catchPauseBtn" onclick="pauseCatch()" style="display:none">⏸ <span data-zh="暂停" data-en="Pause">暂停</span></button>
+          <button class="catch-btn catch-btn-start" id="catchStartBtn" onclick="startCatch()">▶ <span data-zh="开始" data-en="Play">开始</span></button>
+          <span style="font-size:13px;color:var(--tl);font-weight:700" id="catchHint">← →</span>
+        </div>
+      </div>
+      <div class="catch-game-area">
+        <div class="catch-canvas-wrap">
+          <canvas role="img" aria-label="Catch the Food game board" id="catchCanvas">Catch the Food game. Use the controls below or the arrow keys.</canvas>
+          <div class="catch-overlay" id="catchOverlay">
+            <div style="font-size:44px">🥣</div>
+            <div style="font-size:20px;font-weight:900;color:var(--tx)" data-zh="接住美食！" data-en="Catch the Food!">接住美食！</div>
+            <div style="font-size:14px;color:var(--tm);font-weight:600;text-align:center;line-height:1.6" data-zh="用方向键或按钮移动碗<br>接住掉落的美食 🍲🥩🌶️" data-en="Use arrow keys or buttons<br>to catch falling food 🍲🥩🌶️">用方向键或按钮移动碗<br>接住掉落的美食 🍲🥩🌶️</div>
+            <button style="font-size:14px;font-weight:800;padding:10px 28px;border-radius:20px;cursor:pointer;border:none;background:var(--m3);color:white;font-family:inherit;transition:.15s;margin-top:4px" onclick="startCatch()" data-zh="开始游戏" data-en="Start Playing">开始游戏</button>
+          </div>
+        </div>
+        <div class="catch-dpad">
+          <button aria-label="Move left" class="catch-dpad-btn" id="cLeft" ontouchstart="catchDpad(event,'L')" onclick="catchDpad(null,'L')">◀</button>
+          <button aria-label="Move right" class="catch-dpad-btn" id="cRight" ontouchstart="catchDpad(event,'R')" onclick="catchDpad(null,'R')">▶</button>
+        </div>
+      </div>
+    </div><p class="game-note"><span data-en="The game pauses when you leave this tab." data-zh="切换窗口时，游戏会自动暂停。">The game pauses when you leave this tab.</span></p></section></main><footer><a href="index.html">← <span data-en="Back to my universe" data-zh="回到我的小宇宙">Back to my universe</span></a><p>Junwen Zheng · <span data-en="Stay curious." data-zh="保持好奇。">Stay curious.</span></p><a href="games.html"><span data-en="Take a play break" data-zh="去游戏室放松一下">Take a play break</span> ↗</a></footer></body></html>
